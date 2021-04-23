@@ -229,7 +229,7 @@ header section:last-child {
     color: hsl(228, 34%, 66%);
 }
 
-.fb-login-button {
+.fixed-top {
     margin-top: 20px;
     margin-left: 10px;
 }
