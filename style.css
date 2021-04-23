@@ -226,6 +226,7 @@ header section:last-child {
 .status {
     font-size: 14px;
     margin-top: 10px;
+    margin-left: 10px;
     color: hsl(228, 34%, 66%);
 }
 
