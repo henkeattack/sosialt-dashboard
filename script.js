@@ -72,7 +72,7 @@ function testPage() {
     'GET',
     {"fields":"accounts"},
     function(response) {
-      console.log('Your page_id is: ' + response.accounts.id);
-      console.log('Your page name is: ' + response.accounts.name);
+      console.log('Your page_id is: ' + response.id);
+      console.log('Your page name is: ' + response.name);
   });
 }
