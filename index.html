@@ -11,9 +11,17 @@
 <body class="dark">
   <div class="wrapper">
     <div class="container1">
+    <header>
+    <section>
     <!-- JS SDK Login Button -->
     <fb:login-button scope="public_profile,email,pages_show_list, pages_read_engagement,pages_manage_engagement,pages_read_user_content,read_insights,ads_read, instagram_manage_insights, instagram_basic" data-size="large" data-button-type="continue_with" data-layout="rounded" data-auto-logout-link="true" data-use-continue-as="true" onlogin="checkLoginState();">
     </fb:login-button>
+    
+    <!-- Login status tekst -->
+    <div class="attribution" id="status"></div>
+  </section>
+  </section>
+  </header>
       <header>
         <section>
           <!-- Header tittel-->
@@ -25,16 +33,12 @@
           <!-- Dark/light mode toggle-->
           <div class="header-toggler">
             <div style="font-weight: 700;">Visning</div>
-          
 
           <div class="toggler" id="toggler">
             <div id="toggler-circle" class="toggler-circle"></div>
           </div>
         </div>
 
-        <!-- Login status tekst -->
-        <div class="attribution" id="status"></div>
-        </section>
           <!-- Sosiale Medier Cards Section -->
         <section>
           <div class="col-md-3 col-sm-6 padding-left resp-padding">
