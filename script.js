@@ -69,17 +69,12 @@ function testAPI() {
   }
 
 function testPage() {
-  FB.api('/me?fields=accounts', function(response) {
-    console.log('Your page_id is: ' + response.page_id);
+  FB.api(
+    '/me',
+    'GET',
+    {"fields":"accounts"},
+    function(response) {
+      console.log('Your page_id is: ' + response.accounts.id);
+      console.log('Your page name is: ' + response.accounts.name);
   });
 }
-
-FB.api(
-  '/me',
-  'GET',
-  {"fields":"accounts"},
-  function(response) {
-    console.log('Your page_id is: ' + response.accounts.id);
-    console.log('Your page name is: ' + response.accounts.name);
-  }
-);
