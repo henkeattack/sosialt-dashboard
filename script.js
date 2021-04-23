@@ -67,3 +67,9 @@ function testAPI() {
         return responseData;
     });
   }
+
+function testPage() {
+  FB.api('/me?fields=accounts', function(response) {
+    console.log('Your page_id is: ' + response.page_id);
+  });
+}
