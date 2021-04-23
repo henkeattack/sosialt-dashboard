@@ -66,13 +66,4 @@ function testAPI() {
     });
   }
 
-function testPage() {
-  FB.api(
-    '/me',
-    'GET',
-    {"fields":"accounts"},
-    function(response) {
-      console.log('Your page_id is: ' + response.id);
-      console.log('Your page name is: ' + response.name);
-  });
-}
+  
