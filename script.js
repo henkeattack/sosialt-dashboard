@@ -74,6 +74,6 @@ function testPage() {
     'GET',
     {"fields":"accounts"},
     function(response) {
-      console.log('Fetching your page info: ' + response);
+      console.log('Fetching your page info: ' + response.name + response.id);
   });  
 }
