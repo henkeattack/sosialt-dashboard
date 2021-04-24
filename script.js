@@ -69,13 +69,11 @@ function testAPI() {
 
 // Hent Page Info
 function testPage() {
-  FB.api('/me?fields=accounts', function (apiResponse) {
-    FB.api(
-      '/me',
-      'GET',
-      {"fields":"accounts"},
-      function(response) {
-        console.log('Fetching your page info: ' + apiResponse);
-      });    
+  FB.api(
+    '/me',
+    'GET',
+    {"fields":"accounts"},
+    function(response) {
+      console.log('Fetching your page info: ' + response);
   });  
 }
