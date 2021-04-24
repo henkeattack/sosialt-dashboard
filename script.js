@@ -67,10 +67,15 @@ function testAPI() {
     });
   }
 
-// Hent Page
+// Hent Page Info
 function testPage() {
   FB.api('/me?fields=accounts', function (apiResponse) {
-    //apiResponse will have page id inside apiResponse.accounts.data
-    console.log('Fetching your page info: ' + apiResponse);
+    FB.api(
+      '/me',
+      'GET',
+      {"fields":"accounts"},
+      function(response) {
+        console.log('Fetching your page info: ' + apiResponse);
+      });    
   });  
 }
