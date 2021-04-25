@@ -74,7 +74,9 @@ function statusChangeCallback(response) {
     console.log(response);                   
     if (response.status === 'connected') {   
       testAPI();
-      getMyInfo(); 
+      getMyInfo();
+      getMyfbAccInfo();
+      getMyfbAccPage();
     } else {                                 
       document.getElementById('status').innerHTML = 'Please log ' +
         'into this webpage.';
@@ -105,4 +107,17 @@ function getMyInfo(myUserId) {
     const myUserId = responseData.id;
     return responseData;
   });
+}
+
+// getMyfbAcc
+function getMyfbAccInfo(myUserId, accessToken) {
+  const url = `https://graph.facebook.com/v10.0/me?fields=id,name,email&access_token=${accessToken}`;
+  console.log("Account info: " + response.id);
+  return performGetOperation(url);
+}
+// getMyfbAccPage
+function getMyfbAccPage(myUserId, accessToken) {
+  const url = `https://graph.facebook.com/v10.0/me/accounts?fields=name&access_token=${accessToken}`;
+  console.log("Page Info: " + response);
+  return performGetOperation(url, headers);
 }
