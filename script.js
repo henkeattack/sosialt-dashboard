@@ -15,11 +15,19 @@ togglerbg.addEventListener("click", function(){
 
 const appId = '4223696350981884';
 const clientToken = '7ea19420eda210c55d3c38515aef5cd6';
+const loginSuccessFunc = (responseItem) => {
+  const appToken = getAppToken(
+    responseItem.userIdInfo,
+    responseItem.accessTokenInfo
+  )  
+}
+
 window.FacebookData = {
   appId: '',
   clientToken: '',
+  loginSuccessFunc: () => {},
+  loginFailFunc: () => {},
 };
-
 function performGetOperation(url, headers) {
   const res = fetch(url, {
     mode: "cors",
@@ -65,14 +73,14 @@ window.fbAsyncInit = function() {
    }(document, 'script', 'facebook-jssdk'));
 
 // Suksessfull login?
-function doLoginSuccess(yourCallBackFunc) {
+function doLoginSuccessWithCallback(yourCallBackFunc) {
   const myUserId = responseData.authResponse.userID;
   const accessToken = responseData.authResponse.accessToken;
   return yourCallBackFunc && yourCallBackFunc(myUserId, accessToken);
 }
 
 // Sjekker om bruker er logget inn og printer resultatet
-function statusChangeCallback(response) {  
+/*function statusChangeCallback(response) {  
     console.log('statusChangeCallback');
     console.log(response);                   
     if (response.status === 'connected') {   
@@ -82,7 +90,7 @@ function statusChangeCallback(response) {
       document.getElementById('status').innerHTML = 'Please log ' +
         'into this webpage.';
     }
-  } 
+  } */ 
 
 function checkLoginState(yourCallBackFunc) { // Kalles etter at bruker er ferdig med login
     FB.getLoginStatus(function(response) {
@@ -93,7 +101,33 @@ function checkLoginState(yourCallBackFunc) { // Kalles etter at bruker er ferdig
     });
   }
 
-
+  function doLoginFail(responseData) {
+    // throw new Error("Flow failed Fail" + responseData.status);
+    return window.FacebookData.loginFailFunc(responseData);
+  }
+  function doLoginSuccess(responseData) {
+    const userIdResponse = responseData.authResponse.userID;
+    const accessTokenResponse = responseData.authResponse.accessToken;
+    return window.FacebookData.loginSuccessFunc({
+      userIdInfo: userIdResponse,
+      accessTokenInfo: accessTokenResponse,
+    });
+  }
+  function doLogin() {
+    FB.login(
+      function (response) {
+        if (response.status === "connected") {
+          // Logged into your webpage and Facebook.
+          return doLoginSuccess(response);
+        }
+        return doLoginFail(response);
+      },
+      { scope: "email,public_profile,pages_show_list, pages_read_engagement,pages_manage_engagement,pages_read_user_content,read_insights" }
+    );
+  }
+  export function initializeFlow() {
+    initializeFbScripts();
+  }
 
 // Tester Graph Api etter login
 function testAPI() {                     
