@@ -102,10 +102,10 @@ function testAPI() {
 
 // getMyInfo
 function getMyInfo(myUserId) {
-  FB.api('/me', function (responseData) {
-    console.log("getMyInfo " + responseData);
-    const myUserId = responseData.id;
-    return responseData;
+  FB.api('/me', function (response) {
+    console.log("getMyInfo " + response);
+    const myUserId = response.id;
+    return response;
   });
 }
 
@@ -118,6 +118,6 @@ function getMyfbAccInfo(myUserId, accessToken) {
 // getMyfbAccPage
 function getMyfbAccPage(myUserId, accessToken) {
   const url = `https://graph.facebook.com/v10.0/me/accounts?fields=name&access_token=${accessToken}`;
-  console.log("Page Info: " + response);
+  console.log("Page Info: " + response.name);
   return performGetOperation(url, headers);
 }
