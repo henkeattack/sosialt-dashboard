@@ -21,14 +21,14 @@ window.FacebookData = {
 };
 
 function performGetOperation(url, headers) {
-  const res = await fetch(url, {
+  const res = fetch(url, {
     mode: "cors",
     method: "GET",
     headers: headers,
   }).catch(function (error) {
     throw new Error("full-flow-facebook : " + error.message);
   });
-  return await res.json();
+  return res.json();
 }
 
 // Hent App Token
