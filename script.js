@@ -13,15 +13,6 @@ togglerbg.addEventListener("click", function(){
     }
 }); // Kode for dark mode/light mode
 
-const appId = '4223696350981884';
-const clientToken = '7ea19420eda210c55d3c38515aef5cd6';
-const loginSuccessFunc = (responseItem) => {
-  const appToken = getAppToken(
-    responseItem.userIdInfo,
-    responseItem.accessTokenInfo
-  )  
-}
-
 window.FacebookData = {
   appId: '',
   clientToken: '',
@@ -48,7 +39,12 @@ function getAppToken() {
 }
 
 //Oppsett av Facebook SDK med id, cookies, social plugins og versjon.
-window.fbAsyncInit = function() {
+function initializeApp() {
+  initializeFBScripts();
+}
+
+function initializeFBScripts() {
+  window.fbAsyncInit = function() {
     FB.init({
       appId      : window.FacebookData.appId,
       cookie     : true,
@@ -57,12 +53,8 @@ window.fbAsyncInit = function() {
     });
       
     FB.AppEvents.logPageView();
-
-    // Sjekker login status
-    FB.getLoginStatus(function(response) {   
-        statusChangeCallback(response);      
-    });     
   };
+
 // Kjører Facebook SDK
 (function(d, s, id){
      var js, fjs = d.getElementsByTagName(s)[0];
@@ -71,9 +63,10 @@ window.fbAsyncInit = function() {
      js.src = "https://connect.facebook.net/en_US/sdk.js";
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
+}
 
 // Suksessfull login?
-function doLoginSuccessWithCallback(yourCallBackFunc) {
+function doLoginSuccess(yourCallBackFunc) {
   const myUserId = responseData.authResponse.userID;
   const accessToken = responseData.authResponse.accessToken;
   return yourCallBackFunc && yourCallBackFunc(myUserId, accessToken);
@@ -91,6 +84,12 @@ function doLoginSuccessWithCallback(yourCallBackFunc) {
         'into this webpage.';
     }
   } */ 
+
+  // Sjekker login status
+ /* FB.getLoginStatus(function(response) {   
+    statusChangeCallback(response);      
+});     
+}; */
 
 function checkLoginState(yourCallBackFunc) { // Kalles etter at bruker er ferdig med login
     FB.getLoginStatus(function(response) {
@@ -125,7 +124,7 @@ function checkLoginState(yourCallBackFunc) { // Kalles etter at bruker er ferdig
       { scope: "email,public_profile,pages_show_list, pages_read_engagement,pages_manage_engagement,pages_read_user_content,read_insights" }
     );
   }
-  export function initializeFlow() {
+  function initializeFlow() {
     initializeFbScripts();
   }
 
@@ -146,4 +145,12 @@ function getMyInfo() {
     const myUserId = responseData.id;
     return responseData;
   });
+}
+
+// getMyfbAcc
+function getMyfbAccInfo(myUserId, accessToken) {
+  const url = `https://graph.facebook.com/v10.0/me?fields=id,name,email&access_token=${accessToken}`;
+  let headers = new Headers();
+  headers.append("Accept", "application/json");
+  return performGetOperation(url, headers);
 }
