@@ -38,7 +38,7 @@ function getAppToken() {
 //Oppsett av Facebook SDK med id, cookies, social plugins og versjon.
 window.fbAsyncInit = function() {
     FB.init({
-      appId      : '4223696350981884',
+      appId      : window.FacebookData.appId,
       cookie     : true,
       xfbml      : true,
       version    : 'v10.0'
