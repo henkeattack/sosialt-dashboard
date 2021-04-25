@@ -77,18 +77,23 @@ function statusChangeCallback(response) {
     console.log(response);                   
     if (response.status === 'connected') {   
       testAPI();
+      return doLoginSuccess(response);
     } else {                                 
       document.getElementById('status').innerHTML = 'Please log ' +
         'into this webpage.';
     }
-  }
+  } 
 
 function checkLoginState(yourCallBackFunc) { // Kalles etter at bruker er ferdig med login
     FB.getLoginStatus(function(response) {
-      statusChangeCallback(response);
-      return yourCallBackFunc && yourCallBackFunc(response);
+      //statusChangeCallback(response);
+      if (response.status === 'connected') {
+        return yourCallBackFunc && yourCallBackFunc(response); 
+      }
     });
   }
+
+
 
 // Tester Graph Api etter login
 function testAPI() {                     
