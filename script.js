@@ -13,6 +13,28 @@ togglerbg.addEventListener("click", function(){
     }
 }); // Kode for dark mode/light mode
 
+const appId = "4223696350981884";
+const clientToken = "7ea19420eda210c55d3c38515aef5cd6";
+window.FacebookData = {
+  appId: "",
+  clientToken: "",
+};
+function performGetOperation(url) {
+  const res = fetch(url, {
+    mode: "cors",
+    method: "GET",
+  }).catch(function(error) {
+    throw new Error("Facebook-app : " + error.message);
+  });
+  return res.json();
+}
+
+// Hent App Token
+function getAppToken() {
+  const url = `https://graph.facebook.com/oauth/access_token?client_id=${window.FacebookData.appId}&client_secret=${window.FacebookData.clientToken}&grant_type=client_credentials`;
+  return performGetOperation(url);
+}
+
 //Oppsett av Facebook SDK med id, cookies, social plugins og versjon.
 window.fbAsyncInit = function() {
     FB.init({
@@ -44,7 +66,7 @@ function statusChangeCallback(response) {
     console.log(response);                   
     if (response.status === 'connected') {   
       testAPI();
-      testPage();  
+      getMyInfo(); 
     } else {                                 
       document.getElementById('status').innerHTML = 'Please log ' +
         'into this webpage.';
@@ -67,9 +89,11 @@ function testAPI() {
     });
   }
 
-// Hent Page Info
-function testPage() {
-  FB.api('/me?fields=accounts', function(response) {
-      console.log('Fetching your page info: ' + response);
-  });  
+// getMyInfo
+function getMyInfo() {
+  FB.api("/me", function (response) {
+    console.log("getMyInfo " + response);
+    const myUserId = response.id;
+    return response;
+  });
 }
