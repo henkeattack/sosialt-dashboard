@@ -70,6 +70,6 @@ function testAPI() {
 // Hent Page Info
 function testPage() {
   FB.api('/me?fields=accounts', function(response) {
-      console.log('Fetching your page info: ' + response.name + response.id);
+      console.log('Fetching your page info: ' + response);
   });  
 }
