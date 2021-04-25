@@ -20,10 +20,23 @@ window.FacebookData = {
   clientToken: '',
 };
 
+function performGetOperation(url, headers) {
+  const res = await fetch(url, {
+    mode: "cors",
+    method: "GET",
+    headers: headers,
+  }).catch(function (error) {
+    throw new Error("full-flow-facebook : " + error.message);
+  });
+  return await res.json();
+}
+
 // Hent App Token
 function getAppToken() {
   const url = `https://graph.facebook.com/oauth/access_token?client_id=${window.FacebookData.appId}&client_secret=${window.FacebookData.clientToken}&grant_type=client_credentials`;
-  return performGetOperation(url);
+  let headers = new Headers();
+  headers.append("Accept", "application/json");
+  return performGetOperation(url, headers);
 }
 
 //Oppsett av Facebook SDK med id, cookies, social plugins og versjon.
@@ -51,25 +64,29 @@ window.fbAsyncInit = function() {
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
 
+// Suksessfull login?
+function doLoginSuccess(yourCallBackFunc) {
+  const myUserId = responseData.authResponse.userID;
+  const accessToken = responseData.authResponse.accessToken;
+  return yourCallBackFunc && yourCallBackFunc(myUserId, accessToken);
+}
+
 // Sjekker om bruker er logget inn og printer resultatet
 function statusChangeCallback(response) {  
     console.log('statusChangeCallback');
     console.log(response);                   
     if (response.status === 'connected') {   
       testAPI();
-      getMyInfo();
-      getMyfbAccInfo();
-      getMyfbAccPage();
     } else {                                 
       document.getElementById('status').innerHTML = 'Please log ' +
         'into this webpage.';
     }
   }
 
-function checkLoginState() { // Kalles etter at bruker er ferdig med login
+function checkLoginState(yourCallBackFunc) { // Kalles etter at bruker er ferdig med login
     FB.getLoginStatus(function(response) {
       statusChangeCallback(response);
-      doLoginSuccess(response);
+      return yourCallBackFunc && yourCallBackFunc(response);
     });
   }
 
@@ -82,25 +99,3 @@ function testAPI() {
         'Thanks for logging in, ' + response.name + '!';
     });
   }
-
-// getMyInfo
-function getMyInfo(myUserId) {
-  FB.api('/me', function (response) {
-    console.log("getMyInfo " + response);
-    const myUserId = response.id;
-    return response;
-  });
-}
-
-// getMyfbAcc
-function getMyfbAccInfo(myUserId, accessToken) {
-  const url = `https://graph.facebook.com/v10.0/me?fields=id,name,email&access_token=${accessToken}`;
-  console.log("Account info: " + response.id);
-  return performGetOperation(url);
-}
-// getMyfbAccPage
-function getMyfbAccPage(myUserId, accessToken) {
-  const url = `https://graph.facebook.com/v10.0/me/accounts?fields=name&access_token=${accessToken}`;
-  console.log("Page Info: " + response.name);
-  return performGetOperation(url, headers);
-}
