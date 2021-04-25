@@ -13,11 +13,11 @@ togglerbg.addEventListener("click", function(){
     }
 }); // Kode for dark mode/light mode
 
-const appId = "4223696350981884";
-const clientToken = "7ea19420eda210c55d3c38515aef5cd6";
+const appId = '4223696350981884';
+const clientToken = '7ea19420eda210c55d3c38515aef5cd6';
 window.FacebookData = {
-  appId: "",
-  clientToken: "",
+  appId: '',
+  clientToken: '',
 };
 function performGetOperation(url) {
   const res = fetch(url, {
@@ -67,7 +67,7 @@ function doLoginSuccess(yourCallBackFunc) {
     const accessToken = responseData.authResponse.accessToken;
     return yourCallBackFunc && yourCallBackFunc(myUserId, accessToken);   
   }
-  
+
 // Sjekker om bruker er logget inn og printer resultatet
 function statusChangeCallback(response) {  
     console.log('statusChangeCallback');
@@ -84,6 +84,7 @@ function statusChangeCallback(response) {
 function checkLoginState() { // Kalles etter at bruker er ferdig med login
     FB.getLoginStatus(function(response) {
       statusChangeCallback(response);
+      doLoginSuccess(response);
     });
   }
 
@@ -99,7 +100,7 @@ function testAPI() {
 
 // getMyInfo
 function getMyInfo(myUserId) {
-  FB.api("/me", function (responseData) {
+  FB.api('/me', function (responseData) {
     console.log("getMyInfo " + responseData);
     const myUserId = responseData.id;
     return responseData;
