@@ -19,15 +19,6 @@ window.FacebookData = {
   appId: '',
   clientToken: '',
 };
-function performGetOperation(url) {
-  const res = fetch(url, {
-    mode: "cors",
-    method: "GET",
-  }).catch(function(error) {
-    throw new Error("Facebook-app : " + error.message);
-  });
-  return res.json();
-}
 
 // Hent App Token
 function getAppToken() {
@@ -59,14 +50,6 @@ window.fbAsyncInit = function() {
      js.src = "https://connect.facebook.net/en_US/sdk.js";
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
-
-
-// Er login en suksess med callback
-function doLoginSuccess(yourCallBackFunc) {
-    const myUserId = responseData.authResponse.userID;
-    const accessToken = responseData.authResponse.accessToken;
-    return yourCallBackFunc && yourCallBackFunc(myUserId, accessToken);   
-  }
 
 // Sjekker om bruker er logget inn og printer resultatet
 function statusChangeCallback(response) {  
