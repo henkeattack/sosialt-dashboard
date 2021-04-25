@@ -104,3 +104,12 @@ function testAPI() {
         'Thanks for logging in, ' + response.name + '!';
     });
   }
+
+// getMyInfo
+function getMyInfo() {
+  FB.api("/me", function (responseData) {
+    console.log("getMyInfo", responseData);
+    const myUserId = responseData.id;
+    return responseData;
+  });
+}
