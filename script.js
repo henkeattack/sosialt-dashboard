@@ -60,6 +60,14 @@ window.fbAsyncInit = function() {
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
 
+
+// Er login en suksess med callback
+function doLoginSuccess(yourCallBackFunc) {
+    const myUserId = responseData.authResponse.userID;
+    const accessToken = responseData.authResponse.accessToken;
+    return yourCallBackFunc && yourCallBackFunc(myUserId, accessToken);   
+  }
+  
 // Sjekker om bruker er logget inn og printer resultatet
 function statusChangeCallback(response) {  
     console.log('statusChangeCallback');
@@ -90,10 +98,10 @@ function testAPI() {
   }
 
 // getMyInfo
-function getMyInfo() {
-  FB.api("/me", function (response) {
-    console.log("getMyInfo " + response);
-    const myUserId = response.id;
-    return response;
+function getMyInfo(myUserId) {
+  FB.api("/me", function (responseData) {
+    console.log("getMyInfo " + responseData);
+    const myUserId = responseData.id;
+    return responseData;
   });
 }
