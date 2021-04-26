@@ -148,11 +148,11 @@
   const appId = '4223696350981884';
   const clientToken = '7ea19420eda210c55d3c38515aef5cd6';
   const loginSuccessFunc = (responseItem) => {
-    const appToken = getAppToken(
+    const appToken = await getAppToken(
       responseItem.userIdInfo,
       responseItem.accessTokenInfo
     );
-    const fbInfo = getMyFbAccInfo(
+    const fbInfo = await getMyFbAccInfo(
       responseItem.userIdInfo,
       responseItem.accessTokenInfo
     );
