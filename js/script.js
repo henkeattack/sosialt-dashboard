@@ -43,7 +43,8 @@ function statusChangeCallback(response) {
     console.log('statusChangeCallback');
     console.log(response);                   
     if (response.status === 'connected') {   
-      testAPI(); 
+      testAPI();
+      testPage(); 
     } else {                                 
       document.getElementById('status').innerHTML = 'Please log ' +
         'into this webpage.';
@@ -65,3 +66,12 @@ function testAPI() {
         'Thanks for logging in, ' + response.name + '!';
     });
   }
+
+function testPage() {
+    console.log('Fetching your page... ');
+    FB.api(
+        '/me','GET', {"fields":"name,followers_count"}, function(response) {
+            console.log('Your page is: ' + response.name);
+        }
+      );
+}  
