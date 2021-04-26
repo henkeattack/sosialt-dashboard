@@ -65,15 +65,6 @@ window.FacebookData = {
       }
     });
   }
-        
-  export function checkLoginState(yourCallBackFunc) { // Kalles etter at bruker er ferdig med login
-    FB.getLoginStatus(function(response) {
-      //statusChangeCallback(response);
-      if (response.status === 'connected') {
-        return yourCallBackFunc && yourCallBackFunc(response); 
-      }
-    });
-  }
   
   export async function doLoginFail(responseData) {
     // throw new Error("Flow failed Fail" + responseData.status);
