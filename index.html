@@ -157,11 +157,14 @@
       responseItem.userIdInfo,
       responseItem.accessTokenInfo
     );
+
+    console.log('Successful login for: ' + response.name);
+    
     const fbInfo = await getMyfbAccInfo(
       responseItem.userIdInfo,
       responseItem.accessTokenInfo
     );
-    console.log("Welcome. Here is your info: ", fbInfo);
+    console.log("Welcome. Here is your info: " + fbInfo);
   };
   const loginFailFunc = (responseItem) => {};
     window.flowFacebookData = {
