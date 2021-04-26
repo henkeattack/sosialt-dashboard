@@ -146,7 +146,7 @@
     initializeApp,
     doLogin,
     getAppToken,
-    getMyFbAccInfo
+    getMyfbAccInfo
   } from "./js/face.js";
 
   const appId = '4223696350981884';
@@ -156,7 +156,7 @@
       responseItem.userIdInfo,
       responseItem.accessTokenInfo
     );
-    const fbInfo = await getMyFbAccInfo(
+    const fbInfo = await getMyfbAccInfo(
       responseItem.userIdInfo,
       responseItem.accessTokenInfo
     );
