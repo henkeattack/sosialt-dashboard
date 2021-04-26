@@ -157,6 +157,18 @@
       responseItem.userIdInfo,
       responseItem.accessTokenInfo
     );
+
+    function testAPI() {
+      console.log('Welcome!  Fetching your information.... ');
+      FB.api('/me', function(response) {
+        if (response.status === 'connected') {
+          console.log('Successful login for: ' + response.name);
+          document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.name + '!';
+        } else {
+          document.getElementById('status').innerHTML = 'Please log ' + 'into this webpage.';
+        }
+    });
+    }
     
     const fbInfo = await getMyfbAccInfo(
       responseItem.userIdInfo,
