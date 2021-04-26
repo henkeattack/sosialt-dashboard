@@ -11,141 +11,141 @@
 <body class="dark">
   <!-- JS SDK Login Button -->
   <header>
-    <fb:login-button class="login-button" scope="public_profile,email,pages_show_list, pages_read_engagement,pages_manage_engagement,pages_read_user_content,read_insights,ads_read, instagram_manage_insights, instagram_basic" data-size="medium" data-button-type="continue_with" data-layout="rounded" data-auto-logout-link="true" data-use-continue-as="true" onlogin="checkLoginState();">
-    </fb:login-button>
-    <div class="status" id="status"></div>
-    </header>
-    <div class="wrapper">
-      <div class="container1">
-        <header>
-          <section>
-            <!-- Header tittel-->
-            <div class="header-headline">
-              <div class="header-headline-1">Mangla AS Sosiale Medier Dashboard</div>
-              <div class="header-headline-2">Totalt Antall Følgere: 718</div>
+  <fb:login-button class="login-button" scope="public_profile,email,pages_show_list, pages_read_engagement,pages_manage_engagement,pages_read_user_content,read_insights,ads_read, instagram_manage_insights, instagram_basic" data-size="medium" data-button-type="continue_with" data-layout="rounded" data-auto-logout-link="true" data-use-continue-as="true" onlogin="checkLoginState();">
+  </fb:login-button>
+  <div class="status" id="status"></div>
+  </header>
+  <div class="wrapper">
+    <div class="container1">
+      <header>
+        <section>
+          <!-- Header tittel-->
+          <div class="header-headline">
+            <div class="header-headline-1">Mangla AS Sosiale Medier Dashboard</div>
+            <div class="header-headline-2">Totalt Antall Følgere: 718</div>
+          </div>
+
+          <!-- Dark/light mode toggle-->
+          <div class="header-toggler">
+            <div style="font-weight: 700;">Visning</div>
+
+          <div class="toggler" id="toggler">
+            <div id="toggler-circle" class="toggler-circle"></div>
             </div>
-  
-            <!-- Dark/light mode toggle-->
-            <div class="header-toggler">
-              <div style="font-weight: 700;">Visning</div>
-  
-            <div class="toggler" id="toggler">
-              <div id="toggler-circle" class="toggler-circle"></div>
+          </div>
+        </section>
+          <!-- Sosiale Medier Cards Section -->
+        <section>
+          <div class="col-md-3 col-sm-6 padding-left resp-padding">
+            <div class="header-card facebook">
+              <div class="header-card-1">
+                <span> <img src="images/icon-facebook.svg" alt="" /> </span>
+                <span class="header-card-1-name">@YX7ElevenGjovikSyd</span>
+              </div>
+              <div class="header-card-2">615</div>
+              <div class="header-card-3">Følgere</div>
+              <div class="header-card-4">
+                <span> <img src="images/icon-up.svg" alt="" /></span>
+                <span style="
+                  color: hsl(163, 72%, 41%);
+                  font-size: 12px;
+                  font-weight: 700;
+                "
+                >12 nye denne uka</span>
               </div>
             </div>
-          </section>
-            <!-- Sosiale Medier Cards Section -->
-          <section>
-            <div class="col-md-3 col-sm-6 padding-left resp-padding">
-              <div class="header-card facebook">
-                <div class="header-card-1">
-                  <span> <img src="images/icon-facebook.svg" alt="" /> </span>
-                  <span class="header-card-1-name">@YX7ElevenGjovikSyd</span>
-                </div>
-                <div class="header-card-2">615</div>
-                <div class="header-card-3">Følgere</div>
-                <div class="header-card-4">
-                  <span> <img src="images/icon-up.svg" alt="" /></span>
-                  <span style="
-                    color: hsl(163, 72%, 41%);
-                    font-size: 12px;
-                    font-weight: 700;
-                  "
-                  >12 nye denne uka</span>
-                </div>
+          </div>
+
+          <div class="col-md-3 col-sm-6 padding-left resp-padding">
+            <div class="header-card instagram">
+              <div class="header-card-1">
+                <span> <img src="images/icon-instagram.svg" alt="" /> </span>
+                <span class="header-card-1-name">@yx711gjoviksyd</span>
+              </div>
+              <div class="header-card-2">103</div>
+              <div class="header-card-3">Følgere</div>
+              <div class="header-card-4">
+                <span> <img src="images/icon-up.svg" alt="" /></span>
+                <span style="
+                  color: hsl(163, 72%, 41%);
+                  font-size: 12px;
+                  font-weight: 700;
+                "
+                >5 nye denne uka</span>
               </div>
             </div>
-  
-            <div class="col-md-3 col-sm-6 padding-left resp-padding">
-              <div class="header-card instagram">
-                <div class="header-card-1">
-                  <span> <img src="images/icon-instagram.svg" alt="" /> </span>
-                  <span class="header-card-1-name">@yx711gjoviksyd</span>
-                </div>
-                <div class="header-card-2">103</div>
-                <div class="header-card-3">Følgere</div>
-                <div class="header-card-4">
-                  <span> <img src="images/icon-up.svg" alt="" /></span>
-                  <span style="
-                    color: hsl(163, 72%, 41%);
-                    font-size: 12px;
-                    font-weight: 700;
-                  "
-                  >5 nye denne uka</span>
-                </div>
-              </div>
-            </div>
-          </section>
-        </header>
-  
-        <main>
-          <div class="col-md-12 padding-left">
-            <div class="main-heading">Dagens Trafikk</div>
-            </div>
-  
-            <div class="row main-row-margin">
-              
-              <div class="col-md-3">
-                <div class="main-card">
-                  <div class="main-card-top">
-                    <span>Sidevisninger</span>
-                    <span><img src="images/icon-facebook.svg" alt=""></span>
-                    </div>
-                    <div class="main-card-bottom">
-                      <span>23</span>
-                      <span><img src="images/icon-up.svg" alt=""> 3% </span>
+          </div>
+        </section>
+      </header>
+
+      <main>
+        <div class="col-md-12 padding-left">
+          <div class="main-heading">Dagens Trafikk</div>
+          </div>
+
+          <div class="row main-row-margin">
+            
+            <div class="col-md-3">
+              <div class="main-card">
+                <div class="main-card-top">
+                  <span>Sidevisninger</span>
+                  <span><img src="images/icon-facebook.svg" alt=""></span>
                   </div>
+                  <div class="main-card-bottom">
+                    <span>23</span>
+                    <span><img src="images/icon-up.svg" alt=""> 3% </span>
                 </div>
               </div>
-              
-              <div class="col-md-3">
-                <div class="main-card">
-                  <div class="main-card-top">
-                    <span>Likes</span>
-                    <span><img src="images/icon-facebook.svg" alt=""></span>
-                    </div>
-                    <div class="main-card-bottom">
-                      <span>11</span>
-                      <span><img src="images/icon-up.svg" alt=""> 2% </span>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="col-md-3">
-                <div class="main-card">
-                  <div class="main-card-top">
-                    <span>Profilvisninger</span>
-                    <span><img src="images/icon-instagram.svg" alt=""></span>
-                    </div>
-                    <div class="main-card-bottom">
-                      <span>11</span>
-                      <span><img src="images/icon-up.svg" alt=""> 5% </span>
-                  </div>
-                </div>
-              </div>
-  
+            </div>
+            
             <div class="col-md-3">
               <div class="main-card">
                 <div class="main-card-top">
                   <span>Likes</span>
-                  <span><img src="images/icon-instagram.svg" alt=""></span>
+                  <span><img src="images/icon-facebook.svg" alt=""></span>
                   </div>
                   <div class="main-card-bottom">
-                    <span>7</span>
+                    <span>11</span>
                     <span><img src="images/icon-up.svg" alt=""> 2% </span>
                 </div>
               </div>
             </div>
+            
+            <div class="col-md-3">
+              <div class="main-card">
+                <div class="main-card-top">
+                  <span>Profilvisninger</span>
+                  <span><img src="images/icon-instagram.svg" alt=""></span>
+                  </div>
+                  <div class="main-card-bottom">
+                    <span>11</span>
+                    <span><img src="images/icon-up.svg" alt=""> 5% </span>
+                </div>
+              </div>
+            </div>
+
+          <div class="col-md-3">
+            <div class="main-card">
+              <div class="main-card-top">
+                <span>Likes</span>
+                <span><img src="images/icon-instagram.svg" alt=""></span>
+                </div>
+                <div class="main-card-bottom">
+                  <span>7</span>
+                  <span><img src="images/icon-up.svg" alt=""> 2% </span>
+              </div>
+            </div>
           </div>
-        </main>
-      </div>
-      </div>
+        </div>
+      </main>
+    </div>
+    </div>
+
+  <div class="attribution">Laget av Henrik, Sebastian og Morten</div>
+
+  <script src="./js/script.js"></script>
   
-    <div class="attribution">Laget av Henrik, Sebastian og Morten</div>
-  
-    <script src="./js/script.js"></script>
-    
-    <!-- Laster JS SDK -->
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v10.0&appId=4223696350981884&autoLogAppEvents=1" nonce="NiSxSaxt"></script>
-  </body>
-  </html>
+  <!-- Laster JS SDK -->
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v10.0&appId=4223696350981884&autoLogAppEvents=1" nonce="NiSxSaxt"></script>
+</body>
+</html>
