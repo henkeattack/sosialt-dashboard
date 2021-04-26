@@ -146,6 +146,7 @@
     initializeApp,
     doLogin,
     getAppToken,
+    getMyInfo,
     getMyfbAccInfo
   } from "./js/face.js";
 
@@ -160,7 +161,7 @@
       responseItem.userIdInfo,
       responseItem.accessTokenInfo
     );
-    console.log("Welcome. Here is your info: ", fbInfo.name);
+    console.log("Welcome. Here is your info: ", fbInfo);
   };
   const loginFailFunc = (responseItem) => {};
     window.flowFacebookData = {
