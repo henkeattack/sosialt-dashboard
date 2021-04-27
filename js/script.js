@@ -70,8 +70,8 @@ function testAPI() {
 function testPage() {
     console.log('Fetching your page... ');
     FB.api(
-        '/174716165949469','GET', {"fields":"name,followers_count"}, function(response) {
-            console.log('Your page is: ' + response.name);
+        '/me','GET', {"fields":"name,followers_count"}, function(response) {
+            console.log('Your page is: ' + response[0].name);
         }
       );
 } 
