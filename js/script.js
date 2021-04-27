@@ -1,4 +1,4 @@
-const toggler = document.getElementById("toggler-circle");
+/*const toggler = document.getElementById("toggler-circle");
 const togglerbg = document.getElementById("toggler");
 
 const body = document.body;
@@ -11,7 +11,7 @@ togglerbg.addEventListener("click", function(){
         body.classList.replace("light", "dark");
         toggler.style.transform = "translateX(0)";
     }
-}); // Kode for dark mode/light mode
+}); // Kode for dark mode/light mode */
 
 //Oppsett av Facebook SDK med id, cookies, social plugins og versjon.
 window.fbAsyncInit = function() {
