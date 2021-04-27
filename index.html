@@ -144,6 +144,7 @@
 <h3 class="">Step 1: Get specific data</h3>
     <pre class="even" id="HHname"></pre>
     <pre class="odd" id="PageInfo"></pre>
+    <div class="followers" id="followers"></div>
 <h3 class="">Step 2: Get my Facebook account</h3>
 <pre class="even" id="MyFacebookAccount"></pre>
 <h3 class="">Step 3: Get my Facebook-related account</h3>
@@ -175,7 +176,7 @@
       getMyfbAccPage,
       getMyfbPageInsights,
       getMyfbPagePosts
-    } from "./js/face.js";
+    } from "./js/script.js";
 
     const appId = "4223696350981884";
     const clientToken = "7ea19420eda210c55d3c38515aef5cd6";
@@ -223,7 +224,7 @@
           fbPageAccId,
           fbPageAccesstoken
         );
-        printData("MyFacebookPosts", fbPagePosts);
+        printData("MyFacebookPosts", fbPagePosts.data);
     };
     
     const loginFailFunc = async (responseItem) => {};
