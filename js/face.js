@@ -24,7 +24,7 @@ window.FacebookData = {
   }
   
   // Henter min Facebook-info
-  export async function getMyInfo() {
+  export async function getMyInfo(myProfileId) {
   FB.api("/me", function (responseData) {
     console.log("getMyInfo", responseData);
     const myUserId = responseData.id;
@@ -67,15 +67,13 @@ export async function getMyfbAccPage(myUserId, accessToken) {
     });
   }
   
-  export async function doLoginFail(responseData) {
-    console.log("Please login to page ");      
+  export async function doLoginFail(responseData) {      
     // throw new Error("Flow failed Fail" + responseData.status);
     return window.FacebookData.loginFailFunc(responseData);
   }
   export async function doLoginSuccess(responseData) {
     const userIdResponse = responseData.authResponse.userID;
     const accessTokenResponse = responseData.authResponse.accessToken;
-    console.log("Successful login for: " + response.name);
     return window.FacebookData.loginSuccessFunc({
       userIdInfo: userIdResponse,
       accessTokenInfo: accessTokenResponse,
