@@ -90,18 +90,9 @@ function testAPI() {
     });
   }
 
-// Henter min Facebook-info
-function getMyInfo(myProfileId) {
-    FB.api("/me", function (responseData) {
-      console.log("getMyInfo", responseData);
-      const myUserId = responseData.id;
-      return responseData;
+function accounts() {
+    FB.api('/me','GET',{"fields":"accounts"}, function(response) {
+            console.log('Here are your accounts: ' + response.data[2]);
     });
-    }
-
-// Hent Facebook Page
-function getMyfbAccPage(myUserId, accessToken) {
-    const url = `https://graph.facebook.com/v10.0/me/accounts?fields=name,id,access_token,engagement,instagram_business_account,followers_count{id}&access_token=${accessToken}`;
-    console.log("Welcome. Here is your info: " + getMyfbAccPage.data[0]);
-    return performGetOperation(url, headers);
-}
+}  
+  
