@@ -13,6 +13,30 @@ togglerbg.addEventListener("click", function(){
     }
 }); // Kode for dark mode/light mode
 
+const appId = '4223696350981884';
+const clientToken = '7ea19420eda210c55d3c38515aef5cd6';
+
+FacebookData = {
+    appId: '', 
+    clientToken: ''
+};
+
+function performGetOperation(url) {
+    const res = fetch(url, {
+      mode: "cors",
+      method: "GET",
+    }).catch(function (error) {
+      throw new Error("full-flow-facebook : " + error.message);
+    });
+    return res.json();
+  }
+
+// Hent App Token
+function getAppToken() {
+    const url = `https://graph.facebook.com/oauth/access_token?client_id=${FacebookData.appId}&client_secret=${FacebookData.clientToken}&grant_type=client_credentials`;
+    return performGetOperation(url);
+  }
+
 // Sjekker om bruker er logget inn og printer resultatet
 function statusChangeCallback(response) {  
     console.log('statusChangeCallback');
@@ -66,11 +90,18 @@ function testAPI() {
     });
   }
 
-function testPage() {
-    console.log('Fetching your page... ');
-    FB.api(
-        '/me','GET', {"fields":"name,followers_count"}, function(responseData) {
-            console.log('Your page is: ' + responseData[0].name);
-        }
-      );
-} 
+// Henter min Facebook-info
+function getMyInfo(myProfileId) {
+    FB.api("/me", function (responseData) {
+      console.log("getMyInfo", responseData);
+      const myUserId = responseData.id;
+      return responseData;
+    });
+    }
+
+// Hent Facebook Page
+function getMyfbAccPage(myUserId, accessToken) {
+    const url = `https://graph.facebook.com/v10.0/me/accounts?fields=name,id,access_token,engagement,instagram_business_account,followers_count{id}&access_token=${accessToken}`;
+    console.log("Welcome. Here is your info: " + getMyfbAccPage.data[0]);
+    return performGetOperation(url, headers);
+}
