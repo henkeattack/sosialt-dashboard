@@ -71,7 +71,7 @@ function testPage() {
     console.log('Fetching your page... ');
     FB.api(
         '/me','GET', {"fields":"name,followers_count"}, function(responseData) {
-            console.log('Your page is: ' + responseData.name);
+            console.log('Your page is: ' + responseData[0].name);
         }
       );
 } 
