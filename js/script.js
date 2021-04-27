@@ -63,8 +63,7 @@ function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name);
-      document.getElementById('status').innerHTML =
-        'Thanks for logging in, ' + response.name + '!';
+    //  document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.name + '!';
     });
 
     FB.api('/me?fields=name,email,birthday,location,about', function(response) {
@@ -72,9 +71,9 @@ function testAPI() {
             buildProfile(response);
         }
 
-    FB.api('/me?fields:name,followers_count', function(response) {
+    FB.api('/me/feed', function(response){
         if(response && !response.error){
-            buildProfile(response);
+            buildFeed(response);
         }
     }); 
     })
@@ -87,17 +86,27 @@ function buildProfile(user){
         <li class="list-group-item">User ID: ${user.id}</li>
         <li class="list-group-item">Email: ${user.email}</li>
         <li class="list-group-item">Birthday: ${user.birthday}</li>
-        <li class="list-group-item">Location: ${user.location.name}</li>
-        <li class="list-group-item">About: ${user.about.name}</li>
-        <li class="list-group-item">Page Name: ${user.page.name}</li>
-        <li class="list-group-item">Followers: ${user.followers_count.value}</li>
-        
+        <li class="list-group-item">User ID: ${user.location.name}</li>
       </ul>
     `;
    
     document.getElementById('profile').innerHTML = profile;
    }
 
+   function buildFeed(feed){
+    let output = '<h3>Latest Posts</h3>';
+    for(let i in feed.data){
+      if(feed.data[i].message){
+        output += `
+          <div class="well">
+            ${feed.data[i].message} <span>${feed.data[i].created_time}</span>
+          </div>
+        `;
+      }
+    }
+   
+    document.getElementById('feed').innerHTML = output;
+   }
 
    function setElements(isLoggedIn){
     if(isLoggedIn){
