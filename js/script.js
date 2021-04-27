@@ -14,118 +14,178 @@ togglerbg.addEventListener("click", function(){
 }); // Kode for dark mode/light mode */
 
 //Oppsett av Facebook SDK med id, cookies, social plugins og versjon.
-window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '4223696350981884',
-      cookie     : true,
-      xfbml      : true,
-      version    : 'v10.0'
-    });
-      
-    FB.AppEvents.logPageView();
-
-    // Sjekker login status
-    FB.getLoginStatus(function(response) {   
-        statusChangeCallback(response);      
-    });     
+window.flowFacebookData = {
+    appId: "",
+    clientToken: "",
+    loginSuccessFunc: () => {},
+    loginFailFunc: () => {},
   };
-// Kjører Facebook SDK
-(function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-
-// Sjekker om bruker er logget inn og printer resultatet
-function statusChangeCallback(response) {  
-    console.log('statusChangeCallback');
-    console.log(response);                   
-    if (response.status === 'connected') {
-      setElements(true);  
-      testAPI(); 
-    } else {                                 
-        document.getElementById('status').innerHTML = 'Please log ' +
-        'into this webpage.';
-        setElements(false);
-    }
-  }
-
-function checkLoginState() { // Kalles etter at bruker er ferdig med login
-    FB.getLoginStatus(function(response) {
-      statusChangeCallback(response);
+  export async function performGetOperation(url, headers) {
+    const res = await fetch(url, {
+      mode: "cors",
+      method: "GET",
+      headers: headers,
+    }).catch(function (error) {
+      throw new Error("full-flow-facebook : " + error.message);
     });
+  
+    return await res.json();
   }
-
-// Tester Graph Api etter login
-function testAPI() {                     
-    console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', function(response) {
-      console.log('Successful login for: ' + response.name);
-    //  document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.name + '!';
-    });
-
-    FB.api('/me?fields=name,email,birthday,location,about', function(response) {
-        if(response && !response.error){
-            buildProfile(response);
-        }
-
-    FB.api('/me/feed', function(response){
-        if(response && !response.error){
-            buildFeed(response);
-        }
-    }); 
-    })
+  
+  // getAppToken
+  export async function getAppToken() {
+    const url = `https://graph.facebook.com/oauth/access_token?client_id=${window.flowFacebookData.appId}&client_secret=${window.flowFacebookData.clientToken}&grant_type=client_credentials`;
+    let headers = new Headers();
+    headers.append("Accept", "application/json");
+    return performGetOperation(url, headers);
+  } 
+  // getMyfbAcc
+export async function getMyfbAccInfo(instaUserId, accessToken) {
+  const url = `https://graph.facebook.com/v8.0/me?fields=id,name,email&access_token=${accessToken}`;
+  let headers = new Headers();
+  headers.append("Accept", "application/json");
+  return performGetOperation(url, headers);
+}
+// getMyfbAccPage
+export async function getMyfbAccPage(instaUserId, accessToken) {
+  const url = `https://graph.facebook.com/v8.0/me/accounts?fields=name,id,access_token,engagement,instagram_business_account,followers_count{id}&access_token=${accessToken}`;
+  let headers = new Headers();
+  headers.append("Accept", "application/json");
+  return performGetOperation(url, headers);
 }
 
-function buildProfile(user){
-    let profile = `
-      <h3>${user.name}</h3>
-      <ul class="list-group">
-        <li class="list-group-item">User ID: ${user.id}</li>
-        <li class="list-group-item">Email: ${user.email}</li>
-        <li class="list-group-item">Birthday: ${user.birthday}</li>
-        <li class="list-group-item">User ID: ${user.location.name}</li>
-      </ul>
-    `;
-   
-    document.getElementById('profile').innerHTML = profile;
-   }
+// getMyInsight
+export async function getMyInsight(instaUserId, accessToken) {
+  const url = `https://graph.facebook.com/v8.0/${instaUserId}?fields=business_discovery.username(bluebottle){followers_count,media_count}&access_token=${accessToken}`;
+  let headers = new Headers();
+  headers.append("Accept", "application/json");
+  return performGetOperation(url, headers);
+}
 
-   function buildFeed(feed){
-    let output = '<h3>Latest Posts</h3>';
-    for(let i in feed.data){
-      if(feed.data[i].message){
-        output += `
-          <div class="well">
-            ${feed.data[i].message} <span>${feed.data[i].created_time}</span>
-          </div>
-        `;
-      }
-    }
-   
-    document.getElementById('feed').innerHTML = output;
-   }
+  // getMyfbPageInsights
+  export async function getMyfbPageInsights(instaUserId, accessToken) {
+    const url = `https://graph.facebook.com/v8.0/${instaUserId}/insights?metric=page_views_total,page_engaged_users,page_actions_post_reactions_like_total&period=week&access_token=${accessToken}`;
+    let headers = new Headers();
+    headers.append("Accept", "application/json");
+    return performGetOperation(url, headers);
+  }
 
-   function setElements(isLoggedIn){
-    if(isLoggedIn){
-      document.getElementById('logout').style.display = 'block';
-      document.getElementById('profile').style.display = 'block';
-      document.getElementById('feed').style.display = 'block';
-      document.getElementById('fb-btn').style.display = 'none';
-      document.getElementById('heading').style.display = 'none';
-    } else {
-      document.getElementById('logout').style.display = 'none';
-      document.getElementById('profile').style.display = 'none';
-      document.getElementById('feed').style.display = 'none';
-      document.getElementById('fb-btn').style.display = 'block';
-      document.getElementById('heading').style.display = 'block';
+  // getMyfbPagePosts
+  export async function getMyfbPagePosts(instaUserId, accessToken) {
+    const url = `https://graph.facebook.com/v8.0/${instaUserId}/posts?fields=attachments{title,media_type},actions,reach&limit=5&access_token=${accessToken}`;
+    let headers = new Headers();
+    headers.append("Accept", "application/json");
+    return performGetOperation(url, headers);
+  }
+
+  // getInstgramProfile
+export async function getInstgramProfile(instagramProfileId) {
+  FB.api(`${instagramProfileId}`, function (responseData) {
+    if (responseData && !responseData.error) {
+      return responseData;
     }
-   }
-   
-   function logout(){
-    FB.logout(function(response){
-      setElements(false);
+  });
+}
+
+// getMyFbInstaBusinessAcc
+export async function getMyFbInstaBusinessAcc(instaUserId, accessToken) {
+  const url = `https://graph.facebook.com/v8.0/${instaUserId}?fields=instagram_business_account&access_token=${accessToken}`;
+  let headers = new Headers();
+  headers.append("Accept", "application/json");
+  return performGetOperation(url, headers);
+}
+
+// getMyInstagramAccInfo
+export async function getMyInstagramAccInfo(instaUserId, accessToken) {
+  const url = `https://graph.facebook.com/v8.0/${instaUserId}?fields=biography,followers_count,follows_count,ig_id,name,profile_picture_url&access_token=${accessToken}`;
+  let headers = new Headers();
+  headers.append("Accept", "application/json");
+  return performGetOperation(url, headers);
+}
+
+// getMyInstagramAccInsight
+export async function getMyInstagramAccInsight(instaUserId, accessToken) {
+  const url = `https://graph.facebook.com/v8.0/${instaUserId}/insights?metric=impressions,reach,profile_views&period=week&access_token=${accessToken}`;
+  let headers = new Headers();
+  headers.append("Accept", "application/json");
+  return performGetOperation(url, headers);
+}
+  // getMyInfo
+  export async function getMyInfo(instagramProfileId) {
+    FB.api("/me", function (responseData) {
+      console.log("getMyInfo", responseData);
+      const instaUserId = responseData.id;
+      return responseData;
     });
-   }
+  }
+  
+  // doLoginSuccessWithCallBack
+  export async function doLoginSuccessWithCallBack(yourCallBackFunc) {
+    const instaUserId = responseData.authResponse.userID;
+    const accessToken = responseData.authResponse.accessToken;
+    return yourCallBackFunc && yourCallBackFunc(instaUserId, accessToken);
+  }
+  
+  export function checkLoginState(yourCallBackFunc) {
+    FB.getLoginStatus(function (response) {
+      if (response.status === "connected") {
+        return yourCallBackFunc && yourCallBackFunc(response);
+      }
+    });
+  }
+  
+  export async function doLoginFail(responseData) {
+    // throw new Error("Flow failed Fail" + responseData.status);
+    return window.flowFacebookData.loginFailFunc(responseData);
+  }
+  export async function doLoginSuccess(responseData) {
+    const userIdResponse = responseData.authResponse.userID;
+    const accessTokenResponse = responseData.authResponse.accessToken;
+    return window.flowFacebookData.loginSuccessFunc({
+      userIdInfo: userIdResponse,
+      accessTokenInfo: accessTokenResponse,
+    });
+  }
+  export function doLogin() {
+    FB.login(
+      function (response) {
+        if (response.status === "connected") {
+          // Logged into your webpage and Facebook.
+          return doLoginSuccess(response);
+          // console.log("response", response);
+        }
+        return doLoginFail(response);
+      },
+      { scope: "email,public_profile,pages_show_list, pages_read_engagement,pages_manage_engagement,pages_read_user_content,read_insights,instagram_manage_insights,instagram_basic,ads_read" }
+    );
+  }
+  export function initializeFlow() {
+    initializeFbScripts();
+  }
+  
+  export function initializeFbScripts() {
+    // initalize ------------------->
+    window.fbAsyncInit = function () {
+      FB.init({
+        appId: window.flowFacebookData.appId,
+        cookie: true,
+        xfbml: true,
+        version: "v8.0",
+      });
+  
+      FB.AppEvents.logPageView();
+    };
+  
+    (function (d, s, id) {
+      var js,
+        fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {
+        return;
+      }
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    })(document, "script", "facebook-jssdk");
+    // <------------------- initalize
+  }  
