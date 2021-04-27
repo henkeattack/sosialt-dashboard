@@ -92,7 +92,7 @@ function testAPI() {
   }
 
 function accounts() {
-    FB.api('/me','GET',{"fields":"accounts"}, function(response) {
+    FB.api('/me','GET',{"fields":"accounts"}, function(responseData) {
             console.log('Here are your accounts: ' + responseData[2]);
     });
 }  
