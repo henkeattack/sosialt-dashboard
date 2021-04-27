@@ -142,45 +142,52 @@
     </div>
 
   <script type="module">
-      import {
-        initializeApp,
-        doLogin,
-        getAppToken,
-        getMyInfo,
-        getMyfbAccInfo,
-        getMyfbAccPage
-      } from "./js/face.js";
+  import {
+    initializeApp,
+    doLogin,
+    getAppToken,
+    getMyInfo,
+    getMyfbAccInfo
+  } from "./js/face.js";
 
-      const appId = '4223696350981884';
-      const clientToken = '7ea19420eda210c55d3c38515aef5cd6';
-      const loginSuccessFunc = async (responseItem) => {
-        const appToken = await getAppToken(
-          responseItem.userIdInfo,
-          responseItem.accessTokenInfo
-        );
-        
-      const myInfo = await getMyInfo(
-        responseItem.userIdInfo,
-        responseItem.accessTokenInfo
+  const appId = '4223696350981884';
+  const clientToken = '7ea19420eda210c55d3c38515aef5cd6';
+  const loginSuccessFunc = async (responseItem) => {
+    const appToken = await getAppToken(
+      responseItem.userIdInfo,
+      responseItem.accessTokenInfo
+    );
+
+    const myInfo = await getMyInfo(
+      responseItem.userIdInfo,
+      responseItem.accessTokenInfo
     );
     const fbAccName = myInfo.data[0].name;
     console.log("Welcome: " + fbAccName);
-
-    };
-      const loginFailFunc = (responseItem) => {};
-        window.FacebookData = {
-          appId: appId,
-          clientToken: clientToken,
-          loginSuccessFunc: loginSuccessFunc,
-          loginFailFunc: loginFailFunc,
-      };
-      initializeApp();
-      window.handlefbLogin = doLogin;
-      //<-------- Laster data     
+    
+    const fbInfo = await getMyfbAccInfo(
+      responseItem.userIdInfo,
+      responseItem.accessTokenInfo
+    );
+    console.log("Welcome. Here is your info: " + fbInfo.data[1]);
+  };
+  const loginFailFunc = (responseItem) => {};
+    window.flowFacebookData = {
+      appId: appId,
+      clientToken: clientToken,
+      loginSuccessFunc: loginSuccessFunc,
+      loginFailFunc: loginFailFunc,
+  };
+  initializeApp();
+  window.handlefbLogin = doLogin;
+  //<-------- Laster data     
   </script>
 
 <div class="attribution">Laget av Henrik, Sebastian og Morten</div>
 
-<script src="./js/script.js"></script> 
+<script src="./js/script.js"></script>
+  
+  <!-- Laster JS SDK -->
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v10.0&appId=4223696350981884&autoLogAppEvents=1" nonce="NiSxSaxt"></script> 
 </body>
 </html>
