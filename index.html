@@ -217,7 +217,7 @@
           fbPageAccesstoken
         );
         printData("MyFacebookPageInsights", fbPageInsights.data);
-        console.log("Your page stats: " + fbPageInsights.data[0].name);
+        console.log("Your page stats: " + fbPageInsights.data[0]);
 
         // 7. get my facebook posts
         const fbPagePosts = await getMyfbPagePosts(
