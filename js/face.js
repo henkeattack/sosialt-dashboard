@@ -24,7 +24,7 @@ window.FacebookData = {
   }
   
   // Henter min Facebook-info
-  export async function getMyInfo(myUserId) {
+  export async function getMyInfo() {
   FB.api("/me", function (responseData) {
     console.log("getMyInfo", responseData);
     const myUserId = responseData.id;
