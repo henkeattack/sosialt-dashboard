@@ -53,6 +53,28 @@ export async function getMyfbAccPage(myUserId, accessToken) {
   
   // Hent Facebook-konto
 
+  // Tester Graph Api etter login
+function testAPI() {                     
+    console.log('Welcome!  Fetching your information.... ');
+    FB.api('/me', function(response) {
+      console.log('Successful login for: ' + response.name);
+      document.getElementById('status').innerHTML =
+        'Thanks for logging in, ' + response.name + '!';
+    });
+  }
+
+  // Sjekker om bruker er logget inn og printer resultatet
+function statusChangeCallback(response) {  
+    console.log('statusChangeCallback');
+    console.log(response);                   
+    if (response.status === 'connected') {   
+      testAPI(); 
+    } else {                                 
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into this webpage.';
+    }
+  }
+
   // Suksessfull login?
   export async function doLoginSuccessWithCallback(yourCallBackFunc) {
     const myUserId = responseData.authResponse.userID;
@@ -63,6 +85,7 @@ export async function getMyfbAccPage(myUserId, accessToken) {
   export function checkLoginState(yourCallBackFunc) { // Kalles etter at bruker er ferdig med login
     FB.getLoginStatus(function(response) {
       if (response.status === 'connected') {
+        statusChangeCallback(response);
         return yourCallBackFunc && yourCallBackFunc(response);
       }
     });
@@ -93,6 +116,11 @@ export async function getMyfbAccPage(myUserId, accessToken) {
       { scope: "email,public_profile,pages_show_list,pages_read_engagement,pages_manage_engagement,pages_read_user_content,read_insights" }
     );
   }
+
+    // Sjekker login status
+    FB.getLoginStatus(function(response) {   
+        statusChangeCallback(response);      
+    });  
   
   //Oppsett av Facebook SDK med id, cookies, social plugins og versjon.
   export function initializeApp() {
