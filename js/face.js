@@ -23,6 +23,7 @@ window.FacebookData = {
     return performGetOperation(url, headers);
   }
   
+  // Facebook-konto
   export async function getMyfbAccInfo(myUserId, accessToken) {
   const url = `https://graph.facebook.com/v10.0/me?fields=id,name,email&access_token=${accessToken}`;
   let headers = new Headers();
@@ -54,7 +55,7 @@ export async function getMyfbAccPage(myUserId, accessToken) {
   // Hent Facebook-konto
 
   // Tester Graph Api etter login
-function testAPI() {                     
+export async function testAPI() {                     
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name);
@@ -64,7 +65,7 @@ function testAPI() {
   }
 
   // Sjekker om bruker er logget inn og printer resultatet
-function statusChangeCallback(response) {  
+export async function statusChangeCallback(response) {  
     console.log('statusChangeCallback');
     console.log(response);                   
     if (response.status === 'connected') {   
