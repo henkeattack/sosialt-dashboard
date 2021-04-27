@@ -146,6 +146,7 @@
         initializeApp,
         doLogin,
         getAppToken,
+        getMyInfo,
         getMyfbAccInfo,
         getMyfbAccPage
       } from "./js/face.js";
@@ -158,20 +159,12 @@
           responseItem.accessTokenInfo
         );
         
-      // Hent min Facebook-konto
-      const fbInfo = await getMyfbAccInfo(
+      const myInfo = await getMyInfo(
         responseItem.userIdInfo,
         responseItem.accessTokenInfo
-      );
-      console.log("Welcome. Here is your info: " + fbInfo.name);
-      
-
-      // Hent relaterte kontoer
-      const fbAccInfo = await getMyfbAccPage(
-          responseItem.userIdInfo,
-          responseItem.accessTokenInfo
-        );
-      console.log("Your page info: " + fbAccInfo.data[0].name);
+    );
+    const fbAccName = myInfo.data[0].name;
+    console.log("Welcome: " + fbAccName);
 
     };
       const loginFailFunc = (responseItem) => {};
