@@ -164,15 +164,16 @@
         responseItem.accessTokenInfo
       );
       console.log("Welcome. Here is your info: " + fbInfo.email);
-      };
+      
 
       // Hent relaterte kontoer
       const fbAccInfo = await getMyfbAccPage(
-        responseItem.userIdInfo,
-        responseItem.accessTokenInfo
-      );
+          responseItem.userIdInfo,
+          responseItem.accessTokenInfo
+        );
       console.log("Your page info: " + fbAccInfo.data[0].name);
 
+    };
       const loginFailFunc = (responseItem) => {};
         window.FacebookData = {
           appId: appId,
