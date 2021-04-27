@@ -44,8 +44,7 @@ function statusChangeCallback(response) {
     console.log(response);                   
     if (response.status === 'connected') {
       setElements(true);  
-      testAPI();
-      testPage(); 
+      testAPI(); 
     } else {                                 
         document.getElementById('status').innerHTML = 'Please log ' +
         'into this webpage.';
