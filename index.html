@@ -11,7 +11,7 @@
 <body class="dark">
   <!-- JS SDK Login Button -->
   <header>
-  <fb:login-button class="login-button" scope="public_profile,email,pages_show_list, pages_read_engagement,pages_manage_engagement,pages_read_user_content,read_insights,ads_read, instagram_manage_insights, instagram_basic" data-size="medium" data-button-type="continue_with" data-layout="rounded" data-auto-logout-link="true" data-use-continue-as="true" onlogin="checkLoginState();">
+  <fb:login-button class="login-button" scope="public_profile,email,pages_show_list, pages_read_engagement,pages_manage_engagement,pages_read_user_content,read_insights,ads_read, instagram_manage_insights, instagram_basic" data-size="medium" data-button-type="continue_with" data-layout="rounded" data-auto-logout-link="true" data-use-continue-as="true" onlogin="handlefbLogin();">
   </fb:login-button>
   <div class="status" id="status"></div>
   </header>
@@ -141,11 +141,55 @@
     </div>
     </div>
 
-  <div class="attribution">Laget av Henrik, Sebastian og Morten</div>
+  <script type="module">
+  import {
+    initializeApp,
+    doLogin,
+    getAppToken,
+    getMyfbAccInfo,
+    getMyfbAccPage
+  } from "./js/face.js";
 
-  <script src="./js/script.js"></script>
+  const appId = '4223696350981884';
+  const clientToken = '7ea19420eda210c55d3c38515aef5cd6';
+  const loginSuccessFunc = async (responseItem) => {
+    const appToken = await getAppToken(
+      responseItem.userIdInfo,
+      responseItem.accessTokenInfo
+    );
+    
+  // Hent min Facebook-konto
+  const fbInfo = await getMyfbAccInfo(
+    responseItem.userIdInfo,
+    responseItem.accessTokenInfo
+  );
+  console.log("Welcome. Here is your info: " + fbInfo.email);
+  };
+
+  // Hent relaterte kontoer
+  const fbAccInfo = await getMyfbAccPage(
+    responseItem.userIdInfo,
+    responseItem.accessTokenInfo
+  );
+  console.log("Your page info: " + fbAccInfo.data[0].name);
+
+  const loginFailFunc = (responseItem) => {};
+    window.flowFacebookData = {
+      appId: appId,
+      clientToken: clientToken,
+      loginSuccessFunc: loginSuccessFunc,
+      loginFailFunc: loginFailFunc,
+  };
+  initializeApp();
+  window.handlefbLogin = doLogin;
+  //<-------- Laster data     
+  </script>
+
+<div class="attribution">Laget av Henrik, Sebastian og Morten</div>
+
+<script src="./js/script.js"></script>
   
   <!-- Laster JS SDK -->
-  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v10.0&appId=4223696350981884&autoLogAppEvents=1" nonce="NiSxSaxt"></script>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v10.0&appId=4223696350981884&autoLogAppEvents=1" nonce="NiSxSaxt"></script> 
 </body>
 </html>

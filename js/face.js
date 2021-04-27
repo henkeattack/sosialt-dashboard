@@ -22,18 +22,18 @@ window.FacebookData = {
     headers.append("Accept", "application/json");
     return performGetOperation(url, headers);
   }
-  
+
   // Tester Graph Api etter login
- /* export function testAPI() {                     
+export async function testAPI() {                     
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name);
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
     });
-  } */
+  }
   
-  // getMyInfo
+  // Henter min Facebook-info
   export async function getMyInfo(myUserId) {
   FB.api("/me", function (responseData) {
     console.log("getMyInfo", responseData);
@@ -41,15 +41,39 @@ window.FacebookData = {
     return responseData;
   });
   }
+
+  // Hent min innsikt
+
+  // Hent instagram-profil
   
-  // getMyfbAcc
+  // Hent Facebook-konto
   export async function getMyfbAccInfo(myUserId, accessToken) {
   const url = `https://graph.facebook.com/v10.0/me?fields=id,name,email&access_token=${accessToken}`;
   let headers = new Headers();
   headers.append("Accept", "application/json");
   return performGetOperation(url, headers);
   }
-  
+
+// Hent Facebook Page
+export async function getMyfbAccPage(myUserId, accessToken) {
+    const url = `https://graph.facebook.com/v10.0/me/accounts?fields=name,id,access_token,engagement,instagram_business_account,followers_count{id}&access_token=${accessToken}`;
+    let headers = new Headers();
+    headers.append("Accept", "application/json");
+    return performGetOperation(url, headers);
+  }
+
+    // Sjekker om bruker er logget inn og printer resultatet
+    export async function statusChangeCallback(response) {  
+        console.log('statusChangeCallback');
+        console.log(response);                   
+        if (response.status === 'connected') {   
+        testAPI(); 
+        } else {                                 
+        document.getElementById('status').innerHTML = 'Please log ' +
+            'into this webpage.';
+        }
+    }
+
   // Suksessfull login?
   export async function doLoginSuccessWithCallback(yourCallBackFunc) {
     const myUserId = responseData.authResponse.userID;
@@ -59,7 +83,7 @@ window.FacebookData = {
   
   export function checkLoginState(yourCallBackFunc) { // Kalles etter at bruker er ferdig med login
     FB.getLoginStatus(function(response) {
-      //statusChangeCallback(response);
+      statusChangeCallback(response);
       if (response.status === 'connected') {
         return yourCallBackFunc && yourCallBackFunc(response);
       }
@@ -91,25 +115,6 @@ window.FacebookData = {
     );
   }
   
-  // Sjekker om bruker er logget inn og printer resultatet
-  /*function statusChangeCallback(response) {  
-      console.log('statusChangeCallback');
-      console.log(response);                   
-      if (response.status === 'connected') {   
-        testAPI();
-        return doLoginSuccess(response);
-      } else {                                 
-        document.getElementById('status').innerHTML = 'Please log ' +
-          'into this webpage.';
-      }
-    } */ 
-  
-    // Sjekker login status
-   /* FB.getLoginStatus(function(response) {   
-      statusChangeCallback(response);      
-  });     
-  }; */
-  
   //Oppsett av Facebook SDK med id, cookies, social plugins og versjon.
   export function initializeApp() {
     initializeFBScripts();
@@ -125,6 +130,11 @@ window.FacebookData = {
       });
         
       FB.AppEvents.logPageView();
+
+    // Sjekker login status
+    FB.getLoginStatus(function(response) {   
+        statusChangeCallback(response);      
+    });     
     };
   
   // Kjører Facebook SDK
