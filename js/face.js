@@ -22,16 +22,6 @@ window.FacebookData = {
     headers.append("Accept", "application/json");
     return performGetOperation(url, headers);
   }
-
-  // Tester Graph Api etter login
-export async function testAPI() {                     
-    console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', function(response) {
-      console.log('Successful login for: ' + response.name);
-      document.getElementById('status').innerHTML =
-        'Thanks for logging in, ' + response.name + '!';
-    });
-  }
   
   // Henter min Facebook-info
   export async function getMyInfo(myUserId) {
@@ -62,18 +52,6 @@ export async function getMyfbAccPage(myUserId, accessToken) {
     return performGetOperation(url, headers);
   }
 
-    // Sjekker om bruker er logget inn og printer resultatet
-    export async function statusChangeCallback(response) {  
-        console.log('statusChangeCallback');
-        console.log(response);                   
-        if (response.status === 'connected') {   
-        testAPI(); 
-        } else {                                 
-        document.getElementById('status').innerHTML = 'Please log ' +
-            'into this webpage.';
-        }
-    }
-
   // Suksessfull login?
   export async function doLoginSuccessWithCallback(yourCallBackFunc) {
     const myUserId = responseData.authResponse.userID;
@@ -83,7 +61,6 @@ export async function getMyfbAccPage(myUserId, accessToken) {
   
   export function checkLoginState(yourCallBackFunc) { // Kalles etter at bruker er ferdig med login
     FB.getLoginStatus(function(response) {
-      statusChangeCallback(response);
       if (response.status === 'connected') {
         return yourCallBackFunc && yourCallBackFunc(response);
       }
@@ -91,12 +68,14 @@ export async function getMyfbAccPage(myUserId, accessToken) {
   }
   
   export async function doLoginFail(responseData) {
+    console.log("Please login to page ");      
     // throw new Error("Flow failed Fail" + responseData.status);
     return window.FacebookData.loginFailFunc(responseData);
   }
   export async function doLoginSuccess(responseData) {
     const userIdResponse = responseData.authResponse.userID;
     const accessTokenResponse = responseData.authResponse.accessToken;
+    console.log("Successful login for: " + response.name);
     return window.FacebookData.loginSuccessFunc({
       userIdInfo: userIdResponse,
       accessTokenInfo: accessTokenResponse,
@@ -108,8 +87,9 @@ export async function getMyfbAccPage(myUserId, accessToken) {
         if (response.status === "connected") {
           // Innlogget på nettsiden og Facebook.
           return doLoginSuccess(response);
+        } else {
+            return doLoginFail(response);
         }
-        return doLoginFail(response);
       },
       { scope: "email,public_profile,pages_show_list, pages_read_engagement,pages_manage_engagement,pages_read_user_content,read_insights" }
     );
@@ -130,11 +110,6 @@ export async function getMyfbAccPage(myUserId, accessToken) {
       });
         
       FB.AppEvents.logPageView();
-
-    // Sjekker login status
-    FB.getLoginStatus(function(response) {   
-        statusChangeCallback(response);      
-    });     
     };
   
   // Kjører Facebook SDK
