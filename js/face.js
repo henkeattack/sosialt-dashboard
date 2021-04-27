@@ -117,11 +117,6 @@ function statusChangeCallback(response) {
     );
   }
 
-    // Sjekker login status
-    FB.getLoginStatus(function(response) {   
-        statusChangeCallback(response);      
-    });  
-  
   //Oppsett av Facebook SDK med id, cookies, social plugins og versjon.
   export function initializeApp() {
     initializeFBScripts();
