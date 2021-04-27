@@ -142,47 +142,56 @@
     </div>
 
   <script type="module">
-  import {
-    initializeApp,
-    doLogin,
-    getAppToken,
-    getMyfbAccInfo,
-    getMyfbAccPage
-  } from "./js/face.js";
+    //hent ut json data
+    const printData = (domId, dataObject) => {
+        document.getElementById(domId).innerHTML = JSON.stringify(
+          dataObject,
+          null,
+          "\n\t"
+        );
+      };
+  
+      import {
+        initializeApp,
+        doLogin,
+        getAppToken,
+        getMyfbAccInfo,
+        getMyfbAccPage
+      } from "./js/face.js";
 
-  const appId = '4223696350981884';
-  const clientToken = '7ea19420eda210c55d3c38515aef5cd6';
-  const loginSuccessFunc = async (responseItem) => {
-    const appToken = await getAppToken(
-      responseItem.userIdInfo,
-      responseItem.accessTokenInfo
-    );
-    
-  // Hent min Facebook-konto
-  const fbInfo = await getMyfbAccInfo(
-    responseItem.userIdInfo,
-    responseItem.accessTokenInfo
-  );
-  console.log("Welcome. Here is your info: " + fbInfo.email);
-  };
+      const appId = '4223696350981884';
+      const clientToken = '7ea19420eda210c55d3c38515aef5cd6';
+      const loginSuccessFunc = async (responseItem) => {
+        const appToken = await getAppToken(
+          responseItem.userIdInfo,
+          responseItem.accessTokenInfo
+        );
+        
+      // Hent min Facebook-konto
+      const fbInfo = await getMyfbAccInfo(
+        responseItem.userIdInfo,
+        responseItem.accessTokenInfo
+      );
+      console.log("Welcome. Here is your info: " + fbInfo.email);
+      };
 
-  // Hent relaterte kontoer
-  const fbAccInfo = await getMyfbAccPage(
-    responseItem.userIdInfo,
-    responseItem.accessTokenInfo
-  );
-  console.log("Your page info: " + fbAccInfo.data[0].name);
+      // Hent relaterte kontoer
+      const fbAccInfo = await getMyfbAccPage(
+        responseItem.userIdInfo,
+        responseItem.accessTokenInfo
+      );
+      console.log("Your page info: " + fbAccInfo.data[0].name);
 
-  const loginFailFunc = (responseItem) => {};
-    window.flowFacebookData = {
-      appId: appId,
-      clientToken: clientToken,
-      loginSuccessFunc: loginSuccessFunc,
-      loginFailFunc: loginFailFunc,
-  };
-  initializeApp();
-  window.handlefbLogin = doLogin;
-  //<-------- Laster data     
+      const loginFailFunc = (responseItem) => {};
+        window.flowFacebookData = {
+          appId: appId,
+          clientToken: clientToken,
+          loginSuccessFunc: loginSuccessFunc,
+          loginFailFunc: loginFailFunc,
+      };
+      initializeApp();
+      window.handlefbLogin = doLogin;
+      //<-------- Laster data     
   </script>
 
 <div class="attribution">Laget av Henrik, Sebastian og Morten</div>

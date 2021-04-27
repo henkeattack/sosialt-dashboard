@@ -23,20 +23,6 @@ window.FacebookData = {
     return performGetOperation(url, headers);
   }
   
-  // Henter min Facebook-info
-  export async function getMyInfo(myProfileId) {
-  FB.api("/me", function (responseData) {
-    console.log("getMyInfo", responseData);
-    const myUserId = responseData.id;
-    return responseData;
-  });
-  }
-
-  // Hent min innsikt
-
-  // Hent instagram-profil
-  
-  // Hent Facebook-konto
   export async function getMyfbAccInfo(myUserId, accessToken) {
   const url = `https://graph.facebook.com/v10.0/me?fields=id,name,email&access_token=${accessToken}`;
   let headers = new Headers();
@@ -51,6 +37,21 @@ export async function getMyfbAccPage(myUserId, accessToken) {
     headers.append("Accept", "application/json");
     return performGetOperation(url, headers);
   }
+
+  // Henter min Facebook-info
+  export async function getMyInfo(myProfileId) {
+    FB.api("/me", function (responseData) {
+      console.log("getMyInfo", responseData);
+      const myUserId = responseData.id;
+      return responseData;
+    });
+    }
+
+// Hent min innsikt
+
+  // Hent instagram-profil
+  
+  // Hent Facebook-konto
 
   // Suksessfull login?
   export async function doLoginSuccessWithCallback(yourCallBackFunc) {
