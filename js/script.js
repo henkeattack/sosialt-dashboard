@@ -12,24 +12,6 @@ togglerbg.addEventListener("click", function(){
         toggler.style.transform = "translateX(0)";
     }
 }); // Kode for dark mode/light mode
-// Sjekker om bruker er logget inn og printer resultatet
-function statusChangeCallback(response) {  
-    console.log('statusChangeCallback');
-    console.log(response);                   
-    if (response.status === 'connected') {   
-      testAPI();
-      testPage(); 
-    } else {                                 
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into this webpage.';
-    }
-  }
-
-function checkLoginState() { // Kalles etter at bruker er ferdig med login
-    FB.getLoginStatus(function(response) {
-      statusChangeCallback(response);
-    });
-  }
 
 //Oppsett av Facebook SDK med id, cookies, social plugins og versjon.
 window.fbAsyncInit = function() {
@@ -56,6 +38,27 @@ window.fbAsyncInit = function() {
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
 
+// Sjekker om bruker er logget inn og printer resultatet
+function statusChangeCallback(response) {  
+    console.log('statusChangeCallback');
+    console.log(response);                   
+    if (response.status === 'connected') {
+      setElements(true);  
+      testAPI();
+      testPage(); 
+    } else {                                 
+        document.getElementById('status').innerHTML = 'Please log ' +
+        'into this webpage.';
+        setElements(false);
+    }
+  }
+
+function checkLoginState() { // Kalles etter at bruker er ferdig med login
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  }
+
 // Tester Graph Api etter login
 function testAPI() {                     
     console.log('Welcome!  Fetching your information.... ');
@@ -64,13 +67,57 @@ function testAPI() {
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
     });
-  }
 
-function testPage() {
-    console.log('Fetching your page... ');
-    FB.api(
-        '/me','GET', {"fields":"name,followers_count"}, function(responseData) {
-            console.log('Your page is: ' + responseData[0].name);
+    FB.api('/me?fields=name,email,birthday,location,about', function(response) {
+        if(response && !response.error){
+            buildProfile(response);
         }
-      );
-} 
+
+    FB.api('/me?fields:name,followers_count', function(response) {
+        if(response && !response.error){
+            buildProfile(response);
+        }
+    }); 
+    })
+}
+
+function buildProfile(user){
+    let profile = `
+      <h3>${user.name}</h3>
+      <ul class="list-group">
+        <li class="list-group-item">User ID: ${user.id}</li>
+        <li class="list-group-item">Email: ${user.email}</li>
+        <li class="list-group-item">Birthday: ${user.birthday}</li>
+        <li class="list-group-item">Location: ${user.location.name}</li>
+        <li class="list-group-item">About: ${user.about.name}</li>
+        <li class="list-group-item">Page Name: ${user.page.name}</li>
+        <li class="list-group-item">Followers: ${user.followers_count.value}</li>
+        
+      </ul>
+    `;
+   
+    document.getElementById('profile').innerHTML = profile;
+   }
+
+
+   function setElements(isLoggedIn){
+    if(isLoggedIn){
+      document.getElementById('logout').style.display = 'block';
+      document.getElementById('profile').style.display = 'block';
+      document.getElementById('feed').style.display = 'block';
+      document.getElementById('fb-btn').style.display = 'none';
+      document.getElementById('heading').style.display = 'none';
+    } else {
+      document.getElementById('logout').style.display = 'none';
+      document.getElementById('profile').style.display = 'none';
+      document.getElementById('feed').style.display = 'none';
+      document.getElementById('fb-btn').style.display = 'block';
+      document.getElementById('heading').style.display = 'block';
+    }
+   }
+   
+   function logout(){
+    FB.logout(function(response){
+      setElements(false);
+    });
+   }
