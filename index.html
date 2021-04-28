@@ -222,8 +222,10 @@
         );
         printData("MyFacebookPageInsights", fbPageInsights.data);
         
-        const insightResult = fbPageInsights.data.find( ({values}) => value === true);
-        console.log("pageStats: " + insightResult);
+        function findValue(values) {
+          return values.value === true;
+        }
+        console.log("pageStats: " + fbPageInsights.data.find(findValue));
 
         // 5. get instagram profile info
         const fbInstaInfo = await getMyFbInstaBusinessAcc(
