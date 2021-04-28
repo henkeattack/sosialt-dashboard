@@ -152,6 +152,8 @@
 <pre class="odd" id="MyFacebookAccountInfo"></pre>
 <h3 class="">Step 4: Get my Facebook Insight</h3>
 <pre class="even" id="MyFacebookPageInsights"></pre>
+<h3 class="">Step 5: Get Insta business account</h3>
+<pre class="odd" id="MyInstaBusinessAcc"></pre>
 <h3 class="">Step 5: Get Insta profile account</h3>
 <pre class="odd" id="MyInstaAccountInfo"></pre>
 <h3 class="">Step 6: Get Insta Profile Insights</h3>
@@ -228,7 +230,7 @@
           fbPageAccId,
           fbPageAccesstoken
         );
-        console.log("Instagram profile info: " + fbInstaInfo.data[0]);
+        printData("MyInstaBusinessAcc", fbInstaInfo);
 
         const instaProfileInfo = await getMyInstagramAccInfo(
           fbInstaInfo.instagram_business_account.id,
