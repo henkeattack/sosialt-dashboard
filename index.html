@@ -256,7 +256,7 @@
           fbPageAccesstoken
         );
         printData("MyInstaAccountInsight", instaProfileInsight);
-        document.getElementById("instaPageViews").innerHTML = "Instagram Daily Page Views Daily: " + instaProfileInsight.data[2].values[0].value;
+        document.getElementById("instaPageViews").innerHTML = "Instagram Page Views: " + instaProfileInsight.data[0].values[0].value;
         document.getElementById("instaPageReach").innerHTML = "Instagram Page Reach: " + fbPageInsights.data[1].values[0].value;
 
       // get instagram profile posts
