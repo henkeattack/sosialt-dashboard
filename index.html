@@ -220,8 +220,7 @@
           fbPageAccesstoken
         );
         printData("MyFacebookPageInsights", fbPageInsights.data);
-        let obj = JSON.parse(text);
-        console.log("Your page stats: " + fbPageInsights.data[0].values);
+        console.log("Your page stats: " + fbPageInsights.data[0].values.value);
 
         // 5. get instagram profile info
         const fbInstaInfo = await getMyFbInstaBusinessAcc(
