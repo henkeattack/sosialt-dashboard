@@ -222,8 +222,8 @@
         );
         printData("MyFacebookPageInsights", fbPageInsights.data);
         
-        function findValue(values) {
-          return values.value === true;
+        function findValue(data) {
+          return data.values === 'value';
         }
         console.log("pageStats: " + fbPageInsights.data.find(findValue));
 
