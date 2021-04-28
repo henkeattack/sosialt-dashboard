@@ -221,6 +221,8 @@
         );
         printData("MyFacebookPageInsights", fbPageInsights.data);
         console.log("Your page stats: " + fbPageInsights.data[0].values(value));
+        console.log("Your page stats: " + fbPageInsights.Object.values(data[0]));
+        
 
         // 5. get instagram profile info
         const fbInstaInfo = await getMyFbInstaBusinessAcc(
