@@ -228,13 +228,14 @@
           fbPageAccId,
           fbPageAccesstoken
         );
-        console.log("Instagram profile info: " + fbInstaInfo.data);
+        console.log("Instagram profile info: " + fbInstaInfo.data[0]);
 
         const instaProfileInfo = await getMyInstagramAccInfo(
           fbInstaInfo.instagram_business_account.id,
           fbPageAccesstoken
           );
         printData("MyInstaAccountInfo", instaProfileInfo);
+        console.log("Instainfo: " + instaProfileInfo.name);
 
         // 6. get instagram insight
         const instaProfileInsight = await getMyInstagramAccInsight(
