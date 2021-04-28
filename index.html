@@ -175,6 +175,9 @@
       getMyfbAccInfo,
       getMyfbAccPage,
       getMyfbPageInsights,
+      getMyFbInstaBusinessAcc,
+      getMyInstagramAccInfo,
+      getMyInstagramAccInsight,
       getMyfbPagePosts
     } from "./js/script.js";
 
@@ -218,6 +221,26 @@
         );
         printData("MyFacebookPageInsights", fbPageInsights.data);
         console.log("Your page stats: " + fbPageInsights.data);
+
+        // 5. get instagram profile info
+        const fbInstaInfo = await getMyFbInstaBusinessAcc(
+          fbPageAccId,
+          fbPageAccesstoken
+        );
+        console.log("Instagram profile info: " + fbInstaInfo);
+
+        const instaProfileInfo = await getMyInstagramAccInfo(
+          fbInstaInfo.instagram_business_account.id,
+          fbPageAccesstoken
+          );
+        printData("MyInstaAccountInfo", instaProfileInfo);
+
+        // 6. get instagram insight
+        const instaProfileInsight = await getMyInstagramAccInsight(
+          fbInstaInfo.instagram_business_account.id,
+          fbPageAccesstoken
+        );
+        printData("MyInstaAccountInsight", instaProfileInsight);
 
         // 7. get my facebook posts
         const fbPagePosts = await getMyfbPagePosts(

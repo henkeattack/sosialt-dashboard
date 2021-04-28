@@ -101,6 +101,14 @@ window.flowFacebookData = {
   headers.append("Accept", "application/json");
   return performGetOperation(url, headers);
   }
+
+  // getMyInstagramAccMediaStats
+export async function getMyInstagramAccMediaStats(instaUserId, accessToken) {
+  const url = `https://graph.facebook.com/v8.0/${instaUserId}/media?fields=shortcode,caption,comments_count,thumbnail_url,username,media_type,media_url,like_count,comments,is_comment_enabled&limit=10&access_token=${accessToken}`;
+  let headers = new Headers();
+  headers.append("Accept", "application/json");
+  return performGetOperation(url, headers);
+}
   
   // getMyInstagramAccInsight
   export async function getMyInstagramAccInsight(instaUserId, accessToken) {
