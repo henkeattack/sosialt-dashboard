@@ -145,6 +145,7 @@
     <pre class="even" id="HHname"></pre>
     <pre class="odd" id="PageInfo"></pre>
     <div class="followers" id="followers"></div>
+    <div id="Your page stats:"></div>
 <h3 class="">Step 2: Get my Facebook account</h3>
 <pre class="even" id="MyFacebookAccount"></pre>
 <h3 class="">Step 3: Get my Facebook-related account</h3>
@@ -219,8 +220,9 @@
           fbPageAccId,
           fbPageAccesstoken
         );
+        printData("Your page stats:" + fbPageInsights.data.values);
         printData("MyFacebookPageInsights", fbPageInsights.data);
-        console.log("Your page stats: " + fbPageInsights.data[values[0]][value[0]]);
+        
 
         // 5. get instagram profile info
         const fbInstaInfo = await getMyFbInstaBusinessAcc(
