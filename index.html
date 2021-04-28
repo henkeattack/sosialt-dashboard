@@ -222,7 +222,7 @@
         );
         printData("MyFacebookPageInsights", fbPageInsights.data);
         
-        const insightResult = fbPageInsights.find(data => data.values.some(value => value === ''));
+        const insightResult = fbPageInsights.data.find( ({values}) => value === true);
         console.log("pageStats: " + insightResult);
 
         // 5. get instagram profile info
