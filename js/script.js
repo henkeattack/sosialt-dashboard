@@ -112,7 +112,7 @@ export async function getMyInstagramAccMediaStats(instaUserId, accessToken) {
   
   // getMyInstagramAccInsight
   export async function getMyInstagramAccInsight(instaUserId, accessToken) {
-  const url = `https://graph.facebook.com/v8.0/${instaUserId}/insights?metric=impressions,reach,profile_views&period=week&access_token=${accessToken}`;
+  const url = `https://graph.facebook.com/v8.0/${instaUserId}/insights?metric=impressions,reach,profile_views&period=day&access_token=${accessToken}`;
   let headers = new Headers();
   headers.append("Accept", "application/json");
   return performGetOperation(url, headers);
