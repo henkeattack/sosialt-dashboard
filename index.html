@@ -60,7 +60,8 @@
           <div class="header-card instagram">
             <div class="header-card-1">
               <span> <img src="images/icon-instagram.svg" alt="" /> </span>
-              <span class="header-card-1-name">@yx711gjoviksyd</span>
+              <span class="header-card-1-name"><div id="PageInfo"></div></span>
+              <!-- @yx711gjoviksyd -->
             </div>
             <div class="header-card-2">103</div>
             <div class="header-card-3">Følgere</div>
@@ -142,7 +143,7 @@
   </div>
 
 <h3 class="">Step 1: Get specific data</h3>
-    <pre class="even" id="HHname"></pre>
+    <pre class="even" id="status"></pre>
     <pre class="odd" id="PageInfo"></pre>
     <div class="followers" id="followers"></div>
     <div class="pageStats" id="pageStats"></div>
@@ -207,7 +208,7 @@
           responseItem.accessTokenInfo
         );
         printData("MyFacebookAccount", fbInfo);
-        document.getElementById("HHname").innerHTML = "Welcome to the page " + fbInfo.name;
+        document.getElementById("status").innerHTML = "Suksessfull login. Velkommen til siden, " + fbInfo.name;
         console.log("My info: " + fbInfo.name);
 
         // 3. get my facebook related accounts
@@ -233,7 +234,7 @@
         );
         printData("MyFacebookPageInsights", fbPageInsights.data);
         document.getElementById("pageStats").innerHTML = "Page Views: " + fbPageInsights.data[0].values[6].value;
-        document.getElementById("pageLikes").innerHTML = "Page Likes: " + fbPageInsights.data[2].values[0].value;
+        document.getElementById("pageLikes").innerHTML = "Page Likes: " + fbPageInsights.data[2].values[6].value;
 
         // 5. get instagram profile info
         const fbInstaInfo = await getMyFbInstaBusinessAcc(
