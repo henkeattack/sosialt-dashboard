@@ -129,7 +129,7 @@ export async function getMyInstagramAccMediaStats(instaUserId, accessToken) {
 
   // henter instagram lifetime info
   export async function getLifetimeInfo(instaUserId, accessToken) {
-    const url = `https://graph.facebook.com/v8.0/${instaUserId}/insights?metric=audience_gender_age&access_token=${accessToken}`;
+    const url = `https://graph.facebook.com/v8.0/${instaUserId}/insights?metric=audience_gender_age&period=lifetime&access_token=${accessToken}`;
     let headers = new Headers();
     headers.append("Accept", "application/json");
     return performGetOperation(url, headers);
@@ -137,7 +137,7 @@ export async function getMyInstagramAccMediaStats(instaUserId, accessToken) {
 
   // henter nye instagram følgere 
   export async function getInstaFollowers(instaUserId, accessToken) {
-    const url = `https://graph.facebook.com/v8.0/${instaUserId}/insights?metric=follower_count,profile_views&since=1619099778&until=1619704578&access_token=${accessToken}`;
+    const url = `https://graph.facebook.com/v8.0/${instaUserId}/insights?metric=follower_count,profile_views&period=day&since=1619099778&until=1619704578&access_token=${accessToken}`;
     let headers = new Headers();
     headers.append("Accept", "application/json");
     return performGetOperation(url, headers);
