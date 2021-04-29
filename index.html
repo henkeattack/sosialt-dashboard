@@ -81,7 +81,7 @@
 
     <main>
       <div class="col-md-12 padding-left">
-        <div class="main-heading">Dagens Trafikk</div>
+        <div class="main-heading">Ukas Trafikk</div>
         </div>
 
         <div class="row main-row-margin">
@@ -93,7 +93,7 @@
                 <span><img src="images/icon-facebook.svg" alt=""></span>
                 </div>
                 <div class="main-card-bottom">
-                  <span>23</span>
+                  <span id="pageStats"></span>
                   <span><img src="images/icon-up.svg" alt=""> 3% </span>
               </div>
             </div>
@@ -106,7 +106,7 @@
                 <span><img src="images/icon-facebook.svg" alt=""></span>
                 </div>
                 <div class="main-card-bottom">
-                  <span>11</span>
+                  <span id="pageLikes">11</span>
                   <span><img src="images/icon-up.svg" alt=""> 2% </span>
               </div>
             </div>
@@ -145,11 +145,9 @@
 <h3 class="">Step 1: Get specific data</h3>
     <pre class="even" id="status"></pre>
     <pre class="odd" id="PageInfo"></pre>
-    <div class="followers" id="followers"></div>
     <div class="pageStats" id="pageStats"></div>
     <div class="pageLikes" id="pageLikes"></div>
-    <div class="instaPage" id="instaPage"></div>
-    <div class="instaFollowers" id="instaFollowers"></div>
+    <pre class="instaPage" id="instaPage"></pre>
     <div class="instaPageViews" id="instaPageViews"></div>
     <div class="instaPageReach" id="instaPageReach"></div>
 
@@ -165,6 +163,8 @@
 <pre class="odd" id="MyInstaAccountInfo"></pre>
 <h3 class="">Step 6: Get Insta Profile Insights</h3>
 <pre class="even" id="MyInstaAccountInsight"></pre>
+<pre class= "odd" id="followerInsight"></pre>
+<pre class= "even" id="newInstaFollowers"></pre>
 <h3 class="">Step 6: Get Insta Profile Posts</h3>
 <pre class="even" id="MyInstaAccountPosts"></pre>
 <h3 class="">Step 7: Get my Facebook Posts</h3>
@@ -187,10 +187,13 @@
       getMyfbAccInfo,
       getMyfbAccPage,
       getMyfbPageInsights,
+      getUserDemograph,
       getMyFbInstaBusinessAcc,
       getMyInstagramAccInfo,
       getMyInstagramAccInsight,
       getMyInstagramAccMediaStats,
+      getLifetimeInfo,
+      getInstaFollowers,
       getMyfbPagePosts
     } from "./js/script.js";
 
@@ -236,6 +239,13 @@
         document.getElementById("pageStats").innerHTML = "Page Views: " + fbPageInsights.data[0].values[6].value;
         document.getElementById("pageLikes").innerHTML = "Page Likes: " + fbPageInsights.data[2].values[6].value;
 
+        // Hent følgernes alder og kjønn
+        const fbPageFollowers = await getUserDemograph(
+          fbPageAccId,
+          fbPageAccesstoken
+        );
+        printData("pageDemograph", fbPageFollowers.data);
+
         // 5. get instagram profile info
         const fbInstaInfo = await getMyFbInstaBusinessAcc(
           fbPageAccId,
@@ -259,6 +269,20 @@
         printData("MyInstaAccountInsight", instaProfileInsight);
         document.getElementById("instaPageViews").innerHTML = "Instagram Page Views: " + instaProfileInsight.data[0].values[0].value;
         document.getElementById("instaPageReach").innerHTML = "Instagram Page Reach: " + fbPageInsights.data[1].values[0].value;
+
+        // hent insta demografisk brukerdata
+        const followerInsight = await getLifetimeInfo(
+          fbInstaInfo.instagram_business_account.id,
+          fbPageAccesstoken
+        );
+        printData("followerInsight", followerInsight);
+
+        // henter nye insta-følgere
+        const newInstaFollowers = await getInstaFollowers(
+          fbInstaInfo.instagram_business_account.id,
+          fbPageAccesstoken
+        );
+        printData("newInstaFollowers", newInstaFollowers);
 
       // get instagram profile posts
         const instaProfilePosts = await getMyInstagramAccMediaStats(
