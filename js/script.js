@@ -96,7 +96,7 @@ window.flowFacebookData = {
   
   // getMyInstagramAccInfo
   export async function getMyInstagramAccInfo(instaUserId, accessToken) {
-  const url = `https://graph.facebook.com/v8.0/${instaUserId}?fields=biography,followers_count,follows_count,ig_id,name,engagement,profile_picture_url&access_token=${accessToken}`;
+  const url = `https://graph.facebook.com/v8.0/${instaUserId}?fields=biography,followers_count,follows_count,ig_id,name,profile_picture_url&metric=engagement&access_token=${accessToken}`;
   let headers = new Headers();
   headers.append("Accept", "application/json");
   return performGetOperation(url, headers);
@@ -104,7 +104,7 @@ window.flowFacebookData = {
 
   // getMyInstagramAccMediaStats
 export async function getMyInstagramAccMediaStats(instaUserId, accessToken) {
-  const url = `https://graph.facebook.com/v8.0/${instaUserId}/media?fields=shortcode,caption,comments_count,thumbnail_url,username,media_type,media_url,like_count,comments,is_comment_enabled&limit=10&metrics=engagement&access_token=${accessToken}`;
+  const url = `https://graph.facebook.com/v8.0/${instaUserId}/media?fields=shortcode,caption,comments_count,thumbnail_url,username,media_type,media_url,like_count,comments,is_comment_enabled&limit=10&access_token=${accessToken}`;
   let headers = new Headers();
   headers.append("Accept", "application/json");
   return performGetOperation(url, headers);
