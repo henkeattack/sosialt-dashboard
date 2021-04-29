@@ -64,7 +64,7 @@ window.flowFacebookData = {
   
   // getMyfbPageInsights
   export async function getMyfbPageInsights(instaUserId, accessToken) {
-    const url = `https://graph.facebook.com/v8.0/${instaUserId}/insights?metric=page_views_total,page_engaged_users,page_actions_post_reactions_like_total,page_impressions,page_fans_gender_age,&period=week&date_preset=last_3d&access_token=${accessToken}`;
+    const url = `https://graph.facebook.com/v8.0/${instaUserId}/insights?metric=page_views_total,page_engaged_users,page_actions_post_reactions_like_total,page_impressions,page_fan_adds_unique,page_fans_gender_age,&period=week&date_preset=last_7d&access_token=${accessToken}`;
     let headers = new Headers();
     headers.append("Accept", "application/json");
     return performGetOperation(url, headers);
@@ -72,7 +72,7 @@ window.flowFacebookData = {
   
   // getMyfbPagePosts
   export async function getMyfbPagePosts(instaUserId, accessToken) {
-    const url = `https://graph.facebook.com/v8.0/${instaUserId}/posts?fields=id,attachments{description,media,media_type},likes{total_count},comments{total_count},reactions{total_count},sharedposts,full_picture&limit=5&access_token=${accessToken}`;
+    const url = `https://graph.facebook.com/v8.0/${instaUserId}/posts?fields=id,description,media,media_type,likes{total_count},comments{total_count},reactions{total_count},sharedposts,full_picture&limit=5&access_token=${accessToken}`;
     let headers = new Headers();
     headers.append("Accept", "application/json");
     return performGetOperation(url, headers);
@@ -113,7 +113,7 @@ export async function getMyInstagramAccMediaStats(instaUserId, accessToken) {
   
   // getMyInstagramAccInsight
   export async function getMyInstagramAccInsight(instaUserId, accessToken) {
-  const url = `https://graph.facebook.com/v8.0/${instaUserId}/insights?metric=impressions,reach,audience_gender_age&period=week&access_token=${accessToken}`;
+  const url = `https://graph.facebook.com/v8.0/${instaUserId}/insights?metric=impressions,reach&period=week&date_preset=last_7d&audience_gender_age,follower_count&access_token=${accessToken}`;
   let headers = new Headers();
   headers.append("Accept", "application/json");
   return performGetOperation(url, headers);
