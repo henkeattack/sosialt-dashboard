@@ -269,8 +269,8 @@
           fbPageAccesstoken
         );
         printData("MyInstaAccountInsight", instaProfileInsight);
-        document.getElementById("instaPageViews").innerHTML = "Instagram Page Views: " + instaProfileInsight.data[0].values[0].value;
-        document.getElementById("instaPageReach").innerHTML = "Instagram Page Reach: " + fbPageInsights.data[1].values[0].value;
+        document.getElementById("instaPageViews").innerHTML = instaProfileInsight.data[0].values[0].value;
+        document.getElementById("instaPageReach").innerHTML = fbPageInsights.data[1].values[0].value;
 
         // hent insta demografisk brukerdata
         const followerInsight = await getLifetimeInfo(
