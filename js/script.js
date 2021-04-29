@@ -48,7 +48,7 @@ window.flowFacebookData = {
   }
   // getMyfbAccPage
   export async function getMyfbAccPage(instaUserId, accessToken) {
-  const url = `https://graph.facebook.com/v8.0/me/accounts?fields=name,id,access_token,engagement,instagram_business_account,followers_count{id}&access_token=${accessToken}`;
+  const url = `https://graph.facebook.com/v8.0/me/accounts?fields=name,id,access_token,engagement,fan_count,instagram_business_account,followers_count{id}&access_token=${accessToken}`;
   let headers = new Headers();
   headers.append("Accept", "application/json");
   return performGetOperation(url, headers);
@@ -72,7 +72,7 @@ window.flowFacebookData = {
   
   // getMyfbPagePosts
   export async function getMyfbPagePosts(instaUserId, accessToken) {
-    const url = `https://graph.facebook.com/v8.0/${instaUserId}/posts?fields=id,description,media,media_type,likes{total_count},comments{total_count},reactions{total_count},sharedposts,full_picture&limit=5&access_token=${accessToken}`;
+    const url = `https://graph.facebook.com/v8.0/${instaUserId}/posts?fields=id,attachments{description,media,media_type},likes{total_count},comments{total_count},reactions{total_count},sharedposts,full_picture&limit=5&access_token=${accessToken}`;
     let headers = new Headers();
     headers.append("Accept", "application/json");
     return performGetOperation(url, headers);

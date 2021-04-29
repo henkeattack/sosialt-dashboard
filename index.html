@@ -222,7 +222,7 @@
         
         // Denne FUNKER!!!
         document.getElementById("PageInfo").innerHTML = "Your page info: " + fbAccInfo.data[0].name;
-        document.getElementById("followers").innerHTML = fbAccInfo.data[0].followers_count;
+        document.getElementById("followers").innerHTML = fbAccInfo.data[0].engagement.count;
 
         const fbPageAccId = fbAccInfo.data[0].id;
         const fbPageAccesstoken = fbAccInfo.data[0].access_token;
