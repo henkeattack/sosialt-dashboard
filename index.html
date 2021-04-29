@@ -22,7 +22,7 @@
         <!-- Header tittel-->
         <div class="header-headline">
           <div class="header-headline-1">Mangla AS Sosiale Medier Dashboard</div>
-          <div class="header-headline-2">Totalt Antall Følgere: 718</div>
+          <div class="header-headline-2" id="totalFollowers"></div>
         </div>
 
         <!-- Dark/light mode toggle-->
@@ -50,8 +50,8 @@
                 color: hsl(163, 72%, 41%);
                 font-size: 12px;
                 font-weight: 700;
-              "
-              >12 nye denne uka</span>
+              " id="newFaceFollowers"
+              ></span>
             </div>
           </div>
         </div>
@@ -146,6 +146,7 @@
     <pre class="odd" id="PageInfo"></pre>
     <pre class="even" id="instaPage"></pre>
     <pre class="odd" id="newFaceFollowers"></pre>
+    
 
 <h3 class="">Step 2: Get my Facebook account</h3>
 <pre class="even" id="MyFacebookAccount"></pre>
@@ -273,7 +274,7 @@
 
         // Legg sammen antall følgere i sosiale medier
         const totalFollowers = (instaFollowersCount, faceAccFollowers) => instaFollowersCount + faceAccFollowers; 
-        console.log(totalFollowers(instaFollowersCount,faceAccFollowers));
+        document.getElementById("totalFollowers").innerHTML = "Totalt Antall Følgere: " + (totalFollowers(instaFollowersCount,faceAccFollowers));
 
         // 6. get instagram insight
         const instaProfileInsight = await getMyInstagramAccInsight(
@@ -297,6 +298,9 @@
           fbPageAccesstoken
         );
         printData("newInstaFollowers", newInstaFollowers);
+
+        
+        const followersUpdate = newInstaFollowers.data.forEach((newFollow) => console.log(newFollow.values[0].value));
 
       // get instagram profile posts
         const instaProfilePosts = await getMyInstagramAccMediaStats(

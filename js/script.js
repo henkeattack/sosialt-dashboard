@@ -105,7 +105,7 @@ window.flowFacebookData = {
   
   // getMyInstagramAccInfo
   export async function getMyInstagramAccInfo(instaUserId, accessToken) {
-  const url = `https://graph.facebook.com/v8.0/${instaUserId}?fields=biography,followers_count,media_count,follows_count,ig_id,name,profile_picture_url&access_token=${accessToken}`;
+  const url = `https://graph.facebook.com/v8.0/${instaUserId}?fields=biography,followers_count,media_count{like_count},follows_count,ig_id,name,profile_picture_url&access_token=${accessToken}`;
   let headers = new Headers();
   headers.append("Accept", "application/json");
   return performGetOperation(url, headers);
