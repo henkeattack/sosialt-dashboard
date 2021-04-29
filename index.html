@@ -275,6 +275,16 @@
         // Legg sammen antall følgere i sosiale medier
         const totalFollowers = (instaFollowersCount, faceAccFollowers) => instaFollowersCount + faceAccFollowers; 
         document.getElementById("totalFollowers").innerHTML = "Totalt Antall Følgere: " + (totalFollowers(instaFollowersCount,faceAccFollowers));
+        
+        const lastWeek = new Date()
+        // add 1 day to today
+        lastWeek.setDate(new Date().getDate() - 7)
+        console.log(lastWeek);
+        
+        const oldFollowers = instaFollowersCount(
+          lastWeek
+        );
+        console.log(oldFollowers);
 
         // 6. get instagram insight
         const instaProfileInsight = await getMyInstagramAccInsight(
