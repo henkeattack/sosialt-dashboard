@@ -71,7 +71,7 @@ window.flowFacebookData = {
   
   // getMyfbPagePosts
   export async function getMyfbPagePosts(instaUserId, accessToken) {
-    const url = `https://graph.facebook.com/v8.0/${instaUserId}/posts?fields=id,attachments{description,media,media_type},likes{total_count},comments{total_count},reactions{total_count},sharedposts,caption,full_picture&limit=5&access_token=${accessToken}`;
+    const url = `https://graph.facebook.com/v8.0/${instaUserId}/posts?fields=id,attachments{description,media,media_type},likes{total_count},comments{total_count},reactions{total_count},sharedposts,full_picture&limit=5&access_token=${accessToken}`;
     let headers = new Headers();
     headers.append("Accept", "application/json");
     return performGetOperation(url, headers);

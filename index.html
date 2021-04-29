@@ -42,7 +42,7 @@
               <span> <img src="images/icon-facebook.svg" alt="" /> </span>
               <span class="header-card-1-name">@YX7ElevenGjovikSyd</span>
             </div>
-            <div class="header-card-2">615</div>
+            <div class="header-card-2"><div id="followers"></div></div>
             <div class="header-card-3">Følgere</div>
             <div class="header-card-4">
               <span> <img src="images/icon-up.svg" alt="" /></span>
@@ -60,10 +60,10 @@
           <div class="header-card instagram">
             <div class="header-card-1">
               <span> <img src="images/icon-instagram.svg" alt="" /> </span>
-              <span class="header-card-1-name"><div id="PageInfo"></div></span>
-              <!-- @yx711gjoviksyd -->
+              <span class="header-card-1-name">@yx711gjoviksyd</span>
+              
             </div>
-            <div class="header-card-2">103</div>
+            <div class="header-card-2"><div id="instaFollowers"></div></div>
             <div class="header-card-3">Følgere</div>
             <div class="header-card-4">
               <span> <img src="images/icon-up.svg" alt="" /></span>
@@ -222,7 +222,7 @@
         
         // Denne FUNKER!!!
         document.getElementById("PageInfo").innerHTML = "Your page info: " + fbAccInfo.data[0].name;
-        document.getElementById("followers").innerHTML = "Antall Følgere: " + fbAccInfo.data[0].followers_count;
+        document.getElementById("followers").innerHTML = fbAccInfo.data[0].followers_count;
 
         const fbPageAccId = fbAccInfo.data[0].id;
         const fbPageAccesstoken = fbAccInfo.data[0].access_token;
@@ -249,7 +249,7 @@
           );
         printData("MyInstaAccountInfo", instaProfileInfo);
         document.getElementById("instaPage").innerHTML = "Your Instagram Page Name: " + instaProfileInfo.name;
-        document.getElementById("instaFollowers").innerHTML = "Your Instagram Followers: " + instaProfileInfo.followers_count;
+        document.getElementById("instaFollowers").innerHTML = instaProfileInfo.followers_count;
 
         // 6. get instagram insight
         const instaProfileInsight = await getMyInstagramAccInsight(
