@@ -193,7 +193,8 @@
       getMyInstagramAccMediaStats,
       getLifetimeInfo,
       getInstaFollowers,
-      getMyfbPagePosts
+      getMyfbPagePosts,
+      lastWeek
     } from "./js/script.js";
 
     const appId = "4223696350981884";
@@ -275,14 +276,6 @@
         // Legg sammen antall følgere i sosiale medier
         const totalFollowers = (instaFollowersCount, faceAccFollowers) => instaFollowersCount + faceAccFollowers; 
         document.getElementById("totalFollowers").innerHTML = "Totalt Antall Følgere: " + (totalFollowers(instaFollowersCount,faceAccFollowers));
-        
-        const lastWeek = new Date()
-        // add 1 day to today
-        lastWeek.setDate(new Date().getDate() - 7)
-        //console.log(lastWeek);
-        
-        const oldFollowers = instaFollowersCount,lastWeek;
-        console.log(oldFollowers);
 
         // 6. get instagram insight
         const instaProfileInsight = await getMyInstagramAccInsight(
@@ -322,6 +315,11 @@
           fbPageAccesstoken
         );
         printData("MyFacebookPosts", fbPagePosts.data);
+
+        const oldFollowers = await getMyfbPagePosts(
+          instaFollowersCount
+        )
+        console.log(oldFollowers);
     };
     
     

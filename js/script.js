@@ -143,6 +143,11 @@ export async function getMyInstagramAccMediaStats(instaUserId, accessToken) {
     return performGetOperation(url, headers);
   }
 
+  export async function lastWeek() {
+    new Date();
+    lastWeek.setDate(new Date().getDate() - 7)
+  }
+  
   // getMyInfo
   export async function getMyInfo(instagramProfileId) {
     FB.api("/me", function (responseData) {
