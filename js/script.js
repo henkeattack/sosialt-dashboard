@@ -64,7 +64,7 @@ window.flowFacebookData = {
   
   // getMyfbPageInsights
   export async function getMyfbPageInsights(instaUserId, accessToken) {
-    const url = `https://graph.facebook.com/v8.0/${instaUserId}/insights?metric=page_views_total,page_engaged_users,page_actions_post_reactions_like_total,page_impressions&period=week&access_token=${accessToken}`;
+    const url = `https://graph.facebook.com/v8.0/${instaUserId}/insights?metric=page_views_total,page_engaged_users,page_actions_post_reactions_like_total,page_impressions&period=week&date_preset=last_3d&access_token=${accessToken}`;
     let headers = new Headers();
     headers.append("Accept", "application/json");
     return performGetOperation(url, headers);
