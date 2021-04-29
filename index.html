@@ -144,7 +144,8 @@
 
 <h3 class="">Step 1: Get specific data</h3>
     <pre class="odd" id="PageInfo"></pre>
-    <pre class="instaPage" id="instaPage"></pre>
+    <pre class="even" id="instaPage"></pre>
+    <pre class="odd" id="newFaceFollowers"></pre>
 
 <h3 class="">Step 2: Get my Facebook account</h3>
 <pre class="even" id="MyFacebookAccount"></pre>
@@ -221,9 +222,10 @@
         console.log("Antall Følgere: " + fbAccInfo.data[0].followers_count);
         
         const facebookAccName = fbAccInfo.data[0].name;
+        const faceAccFollowers = fbAccInfo.data[0].engagement.count;
         // Denne FUNKER!!!
         document.getElementById("PageInfo").innerHTML = "Your page info: " + facebookAccName;
-        document.getElementById("followers").innerHTML = fbAccInfo.data[0].engagement.count;
+        document.getElementById("followers").innerHTML = faceAccFollowers;
 
         const fbPageAccId = fbAccInfo.data[0].id;
         const fbPageAccesstoken = fbAccInfo.data[0].access_token;
@@ -234,8 +236,15 @@
           fbPageAccesstoken
         );
         printData("MyFacebookPageInsights", fbPageInsights.data);
-        document.getElementById("pageStats").innerHTML = fbPageInsights.data[0].values[6].value;
-        document.getElementById("pageLikes").innerHTML = fbPageInsights.data[2].values[6].value;
+
+        const facePageViews = fbPageInsights.data[0].values[6].value;
+        document.getElementById("pageStats").innerHTML = facePageViews;
+
+        const fbPageLikes = fbPageInsights.data[2].values[6].value;
+        document.getElementById("pageLikes").innerHTML = fbPageLikes;
+
+        const newFaceFollowers = fbPageInsights.data[4].values[6].value;
+        document.getElementById("newFaceFollowers").innerHTML = newFaceFollowers;
 
         // Hent følgernes alder og kjønn
         const fbPageFollowers = await getUserDemograph(
@@ -256,12 +265,15 @@
           fbPageAccesstoken
           );
         printData("MyInstaAccountInfo", instaProfileInfo);
-        document.getElementById("instaPage").innerHTML = "Your Instagram Page Name: " + instaProfileInfo.name;
-        document.getElementById("instaFollowers").innerHTML = instaProfileInfo.followers_count;
+        
+        const instaPageName = instaProfileInfo.name;
+        const instaFollowersCount = instaProfileInfo.followers_count;
+        document.getElementById("instaPage").innerHTML = "Your Instagram Page Name: " + instaPageName;
+        document.getElementById("instaFollowers").innerHTML = instaFollowersCount;
 
         // Legg sammen antall følgere i sosiale medier
-        const totalFollowers = (a, b) => a + b; 
-        console.log(totalFollowers(5,2));
+        const totalFollowers = (instaFollowersCount, faceAccFollowers) => instaFollowersCount + faceAccFollowers; 
+        console.log(totalFollowers(instaFollowersCount,faceAccFollowers));
 
         // 6. get instagram insight
         const instaProfileInsight = await getMyInstagramAccInsight(
