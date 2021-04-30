@@ -13,6 +13,11 @@ togglerbg.addEventListener("click", function(){
     }
 }); // Kode for dark mode/light mode 
 
+function lastWeek() {
+  new Date();
+  lastWeek.setDate(new Date().getDate() - 7)
+}
+
 //Oppsett av Facebook SDK med id, cookies, social plugins og versjon.
 window.flowFacebookData = {
     appId: "",
@@ -141,11 +146,6 @@ export async function getMyInstagramAccMediaStats(instaUserId, accessToken) {
     let headers = new Headers();
     headers.append("Accept", "application/json");
     return performGetOperation(url, headers);
-  }
-
-  export async function lastWeek() {
-    new Date();
-    lastWeek.setDate(new Date().getDate() - 7)
   }
   
   // getMyInfo
