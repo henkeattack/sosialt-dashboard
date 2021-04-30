@@ -299,8 +299,6 @@
         );
         printData("newInstaFollowers", newInstaFollowers);
 
-        const followersUpdate = newInstaFollowers.data.forEach((newFollow) => console.log(newFollow[1].values[0].value));
-
       // get instagram profile posts
         const instaProfilePosts = await getMyInstagramAccMediaStats(
           fbInstaInfo.instagram_business_account.id,
@@ -314,10 +312,7 @@
           fbPageAccesstoken
         );
         printData("MyFacebookPosts", fbPagePosts.data);
-
-    };
-    
-    
+    };  
 
     const loginFailFunc = async (responseItem) => {};
       window.flowFacebookData = {
