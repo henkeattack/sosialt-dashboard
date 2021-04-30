@@ -13,11 +13,6 @@ togglerbg.addEventListener("click", function(){
     }
 }); // Kode for dark mode/light mode 
 
-/* function lastWeek() {
-  new Date();
-  lastWeek.setDate(new Date().getDate() - 7)
-} */
-
 //Oppsett av Facebook SDK med id, cookies, social plugins og versjon.
 window.flowFacebookData = {
     appId: "",
@@ -33,7 +28,6 @@ window.flowFacebookData = {
     }).catch(function (error) {
       throw new Error("full-flow-facebook : " + error.message);
     });
-  
     return await res.json();
   }
   
