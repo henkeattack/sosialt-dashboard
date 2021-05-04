@@ -126,6 +126,14 @@ export async function getMyInstagramAccMediaStats(instaUserId, accessToken) {
   return performGetOperation(url, headers);
   }
 
+  // hent likes
+export async function getMyInstaLikes(instaUserId, accessToken) {
+  const url = `https://graph.facebook.com/v8.0/${instaUserId}/media/insights?metric=engagement,impressions,reach&access_token=${accessToken}`;
+  let headers = new Headers();
+  headers.append("Accept", "application/json");
+  return performGetOperation(url, headers);
+}
+
   // henter instagram lifetime info
   export async function getLifetimeInfo(instaUserId, accessToken) {
     const url = `https://graph.facebook.com/v8.0/${instaUserId}/insights?metric=audience_gender_age&period=lifetime&access_token=${accessToken}`;
