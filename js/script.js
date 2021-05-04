@@ -144,7 +144,7 @@ export async function getMyInstaLikes(instaUserId, accessToken) {
 
   // henter nye instagram følgere 
   export async function getInstaFollowers(instaUserId, accessToken) {
-    const url = `https://graph.facebook.com/v8.0/${instaUserId}/insights?metric=follower_count,profile_views&period=day&since=1619099778&until=1619704578&access_token=${accessToken}`;
+    const url = `https://graph.facebook.com/v8.0/${instaUserId}/insights?metric=follower_count,profile_views&period=day&since=1619545139&until=1620149939&access_token=${accessToken}`;
     let headers = new Headers();
     headers.append("Accept", "application/json");
     return performGetOperation(url, headers);
