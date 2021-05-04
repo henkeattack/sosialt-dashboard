@@ -188,7 +188,6 @@
       getUserDemograph,
       getMyFbInstaBusinessAcc,
       getMyInstagramAccInfo,
-      getInstaLikes,
       getMyInstagramAccInsight,
       getMyInstagramAccMediaStats,
       getLifetimeInfo,
@@ -277,13 +276,6 @@
         const instaFollowersCount = instaProfileInfo.followers_count;
         document.getElementById("instaPage").innerHTML = "Your Instagram Page Name: " + instaPageName;
         document.getElementById("instaFollowers").innerHTML = instaFollowersCount;
-
-        // hent likes
-        const instaLikes = await getInstaLikes(
-          fbInstaInfo.instagram_business_account.id,
-          fbPageAccesstoken
-        );
-        printData("MyInstaLikes", instaLikes);
 
         // Legg sammen antall følgere i sosiale medier
         const totalFollowers = (instaFollowersCount, faceAccFollowers) => instaFollowersCount + faceAccFollowers; 
