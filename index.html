@@ -142,29 +142,30 @@
   </div>
   </div>
 
-<h3 class="">Step 1: Get specific data</h3>
+<h3 class="">Step 1: Hent data</h3>
     <pre class="odd" id="PageInfo"></pre>
     <pre class="even" id="instaPage"></pre>
     
-<h3 class="">Step 2: Get my Facebook account</h3>
+<h3 class="">Step 2: Hent Facebook konto</h3>
 <pre class="even" id="MyFacebookAccount"></pre>
-<h3 class="">Step 3: Get my Facebook-related account</h3>
+<h3 class="">Step 3: Hent relaterte Facebook sider</h3>
 <pre class="odd" id="MyFacebookAccountInfo"></pre>
-<h3 class="">Step 4: Get my Facebook Insight</h3>
+<h3 class="">Step 4: Hent Facebook innsikt</h3>
 <pre class="even" id="MyFacebookPageInsights"></pre>
 <pre class="even" id="pageDemograph"></pre>
-<h3 class="">Step 5: Get Insta business account</h3>
+<h3 class="">Step 5: Hent insta konto</h3>
 <pre class="odd" id="MyInstaBusinessAcc"></pre>
-<h3 class="">Step 5: Get Insta profile account</h3>
+<h3 class="">Step 5: Hent Insta profil</h3>
 <pre class="odd" id="MyInstaAccountInfo"></pre>
-<h3 class="">Step 6: Get Insta Profile Insights</h3>
+<pre class= "even" id="MyInstaLikes"></pre>
+<h3 class="">Step 6: Hent Insta Innsikt</h3>
 <pre class="even" id="MyInstaAccountInsight"></pre>
-<h3 class="">Get Insta Additional insights</h3>
+<h3 class="">Hent utvidet Insta innsikt</h3>
 <pre class= "odd" id="followerInsight"></pre>
 <pre class= "even" id="newInstaFollowers"></pre>
-<h3 class="">Step 6: Get Insta Profile Posts</h3>
+<h3 class="">Step 6: Hent Insta Innlegg</h3>
 <pre class="even" id="MyInstaAccountPosts"></pre>
-<h3 class="">Step 7: Get my Facebook Posts</h3>
+<h3 class="">Step 7: Hent Facebook Innlegg</h3>
 <pre class="odd" id="MyFacebookPosts"></pre>
 
 <script type="module">
@@ -187,6 +188,7 @@
       getUserDemograph,
       getMyFbInstaBusinessAcc,
       getMyInstagramAccInfo,
+      getInstaLikes,
       getMyInstagramAccInsight,
       getMyInstagramAccMediaStats,
       getLifetimeInfo,
@@ -275,6 +277,13 @@
         const instaFollowersCount = instaProfileInfo.followers_count;
         document.getElementById("instaPage").innerHTML = "Your Instagram Page Name: " + instaPageName;
         document.getElementById("instaFollowers").innerHTML = instaFollowersCount;
+
+        // hent likes
+        const instaLikes = await getInstaLikes(
+          fbInstaInfo.instagram_business_account.id,
+          fbPageAccesstoken
+        );
+        printData("MyInstaLikes", instaLikes);
 
         // Legg sammen antall følgere i sosiale medier
         const totalFollowers = (instaFollowersCount, faceAccFollowers) => instaFollowersCount + faceAccFollowers; 
