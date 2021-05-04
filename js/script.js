@@ -167,7 +167,7 @@ export async function getMyInstagramAccMediaStats(instaUserId, accessToken) {
   }
   
   export async function doLoginFail(responseData) {
-    // throw new Error("Flow failed Fail" + responseData.status);
+    // throw new Error("login failed" + responseData.status);
     return window.flowFacebookData.loginFailFunc(responseData);
   }
   export async function doLoginSuccess(responseData) {

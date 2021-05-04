@@ -145,9 +145,7 @@
 <h3 class="">Step 1: Get specific data</h3>
     <pre class="odd" id="PageInfo"></pre>
     <pre class="even" id="instaPage"></pre>
-    <pre class="odd" id="newFaceFollowers"></pre>
     
-
 <h3 class="">Step 2: Get my Facebook account</h3>
 <pre class="even" id="MyFacebookAccount"></pre>
 <h3 class="">Step 3: Get my Facebook-related account</h3>
@@ -170,7 +168,7 @@
 <pre class="odd" id="MyFacebookPosts"></pre>
 
 <script type="module">
-  //just print json into dom nicely
+  //Print json data i dom 
   const printData = (domId, dataObject) => {
         document.getElementById(domId).innerHTML = JSON.stringify(
           dataObject,
@@ -178,7 +176,7 @@
           "\n\t"
         );
       };
-    // initialize data----->
+    // implementerer data fra js ----->
     import {
       initializeFlow,
       doLogin,
@@ -204,16 +202,17 @@
           responseItem.accessTokenInfo
         );
 
-        // 2. get my facebook account
+        // 2. hent Facebook-konto
         const fbInfo = await getMyfbAccInfo(
           responseItem.userIdInfo,
           responseItem.accessTokenInfo
         );
         printData("MyFacebookAccount", fbInfo);
+        // Returner velkomsthilsen
         document.getElementById("status").innerHTML = "Suksessfull login. Velkommen til siden, " + fbInfo.name;
         console.log("My info: " + fbInfo.name);
 
-        // 3. get my facebook related accounts
+        // 3. hent relaterte kontoer til FB profil
         const fbAccInfo = await getMyfbAccPage(
           responseItem.userIdInfo,
           responseItem.accessTokenInfo
@@ -222,22 +221,25 @@
         console.log("Henter data: " + fbAccInfo.data[0].name);
         console.log("Antall Følgere: " + fbAccInfo.data[0].followers_count);
         
+        // Returnerer FB side-info
         const facebookAccName = fbAccInfo.data[0].name;
         const faceAccFollowers = fbAccInfo.data[0].engagement.count;
         // Denne FUNKER!!!
         document.getElementById("PageInfo").innerHTML = "Your page info: " + facebookAccName;
         document.getElementById("followers").innerHTML = faceAccFollowers;
 
+        // Kode for gjenbruk
         const fbPageAccId = fbAccInfo.data[0].id;
         const fbPageAccesstoken = fbAccInfo.data[0].access_token;
 
-        // 4. get my Facebook Insights
+        // 4. hent sidens Facebook Innsikt
         const fbPageInsights = await getMyfbPageInsights(
           fbPageAccId,
           fbPageAccesstoken
         );
         printData("MyFacebookPageInsights", fbPageInsights.data);
 
+        // Returner innsiktsdata
         const facePageViews = fbPageInsights.data[0].values[6].value;
         document.getElementById("pageStats").innerHTML = facePageViews;
 
@@ -254,19 +256,21 @@
         );
         printData("pageDemograph", fbPageFollowers.data);
 
-        // 5. get instagram profile info
+        // 5. hent relatert instagram profil 
         const fbInstaInfo = await getMyFbInstaBusinessAcc(
           fbPageAccId,
           fbPageAccesstoken
         );
         printData("MyInstaBusinessAcc", fbInstaInfo);
 
+        // hent instagram info
         const instaProfileInfo = await getMyInstagramAccInfo(
           fbInstaInfo.instagram_business_account.id,
           fbPageAccesstoken
           );
         printData("MyInstaAccountInfo", instaProfileInfo);
-        
+
+        // returner instagram data
         const instaPageName = instaProfileInfo.name;
         const instaFollowersCount = instaProfileInfo.followers_count;
         document.getElementById("instaPage").innerHTML = "Your Instagram Page Name: " + instaPageName;
@@ -276,12 +280,13 @@
         const totalFollowers = (instaFollowersCount, faceAccFollowers) => instaFollowersCount + faceAccFollowers; 
         document.getElementById("totalFollowers").innerHTML = "Totalt Antall Følgere: " + (totalFollowers(instaFollowersCount,faceAccFollowers));
 
-        // 6. get instagram insight
+        // 6. hent instagram insikten
         const instaProfileInsight = await getMyInstagramAccInsight(
           fbInstaInfo.instagram_business_account.id,
           fbPageAccesstoken
         );
         printData("MyInstaAccountInsight", instaProfileInsight);
+        // Returner innsiktsdata
         document.getElementById("instaPageViews").innerHTML = instaProfileInsight.data[0].values[6].value;
         document.getElementById("instaPageReach").innerHTML = fbPageInsights.data[1].values[6].value;
 
@@ -299,14 +304,14 @@
         );
         printData("newInstaFollowers", newInstaFollowers);
 
-      // get instagram profile posts
+      // hent instagram innlegg
         const instaProfilePosts = await getMyInstagramAccMediaStats(
           fbInstaInfo.instagram_business_account.id,
           fbPageAccesstoken
         );
         printData("MyInstaAccountPosts", instaProfilePosts);
 
-        // 7. get my facebook posts
+        // 7. hent FB-sidens innlegg
         const fbPagePosts = await getMyfbPagePosts(
           fbPageAccId,
           fbPageAccesstoken
