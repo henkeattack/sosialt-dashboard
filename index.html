@@ -279,6 +279,9 @@
         document.getElementById("instaPage").innerHTML = "Your Instagram Page Name: " + instaPageName;
         document.getElementById("instaFollowers").innerHTML = instaFollowersCount;
 
+        // sammenlign insta følgere
+        //let verdi = data.map((antall) => antall.values.value + antall.values.value)
+
         // Legg sammen antall følgere i sosiale medier
         const totalFollowers = (instaFollowersCount, faceAccFollowers) => instaFollowersCount + faceAccFollowers; 
         document.getElementById("totalFollowers").innerHTML = "Totalt Antall Følgere: " + (totalFollowers(instaFollowersCount,faceAccFollowers));
