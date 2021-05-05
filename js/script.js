@@ -128,7 +128,7 @@ export async function getMyInstagramAccMediaStats(instaUserId, accessToken) {
 
   // hent likes
 export async function getMyInstaLikes(instaUserId, accessToken) {
-  const url = `https://graph.facebook.com/v8.0/${instaUserId}/media?fields=engagement,like_count,impressions,reach&access_token=${accessToken}`;
+  const url = `https://graph.facebook.com/v8.0/${instaUserId}/media?fields=engagement,like_count,caption&access_token=${accessToken}`;
   let headers = new Headers();
   headers.append("Accept", "application/json");
   return performGetOperation(url, headers);
