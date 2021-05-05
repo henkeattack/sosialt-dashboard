@@ -323,7 +323,7 @@
         const weeklyInstaViews = instaProfileInsight.data[0].values[0].value;
         document.getElementById("instaPageViewsWeek").innerHTML = 
         getPercentageChange(instaPageViews, weeklyInstaViews);
-        console.log(prosentMinus(instaPageView, weeklyInstaViews
+        console.log(prosentMinus(instaPageViews, weeklyInstaViews
         ));
 
         const instaPageReach = instaProfileInsight.data[1].values[6].value;
@@ -332,7 +332,6 @@
         document.getElementById("instaPageReachWeek").innerHTML = getPercentageChange(instaPageReach, instaWeekReach);
         console.log(prosentMinus(instaPageReach, instaWeekReach
         ));
-
 
         // hent Likes
         const instaMediaLikes = await getMyInstaLikes(
