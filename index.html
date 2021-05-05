@@ -316,8 +316,12 @@
         printData("newInstaFollowers", newInstaFollowers);
 
         // sammenlign insta følgere
-        //const oldInstaFollowers = 
-        document.getElementById("oldInstaFollowers").innerHTML = newInstaFollowers.data[0].values.map(value => ("total value " + value.value));
+        const oldInstaFollowers = newInstaFollowers.data[0].values.map(value => value.value);
+        const instaFollowTotal = oldInstaFollowers.reduce(sum, 0);
+          function sum(accumulator, value) {
+            return accumulator + value;
+          }
+        document.getElementById("oldInstaFollowers").innerHTML = instaFollowTotal + " nye følgere"; 
 
       // hent instagram innlegg
         const instaProfilePosts = await getMyInstagramAccMediaStats(
