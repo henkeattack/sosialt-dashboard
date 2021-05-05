@@ -145,6 +145,7 @@
 <h3 class="">Step 1: Hent data</h3>
     <pre class="odd" id="PageInfo"></pre>
     <pre class="even" id="instaPage"></pre>
+    <pre class="odd" id="oldInstaFollowers"></pre>
     
 <h3 class="">Step 2: Hent Facebook konto</h3>
 <pre class="even" id="MyFacebookAccount"></pre>
@@ -315,7 +316,8 @@
         printData("newInstaFollowers", newInstaFollowers);
 
         // sammenlign insta følgere
-        const oldInstaFollowers = newInstaFollowers.data[0].values.map(value => console.log("total value " + value.value));
+        //const oldInstaFollowers = 
+        document.getElementById("oldInstaFollowers").innerHTML = newInstaFollowers.data[0].values.map(value => ("total value " + value.value));
 
       // hent instagram innlegg
         const instaProfilePosts = await getMyInstagramAccMediaStats(
