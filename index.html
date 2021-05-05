@@ -106,7 +106,7 @@
                 </div>
                 <div class="main-card-bottom">
                   <span id="pageLikes"></span>
-                  <span><img src="images/icon-up.svg" alt=""><span id="weeklyPageLikes">%</span></span>
+                  <span><img src="images/icon-up.svg" alt=""> <span id="weeklyPageLikes"></span></span>
               </div>
             </div>
           </div>
@@ -119,7 +119,7 @@
                 </div>
                 <div class="main-card-bottom">
                   <span id="instaPageReach"></span>
-                  <span><img src="images/icon-up.svg" alt=""> <div id="instaPageViewsWeek">%</div>  </span>
+                  <span><img src="images/icon-up.svg" alt=""> <span id="instaPageViewsWeek"></span></span>
               </div>
             </div>
           </div>
@@ -132,7 +132,7 @@
               </div>
               <div class="main-card-bottom">
                 <span id="instaPageViews"></span>
-                <span><img src="images/icon-up.svg" alt=""> <div id="instaPageReachWeek">%</div> </span>
+                <span><img src="images/icon-up.svg" alt=""> <span id="instaPageReachWeek"></span> </span>
             </div>
           </div>
         </div>
@@ -269,7 +269,7 @@
 
         // Prosentendring siste uka
         const weeklyfbLikes = fbPageInsights.data[2].values[0].value;
-        document.getElementById("weeklyPageLikes").innerHTML = getPercentageChange(fbPageLikes, weeklyfbLikes);
+        document.getElementById("weeklyPageLikes").innerHTML = getPercentageChange(fbPageLikes, weeklyfbLikes) + "%";
         console.log(prosentMinus(fbPageLikes, weeklyfbLikes
         ));
 
@@ -319,14 +319,14 @@
 
         const weeklyInstaViews = instaProfileInsight.data[0].values[0].value;
         document.getElementById("instaPageViewsWeek").innerHTML = 
-        getPercentageChange(instaPageViews, weeklyInstaViews);
+        getPercentageChange(instaPageViews, weeklyInstaViews) + "%";
         console.log(prosentMinus(instaPageViews, weeklyInstaViews
         ));
 
         const instaPageReach = instaProfileInsight.data[1].values[6].value;
         document.getElementById("instaPageReach").innerHTML = instaPageReach;
         const instaWeekReach = instaProfileInsight.data[1].values[0].value;
-        document.getElementById("instaPageReachWeek").innerHTML = getPercentageChange(instaPageReach, instaWeekReach);
+        document.getElementById("instaPageReachWeek").innerHTML = getPercentageChange(instaPageReach, instaWeekReach) + "%";
         console.log(prosentMinus(instaPageReach, instaWeekReach
         ));
 
