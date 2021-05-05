@@ -93,7 +93,7 @@
                 </div>
                 <div class="main-card-bottom">
                   <span id="pageStats"></span>
-                  <span><img src="images/icon-up.svg" alt=""> <div id="pageStatsWeek"></div> % </span>
+                  <span><img src="images/icon-up.svg" alt=""> <span id="pageStatsWeek"></span></span>
               </div>
             </div>
           </div>
@@ -106,7 +106,7 @@
                 </div>
                 <div class="main-card-bottom">
                   <span id="pageLikes"></span>
-                  <span><img src="images/icon-up.svg" alt=""><div id="weeklyPageLikes"></div> % </span>
+                  <span><img src="images/icon-up.svg" alt=""><span id="weeklyPageLikes">%</span></span>
               </div>
             </div>
           </div>
@@ -253,7 +253,7 @@
           var decreaseValue = oldNumber - newNumber;
             return parseInt(Math.abs(decreaseValue / oldNumber) * 100);
         }
-        document.getElementById("pageStatsWeek").innerHTML = getPercentageChange(facePageViews, weeklyFBPageViews);
+        document.getElementById("pageStatsWeek").innerHTML = getPercentageChange(facePageViews, weeklyFBPageViews) + "%";
         console.log(facePageViews - weeklyFBPageViews);
 
         const fbPageLikes = fbPageInsights.data[2].values[6].value;
