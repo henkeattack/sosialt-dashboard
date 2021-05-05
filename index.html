@@ -251,21 +251,19 @@
         document.getElementById("pageStats").innerHTML = facePageViews;
 
         const weeklyFBPageViews = fbPageInsights.data[0].values[0].value;
-        document.getElementById("pageStatsWeek").innerHTML = weeklyFBPageViews; 
-        console.log(facePageViews - weeklyFBPageViews);
-
         // Prosentendring
         function getPercentageChange(oldNumber, newNumber){
           var decreaseValue = oldNumber - newNumber;
             return parseInt(Math.abs(decreaseValue / oldNumber) * 100);
         }
-        console.log(getPercentageChange(facePageViews, weeklyFBPageViews));
+        document.getElementById("pageStatsWeek").innerHTML = getPercentageChange(facePageViews, weeklyFBPageViews);
 
         const fbPageLikes = fbPageInsights.data[2].values[6].value;
         document.getElementById("pageLikes").innerHTML = fbPageLikes;
 
+        // Prosentendring siste uka
         const weeklyfbLikes = fbPageInsights.data[2].values[0].value;
-        document.getElementById("weeklyPageLikes").innerHTML = weeklyfbLikes;
+        document.getElementById("weeklyPageLikes").innerHTML = getPercentageChange(fbPageLikes, weeklyfbLikes);
 
         const newFaceFollowers = fbPageInsights.data[4].values[6].value;
         document.getElementById("newFaceFollowers").innerHTML = newFaceFollowers + " nye denne uka";
@@ -308,11 +306,18 @@
         );
         printData("MyInstaAccountInsight", instaProfileInsight);
         // Returner innsiktsdata
-        document.getElementById("instaPageViews").innerHTML = instaProfileInsight.data[0].values[6].value;
-        document.getElementById("instaPageViewsWeek").innerHTML = instaProfileInsight.data[0].values[0].value;
+        const instaPageViews = instaProfileInsight.data[0].values[6].value; 
+        document.getElementById("instaPageViews").innerHTML = instaPageViews;
 
-        document.getElementById("instaPageReach").innerHTML = instaProfileInsight.data[1].values[6].value;
-        document.getElementById("instaPageReachWeek").innerHTML = instaProfileInsight.data[1].values[0].value;
+        const weeklyInstaViews = instaProfileInsight.data[0].values[0].value;
+        document.getElementById("instaPageViewsWeek").innerHTML = 
+        getPercentageChange(instaPageViews, weeklyInstaViews);
+
+        const instaPageReach = instaProfileInsight.data[1].values[6].value;
+        document.getElementById("instaPageReach").innerHTML = instaPageReach;
+        const instaWeekReach = instaProfileInsight.data[1].values[0].value;
+        document.getElementById("instaPageReachWeek").innerHTML = getPercentageChange(instaPageReach, instaWeekReach);
+
 
         // hent Likes
         const instaMediaLikes = await getMyInstaLikes(
