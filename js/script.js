@@ -13,13 +13,6 @@ togglerbg.addEventListener("click", function(){
     }
 }); // Kode for dark mode/light mode 
 
-// Prosentendring
-function getPercentageChange(oldNumber, newNumber){
-  var decreaseValue = oldNumber - newNumber;
-
-  return (decreaseValue / oldNumber) * 100;
-}
-
 //Oppsett av Facebook SDK med id, cookies, social plugins og versjon.
 window.flowFacebookData = {
     appId: "",
