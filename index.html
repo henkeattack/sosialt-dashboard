@@ -251,19 +251,30 @@
         document.getElementById("pageStats").innerHTML = facePageViews;
 
         const weeklyFBPageViews = fbPageInsights.data[0].values[0].value;
-        // Prosentendring
+        // Funksjon for prosentendring
         function getPercentageChange(oldNumber, newNumber){
           var decreaseValue = oldNumber - newNumber;
             return parseInt(Math.abs(decreaseValue / oldNumber) * 100);
         }
         document.getElementById("pageStatsWeek").innerHTML = getPercentageChange(facePageViews, weeklyFBPageViews);
+        console.log(facePageViews - weeklyFBPageViews);
 
         const fbPageLikes = fbPageInsights.data[2].values[6].value;
         document.getElementById("pageLikes").innerHTML = fbPageLikes;
 
+        // Test av prosentendring
+        function prosentMinus(oldNumber, newNumber){
+          var decreaseValue = oldNumber - newNumber;
+            return parseInt((decreaseValue / oldNumber) * 100);
+        }
+        console.log(prosentMinus(facePageViews, weeklyFBPageViews
+        ));
+
         // Prosentendring siste uka
         const weeklyfbLikes = fbPageInsights.data[2].values[0].value;
         document.getElementById("weeklyPageLikes").innerHTML = getPercentageChange(fbPageLikes, weeklyfbLikes);
+        console.log(prosentMinus(fbPageLikes, weeklyfbLikes
+        ));
 
         const newFaceFollowers = fbPageInsights.data[4].values[6].value;
         document.getElementById("newFaceFollowers").innerHTML = newFaceFollowers + " nye denne uka";
@@ -312,11 +323,15 @@
         const weeklyInstaViews = instaProfileInsight.data[0].values[0].value;
         document.getElementById("instaPageViewsWeek").innerHTML = 
         getPercentageChange(instaPageViews, weeklyInstaViews);
+        console.log(prosentMinus(instaPageView, weeklyInstaViews
+        ));
 
         const instaPageReach = instaProfileInsight.data[1].values[6].value;
         document.getElementById("instaPageReach").innerHTML = instaPageReach;
         const instaWeekReach = instaProfileInsight.data[1].values[0].value;
         document.getElementById("instaPageReachWeek").innerHTML = getPercentageChange(instaPageReach, instaWeekReach);
+        console.log(prosentMinus(instaPageReach, instaWeekReach
+        ));
 
 
         // hent Likes
