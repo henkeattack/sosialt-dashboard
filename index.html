@@ -71,8 +71,7 @@
                 color: hsl(163, 72%, 41%);
                 font-size: 12px;
                 font-weight: 700;
-              "
-              >5 nye denne uka</span>
+              " id=oldInstaFollowers></span>
             </div>
           </div>
         </div>
@@ -251,7 +250,7 @@
         document.getElementById("pageLikes").innerHTML = fbPageLikes;
 
         const newFaceFollowers = fbPageInsights.data[4].values[6].value;
-        document.getElementById("newFaceFollowers").innerHTML = newFaceFollowers;
+        document.getElementById("newFaceFollowers").innerHTML = newFaceFollowers + "nye denne uka";
 
         // Hent følgernes alder og kjønn
         const fbPageFollowers = await getUserDemograph(
@@ -321,7 +320,7 @@
           function sum(accumulator, value) {
             return accumulator + value;
           }
-        document.getElementById("oldInstaFollowers").innerHTML = instaFollowTotal + " nye følgere"; 
+        document.getElementById("oldInstaFollowers").innerHTML = instaFollowTotal + " nye denne uka"; 
 
       // hent instagram innlegg
         const instaProfilePosts = await getMyInstagramAccMediaStats(
