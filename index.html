@@ -144,7 +144,11 @@
 <h3 class="">Step 1: Hent data</h3>
     <pre class="odd" id="PageInfo"></pre>
     <pre class="even" id="instaPage"></pre>
-    <pre class="odd" id="oldInstaFollowers"></pre>
+    <pre class="odd" id="pageStatsWeek"></pre>
+    <pre class="odd" id="weeklyPageLikes"></pre>
+    <pre class="odd" id="instaPageViewsWeek"></pre>
+    <pre class="odd" id="instaPageReachWeek"></pre>
+
     
 <h3 class="">Step 2: Hent Facebook konto</h3>
 <pre class="even" id="MyFacebookAccount"></pre>
@@ -246,11 +250,17 @@
         const facePageViews = fbPageInsights.data[0].values[6].value;
         document.getElementById("pageStats").innerHTML = facePageViews;
 
+        const weeklyFBPageViews = fbPageInsights.data[0].values[0].value;
+        document.getElementById("pageStatsWeek").innerHTML = facePageViews; 
+
         const fbPageLikes = fbPageInsights.data[2].values[6].value;
         document.getElementById("pageLikes").innerHTML = fbPageLikes;
 
+        const weeklyfbLikes = bPageInsights.data[2].values[0].value;
+        document.getElementById("weeklyPageLikes").innerHTML = fbPageLikes;
+
         const newFaceFollowers = fbPageInsights.data[4].values[6].value;
-        document.getElementById("newFaceFollowers").innerHTML = newFaceFollowers + "nye denne uka";
+        document.getElementById("newFaceFollowers").innerHTML = newFaceFollowers + " nye denne uka";
 
         // Hent følgernes alder og kjønn
         const fbPageFollowers = await getUserDemograph(
@@ -291,7 +301,12 @@
         printData("MyInstaAccountInsight", instaProfileInsight);
         // Returner innsiktsdata
         document.getElementById("instaPageViews").innerHTML = instaProfileInsight.data[0].values[6].value;
-        document.getElementById("instaPageReach").innerHTML = fbPageInsights.data[1].values[6].value;
+
+        document.getElementById("instaPageViewsWeek").innerHTML = instaProfileInsight.data[0].values[0].value;
+
+        document.getElementById("instaPageReach").innerHTML = instaProfileInsight.data[1].values[6].value;
+
+        document.getElementById("instaPageReachWeek").innerHTML = instaProfileInsight.data[1].values[0].value;
 
         // hent Likes
         const instaMediaLikes = await getMyInstaLikes(
@@ -299,6 +314,8 @@
           fbPageAccesstoken
         );
         printData("myInstaLikes", instaMediaLikes);
+
+        // hent likes
 
         // hent insta demografisk brukerdata
         const followerInsight = await getLifetimeInfo(
