@@ -257,7 +257,7 @@
         // Prosentendring
         function getPercentageChange(oldNumber, newNumber){
           var decreaseValue = oldNumber - newNumber;
-            return (decreaseValue / oldNumber) * 100;
+            return parseInt(decreaseValue / oldNumber) * 100;
         }
         console.log(getPercentageChange(facePageViews, weeklyFBPageViews));
 
