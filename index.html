@@ -234,7 +234,7 @@
           if (Number(oldNumber) > Number(newNumber)) {
             styleCard.style.color = "hsl(356, 69%, 56%)";
             document.getElementById("myImg").src = "images/icon-down.svg";
-          } else if (Number(newNumber) === 0) {
+          } else if (Number(oldNumber) === Number(newNumber)) {
             styleHeader.style.color = "hsl(228, 34%, 66%)";
           } else {
             styleHeader.style.color = "hsl(163, 72%, 41%)";
@@ -283,9 +283,9 @@
         // Bytt farge og ikon etter verdiens resultat
         const styleHeader = document.getElementById("changeColor");
         function changeHeader(newNumber) {
-          if (Number(newNumber) < 0 ) {
-            styleHeader.style.color = "hsl(356, 69%, 56%)";
-            document.getElementById("myImg").src = "images/icon-down.svg";
+          if (Number(newNumber) > 0 ) {
+            styleHeader.style.color = "hsl(163, 72%, 41%)";
+            document.getElementById("myImg").src = "images/icon-up.svg";
           } else {
             styleCard.style.color = "hsl(228, 34%, 66%)";
           }
