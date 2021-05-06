@@ -249,7 +249,6 @@ header section:last-child {
 }
 
 .changeColor {
-    color: hsl(32, 75%, 50%);
     font-size: 12px;
     font-weight: 700;
 }
