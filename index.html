@@ -266,10 +266,12 @@
         function changeColor(oldNumber, newNumber) {
           if (Number(oldNumber) > Number(newNumber)) {
             styleCard.style.color = "red";
+            console.log("Fargen er rød");
           } else if (Number(oldNumber) === Number(NewNumber)) {
             styleCard.style.color = "grey";
           } else {
             styleCard.style.color = "green";
+            console.log("Fargen er grønn");
           }
         }
 
