@@ -296,6 +296,7 @@
 
         const newFaceFollowers = fbPageInsights.data[4].values[6].value;
         document.getElementById("newFaceFollowers").innerHTML = newFaceFollowers + " nye denne uka";
+        changeHeader(newFaceFollowers, faceAccFollowers);
 
         // Hent følgernes alder og kjønn
         const fbPageFollowers = await getUserDemograph(
