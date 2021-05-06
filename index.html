@@ -45,14 +45,13 @@
             <div class="header-card-2" id="followers"></div>
             <div class="header-card-3">Følgere</div>
             <div class="header-card-4">
-            <div class="changeColor">
+            <span class="changeColor">
               <span> <img id="myImg" alt="">
-              <span id="newFaceFollowers"></span></span>
+              <span id="newFaceFollowers"></span></span></span>
             </div>
           </div>
         </div>
       </div>
-    </div>
       
         <div class="col-md-3 col-sm-6 padding-left resp-padding">
           <div class="header-card instagram">
@@ -208,20 +207,6 @@
         document.getElementById("status").innerHTML = "Suksessfull login. Velkommen til siden, " + fbInfo.name;
         console.log("My info: " + fbInfo.name);
 
-        const styleHeader = document.getElementById("changeColor");
-        // Bytt farge og ikon etter verdiens resultat
-        function changeHeader(oldNumber, newNumber) {
-          if (Number(oldNumber) > Number(newNumber)) {
-            styleHeader.style.color = "hsl(356, 69%, 56%)";
-            document.getElementById("myImg").src = "images/icon-down.svg";
-          } else if (Number(oldNumber) === Number(NewNumber)) {
-            styleHeader.style.color = "hsl(228, 34%, 66%)";
-          } else {
-            styleHeader.style.color = "hsl(163, 72%, 41%)";
-            document.getElementById("myImg").src = "images/icon-up.svg";
-          }
-        }
-
         // 3. hent relaterte kontoer til FB profil
         const fbAccInfo = await getMyfbAccPage(
           responseItem.userIdInfo,
@@ -248,7 +233,7 @@
           if (Number(oldNumber) > Number(newNumber)) {
             styleCard.style.color = "hsl(356, 69%, 56%)";
             document.getElementById("myImg").src = "images/icon-down.svg";
-          } else if (Number(oldNumber) === Number(NewNumber)) {
+          } else if (Number(oldNumber) === Number(newNumber)) {
             styleCard.style.color = "hsl(228, 34%, 66%)";
           } else {
             styleCard.style.color = "hsl(163, 72%, 41%)";
@@ -294,9 +279,24 @@
         ));
         changeColor(weeklyfbLikes, fbPageLikes); 
 
+        // Bytt farge og ikon etter verdiens resultat
+        const styleHeader = document.getElementById("changeColor");
+        function changeHeader(newNumber) {
+          if (Number(newNumber) < 0 ) {
+            styleHeader.style.color = "hsl(356, 69%, 56%)";
+            document.getElementById("myImg").src = "images/icon-down.svg";
+          } else if (Number(newNumber) === 0) {
+            styleHeader.style.color = "hsl(228, 34%, 66%)";
+          } else {
+            styleHeader.style.color = "hsl(163, 72%, 41%)";
+            document.getElementById("myImg").src = "images/icon-up.svg";
+          }
+        }
+
+        // nye følgere - endring
         const newFaceFollowers = fbPageInsights.data[4].values[6].value;
         document.getElementById("newFaceFollowers").innerHTML = newFaceFollowers + " nye denne uka";
-        changeHeader(newFaceFollowers, faceAccFollowers);
+        changeHeader(newFaceFollowers);
 
         // Hent følgernes alder og kjønn
         const fbPageFollowers = await getUserDemograph(
