@@ -234,3 +234,22 @@ header section:last-child {
     margin-top: 20px;
     margin-left: 10px;
 }
+
+/* Farge på data */
+.green-light { 
+    color: hsl(163, 72%, 41%);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.red-light {
+    color: hsl(356, 69%, 56%);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.orange-light {
+    color: hsl(32, 75%, 50%);
+    font-size: 12px;
+    font-weight: 700;
+}
