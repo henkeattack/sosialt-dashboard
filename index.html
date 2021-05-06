@@ -261,14 +261,15 @@
         console.log(prosentMinus(facePageViews, weeklyFBPageViews
         ));
 
+        const styleCard = document.getElementById("main-card-bottom");
         // Bytt farge og ikon etter verdiens resultat
         function changeColor(oldNumber, newNumber) {
           if (Number(oldNumber) > Number(newNumber)) {
-            document.getElementById("main-card-bottom").style.color = "red";
+            styleCard.style.color = "red";
           } else if (Number(oldNumber) === Number(NewNumber)) {
-            document.getElementById("main-card-bottom").style.color = "grey";
+            styleCard.style.color = "grey";
           } else {
-            document.getElementById("main-card-bottom").style.color = "green";
+            styleCard.style.color = "green";
           }
         }
 
