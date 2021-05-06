@@ -215,7 +215,7 @@
         function changeColor(oldNumber, newNumber) {
           if (Number(oldNumber) > Number(newNumber)) {
             styleCard.style.color = "hsl(356, 69%, 56%)";
-            image.src="images/icon-down.svg";
+            document.getElementById("myImg").src = "images/icon-down.svg";
           } else if (Number(oldNumber) === Number(NewNumber)) {
             styleCard.style.color = "hsl(228, 34%, 66%)";
           } else {
