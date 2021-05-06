@@ -196,7 +196,7 @@ header section:last-child {
 }
 
 .main-card-bottom span:last-child{
-    color: hsl(163, 72%, 41%);
+    /*color: hsl(163, 72%, 41%);*/
     font-weight: 700;
     font-size: 12px;
     padding-top: 50px;
