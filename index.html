@@ -100,7 +100,7 @@
                 </div>
                 <div class="main-card-bottom" id="main-card-bottom">
                   <span id="pageLikes"></span>
-                  <span><img src="images/icon-up.svg" alt=""> <span id="weeklyPageLikes"></span></span>
+                  <span><img id="myImg" alt=""> <span id="weeklyPageLikes"></span></span>
               </div>
             </div>
           </div>
@@ -210,6 +210,20 @@
         document.getElementById("status").innerHTML = "Suksessfull login. Velkommen til siden, " + fbInfo.name;
         console.log("My info: " + fbInfo.name);
 
+        const styleCard = document.getElementById("main-card-bottom");
+        // Bytt farge og ikon etter verdiens resultat
+        function changeColor(oldNumber, newNumber) {
+          if (Number(oldNumber) > Number(newNumber)) {
+            styleCard.style.color = "hsl(356, 69%, 56%)";
+            image.src="images/icon-down.svg";
+          } else if (Number(oldNumber) === Number(NewNumber)) {
+            styleCard.style.color = "hsl(228, 34%, 66%)";
+          } else {
+            styleCard.style.color = "hsl(163, 72%, 41%)";
+            console.log("Fargen er grønn");
+          }
+        }
+
         // 3. hent relaterte kontoer til FB profil
         const fbAccInfo = await getMyfbAccPage(
           responseItem.userIdInfo,
@@ -260,20 +274,6 @@
         }
         console.log(prosentMinus(facePageViews, weeklyFBPageViews
         ));
-
-        const styleCard = document.getElementById("main-card-bottom");
-        // Bytt farge og ikon etter verdiens resultat
-        function changeColor(oldNumber, newNumber) {
-          if (Number(oldNumber) > Number(newNumber)) {
-            styleCard.style.color = "hsl(356, 69%, 56%)";
-            console.log("Fargen er rød");
-          } else if (Number(oldNumber) === Number(NewNumber)) {
-            styleCard.style.color = "hsl(228, 34%, 66%)";
-          } else {
-            styleCard.style.color = "hsl(163, 72%, 41%)";
-            console.log("Fargen er grønn");
-          }
-        }
 
         // Prosentendring siste uka
         const weeklyfbLikes = fbPageInsights.data[2].values[0].value;
