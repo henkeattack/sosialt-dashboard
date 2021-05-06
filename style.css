@@ -247,9 +247,3 @@ header section:last-child {
     font-size: 12px;
     font-weight: 700;
 }
-
-.orange-light {
-    color: hsl(32, 75%, 50%);
-    font-size: 12px;
-    font-weight: 700;
-}
