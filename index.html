@@ -370,13 +370,14 @@
           fbPageAccesstoken
         );
         printData("MyFacebookPosts", fbPagePosts.data);
+
+        // Sammenlign data
+        changeColor(weeklyFBPageViews, facePageViews);
+        changeColor(weeklyfbLikes, fbPageLikes);
+        changeColor(weeklyInstaViews, instaPageViews);
+        changeColor(instaWeekReach, instaPageReach);
+      
     };
-    
-    // Sammenlign data
-    changeColor(weeklyFBPageViews, facePageViews);
-    changeColor(weeklyfbLikes, fbPageLikes);
-    changeColor(weeklyInstaViews, instaPageViews);
-    changeColor(instaWeekReach, instaPageReach);
 
     const loginFailFunc = async (responseItem) => {};
       window.flowFacebookData = {
