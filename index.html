@@ -283,10 +283,10 @@
         const styleHeader = document.getElementById("changeColor");
         function changeHeader(newNumber) {
           if (Number(newNumber) > 0 ) {
-            styleHeader.style.color = "hsl(163, 72%, 41%)";
-            document.getElementById("myImg").src = "images/icon-up.svg";
+            return styleHeader.style.color = "hsl(163, 72%, 41%)";
+            return document.getElementById("myImg").src = "images/icon-up.svg";
           } else {
-            styleHeader.style.color = "hsl(228, 34%, 66%)";
+            return styleHeader.style.color = "hsl(228, 34%, 66%)";
           }
         }
 
