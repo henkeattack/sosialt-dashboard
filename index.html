@@ -85,7 +85,8 @@
                 </div>
                 <div class="main-card-bottom" id="main-card-bottom">
                   <span id="pageStats"></span>
-                  <span><img id="myImg2" alt=""></span> <span id="pageStatsWeek"></span>
+                  <span id="changeColor">
+                  <span><img id="myImg2" alt=""></span> <span id="pageStatsWeek"></span></span>
               </div>
             </div>
           </div>
@@ -98,7 +99,9 @@
                 </div>
                 <div class="main-card-bottom" id="main-card-bottom">
                   <span id="pageLikes"></span>
-                  <span><img id="myImg2" alt=""></span> <span id="weeklyPageLikes"></span>
+                  <span id="changeColor">
+                  <span><img id="myImg2" alt=""></span> 
+                  <span id="weeklyPageLikes"></span></span>
               </div>
             </div>
           </div>
@@ -111,7 +114,8 @@
                 </div>
                 <div class="main-card-bottom" id="main-card-bottom">
                   <span id="instaPageReach"></span>
-                  <span><img id="myImg2" alt=""></span> <span id="instaPageViewsWeek"></span>
+                  <span id="changeColor">
+                  <span><img id="myImg2" alt=""></span> <span id="instaPageViewsWeek"></span></span>
                 </div>
             </div>
           </div>
@@ -124,7 +128,8 @@
                 </div>
                 <div class="main-card-bottom" id="main-card-bottom">
                   <span id="instaPageViews"></span>
-                  <span><img id="myImg2" alt=""></span> <span id="instaPageReachWeek"></span>
+                  <span id="changeColor">
+                  <span><img id="myImg2" alt=""></span> <span id="instaPageReachWeek"></span></span>
                 </div>
               </div>
             </div>
@@ -209,7 +214,7 @@
         console.log("My info: " + fbInfo.name);
 
         // Sammneligningsdata - litt annerledes for følgere
-        const styleHeader = document.getElementById("ColorChange");
+        const styleHeader = document.getElementById("colorChange");
         function changeHeader(newNumber) {
           if (Number(newNumber) > 0 ) {
             styleHeader.style.color = "hsl(163, 72%, 41%)";
