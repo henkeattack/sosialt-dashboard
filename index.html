@@ -46,7 +46,7 @@
             <div class="header-card-3">Følgere</div>
             <div class="header-card-4" id="colorChange">
               <span> <img id="myImg" alt=""></span>
-              <span id="newFaceFollowers"></span></span>
+              <span id="newFaceFollowers"></span>
             </div>
           </div>
         </div>
@@ -212,7 +212,7 @@
         document.getElementById("status").innerHTML = "Suksessfull login. Velkommen til siden, " + fbInfo.name;
         console.log("My info: " + fbInfo.name);
 
-        // Sammneligningsdata - litt annerledes for følgere
+        // Sammenligningsdata - litt annerledes for følgere
         const styleHeader = document.getElementById("colorChange");
         function changeHeader(newNumber) {
           if (Number(newNumber) > 0 ) {
