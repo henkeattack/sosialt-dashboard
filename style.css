@@ -135,6 +135,8 @@ header section:last-child {
 
 .header-card-4 {
     margin-top: 20px;
+    font-size: 12px;
+    font-weight: 700;
 }
 
 .facebook {
@@ -244,7 +246,7 @@ header section:last-child {
 }
 
 /* Farge på data */
-.colorChange {
+/*.colorChange {
     font-size: 12px;
     font-weight: 700;
-}
+} */
