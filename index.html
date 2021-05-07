@@ -62,7 +62,7 @@
             <div class="header-card-3">Følgere</div>
             <div class="header-card-4">
               <span class="changeColor" id="changeColor">
-              <span> <img id="myImg" alt=""/> 
+              <span> <img id="myImg" alt=""> 
               <span id=oldInstaFollowers></span> </span> </span>
             </div>
           </div>
@@ -112,25 +112,25 @@
                 <div class="main-card-bottom" id="main-card-bottom">
                   <span id="instaPageReach"></span>
                   <span><img id="myImg" alt=""> <span id="instaPageViewsWeek"></span></span>
-              </div>
+                </div>
             </div>
           </div>
 
-        <div class="col-md-3">
-          <div class="main-card">
-            <div class="main-card-top">
-              <span>Rekkevidde</span>
-              <span><img src="images/icon-instagram.svg" alt=""></span>
+          <div class="col-md-3">
+            <div class="main-card">
+              <div class="main-card-top">
+                <span>Rekkevidde</span>
+                <span><img src="images/icon-instagram.svg" alt=""></span>
+                </div>
+                <div class="main-card-bottom" id="main-card-bottom">
+                  <span id="instaPageViews"></span>
+                  <span><img id="myImg" alt=""> <span id="instaPageReachWeek"></span></span>
+                </div>
               </div>
-              <div class="main-card-bottom" id="main-card-bottom">
-                <span id="instaPageViews"></span>
-                <span><img id="myImg" alt=""> <span id="instaPageReachWeek"></span></span>
             </div>
           </div>
-        </div>
-      </div>
-    </main>
-  </div>
+        </main>
+    </div>
   </div>
 
 <h3 class="">Step 1: Hent data</h3>
@@ -235,9 +235,9 @@
             styleCard.style.color = "hsl(356, 69%, 56%)";
             document.getElementById("myImg").src = "images/icon-down.svg";
           } else if (Number(oldNumber) === Number(newNumber)) {
-            styleHeader.style.color = "hsl(228, 34%, 66%)";
+            styleCard.style.color = "hsl(228, 34%, 66%)";
           } else {
-            styleHeader.style.color = "hsl(163, 72%, 41%)";
+            styleCard.style.color = "hsl(163, 72%, 41%)";
             document.getElementById("myImg").src = "images/icon-up.svg";
           }
         }
@@ -287,7 +287,7 @@
             styleHeader.style.color = "hsl(163, 72%, 41%)";
             document.getElementById("myImg").src = "images/icon-up.svg";
           } else {
-            styleCard.style.color = "hsl(228, 34%, 66%)";
+            styleHeader.style.color = "hsl(228, 34%, 66%)";
           }
         }
 
@@ -382,7 +382,7 @@
             return accumulator + value;
           }
         document.getElementById("oldInstaFollowers").innerHTML = instaFollowTotal + " nye denne uka";
-        changeHeader(instaFollowTotal); 
+        changeHeader(instaFollowTotal);
 
       // hent instagram innlegg
         const instaProfilePosts = await getMyInstagramAccMediaStats(
@@ -411,7 +411,10 @@
       // <-----initialize data
   </script>
 
-<div class="attribution">Laget av Henrik, Sebastian og Morten</div>
+    <div class="header-headline">
+        <div class="header-headline-2">Dette ser jeg på her</div>
+    </div>
+        <div class="attribution">Følgere, sidevisninger, rekkevidde, likes, engasjement, sammenligningsdata </div>
 
 <script src="./js/script.js"></script>
 </body>
