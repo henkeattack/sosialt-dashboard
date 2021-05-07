@@ -158,6 +158,31 @@ export async function getMyInstaLikes(instaUserId, accessToken) {
       return responseData;
     });
   }
+
+  // Bytt farge og ikon på forrige ukes sammenligningsdata
+  const styleCard = document.getElementById("main-card-bottom");
+  export function changeColor(oldNumber, newNumber) {
+    if (Number(oldNumber) > Number(newNumber)) {
+      styleCard.style.color = "hsl(356, 69%, 56%)";
+      document.getElementById("myImg").src = "images/icon-down.svg";
+    } else if (Number(oldNumber) == Number(newNumber)) {
+      styleCard.style.color = "hsl(228, 34%, 66%)";
+    } else {
+      styleCard.style.color = "hsl(163, 72%, 41%)";
+      document.getElementById("myImg").src = "images/icon-up.svg";
+    }
+  }
+
+  // Sammneligningsdata - litt annerledes for følgere
+  const styleHeader = document.getElementById("changeColor");
+  export function changeHeader(newNumber) {
+    if (Number(newNumber) > 0 ) {
+      styleHeader.style.color = "hsl(163, 72%, 41%)";
+      document.getElementById("myImg").src = "images/icon-up.svg";
+    } else {
+      styleHeader.style.color = "hsl(228, 34%, 66%)";
+    }
+  }
   
   // doLoginSuccessWithCallBack
   export async function doLoginSuccessWithCallBack(yourCallBackFunc) {
