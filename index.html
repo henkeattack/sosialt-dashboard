@@ -247,8 +247,7 @@
           var decreaseValue = oldNumber - newNumber;
             return parseInt(Math.abs(decreaseValue / oldNumber) * 100);
         }
-        document.getElementById("pageStatsWeek").innerHTML = getPercentageChange(weeklyFBPageViews, facePageViews) + "%";
-        changeColor(weeklyFBPageViews, facePageViews);
+        document.getElementById("pageStatsWeek").innerHTML = getPercentageChange(facePageViews, weeklyFBPageViews) + "%";
 
         const fbPageLikes = fbPageInsights.data[2].values[6].value;
         document.getElementById("pageLikes").innerHTML = fbPageLikes;
@@ -264,8 +263,7 @@
         const weeklyfbLikes = fbPageInsights.data[2].values[0].value;
         document.getElementById("weeklyPageLikes").innerHTML = getPercentageChange(fbPageLikes, weeklyfbLikes) + "%";
         console.log(prosentMinus(fbPageLikes, weeklyfbLikes
-        ));
-        changeColor(weeklyfbLikes, fbPageLikes); 
+        )); 
 
         // nye følgere - endring
         const newFaceFollowers = fbPageInsights.data[4].values[6].value;
@@ -316,7 +314,6 @@
         const weeklyInstaViews = instaProfileInsight.data[0].values[0].value;
         document.getElementById("instaPageViewsWeek").innerHTML = 
         getPercentageChange(instaPageViews, weeklyInstaViews) + "%";
-        changeColor(weeklyInstaViews, instaPageViews);
         console.log(prosentMinus(instaPageViews, weeklyInstaViews
         ));
 
@@ -324,7 +321,6 @@
         document.getElementById("instaPageReach").innerHTML = instaPageReach;
         const instaWeekReach = instaProfileInsight.data[1].values[0].value;
         document.getElementById("instaPageReachWeek").innerHTML = getPercentageChange(instaPageReach, instaWeekReach) + "%";
-        changeColor(instaWeekReach, instaPageReach);
         console.log(prosentMinus(instaPageReach, instaWeekReach
         ));
 
@@ -374,7 +370,13 @@
           fbPageAccesstoken
         );
         printData("MyFacebookPosts", fbPagePosts.data);
-    };  
+    };
+    
+    // Sammenlign data
+    changeColor(weeklyFBPageViews, facePageViews);
+    changeColor(weeklyfbLikes, fbPageLikes);
+    changeColor(weeklyInstaViews, instaPageViews);
+    changeColor(instaWeekReach, instaPageReach);
 
     const loginFailFunc = async (responseItem) => {};
       window.flowFacebookData = {
@@ -386,13 +388,9 @@
       initializeFlow();
       window.handlefbLogin = doLogin;
       // <-----initialize data
-  </script>
-
-      <header>    
-        <div class="definitions-header">Dette ser jeg på her</div>
-      </header>  
-        <div class="definitions">Følgere, sidevisninger, rekkevidde, likes, engasjement, sammenligningsdata </div>
-
+  </script>    
+      <div class="definitions-header">Dette ser jeg på her</div>  
+      <div class="definitions">Følgere, sidevisninger, rekkevidde, likes, engasjement, sammenligningsdata </div>
 <script src="./js/script.js"></script>
 </body>
 </html>
