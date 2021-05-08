@@ -211,11 +211,11 @@
         console.log("My info: " + fbInfo.name);
 
         // Sammenligningsdata - litt annerledes for følgere
+        const styleHeader = document.getElementById("colorChange");
         function changeHeader(newNumber) {
-          let styleHeader = document.getElementById("colorChange");
           if (newNumber > 0 ) {
             styleHeader.style.color = "hsl(163, 72%, 41%)";
-            //document.getElementById("myImg").src = "images/icon-up.svg";
+            document.getElementById("myImg").src = "images/icon-up.svg";
           } else {
             styleHeader.style.color = "hsl(228, 34%, 66%)";
           }
@@ -384,7 +384,12 @@
             return accumulator + value;
           }
         document.getElementById("oldInstaFollowers").innerHTML = instaFollowTotal + " nye denne uka";
-        changeHeader(instaFollowTotal);
+        if (instaFollowTotal > 0) {
+            styleHeader.style.color = "hsl(163, 72%, 41%)";
+            //document.getElementById("myImg").src = "images/icon-up.svg";
+          } else {
+            styleHeader.style.color = "hsl(228, 34%, 66%)";
+          } 
 
       // hent instagram innlegg
         const instaProfilePosts = await getMyInstagramAccMediaStats(
