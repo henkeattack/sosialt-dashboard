@@ -220,6 +220,7 @@
             styleHeader.style.color = "hsl(228, 34%, 66%)";
           }
         }
+        changeHeader(newFaceFollowers + instaFollowTotal);
 
         // Bytt farge og ikon på forrige ukes sammenligningsdata
         const styleCard = document.getElementById("changeColor");
@@ -297,7 +298,7 @@
         // nye følgere - endring
         const newFaceFollowers = fbPageInsights.data[4].values[6].value;
         document.getElementById("newFaceFollowers").innerHTML = newFaceFollowers + " nye denne uka";
-        changeHeader(newFaceFollowers);
+        //changeHeader(newFaceFollowers);
 
         // Hent følgernes alder og kjønn
         const fbPageFollowers = await getUserDemograph(
@@ -384,7 +385,7 @@
             return accumulator + value;
           }
         document.getElementById("oldInstaFollowers").innerHTML = instaFollowTotal + " nye denne uka";
-        changeHeader(instaFollowTotal);
+        //changeHeader(instaFollowTotal);
 
       // hent instagram innlegg
         const instaProfilePosts = await getMyInstagramAccMediaStats(
