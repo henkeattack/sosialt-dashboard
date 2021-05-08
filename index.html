@@ -211,7 +211,7 @@
         console.log("My info: " + fbInfo.name);
 
         // Sammenligningsdata - litt annerledes for følgere
-        const styleHeader = document.getElementById("colorChange");
+        let styleHeader = document.getElementById("colorChange");
         function changeHeader(newNumber) {
           if (newNumber > 0 ) {
             styleHeader.style.color = "hsl(163, 72%, 41%)";
@@ -297,7 +297,7 @@
         // nye følgere - endring
         const newFaceFollowers = fbPageInsights.data[4].values[6].value;
         document.getElementById("newFaceFollowers").innerHTML = newFaceFollowers + " nye denne uka";
-        //changeHeader(newFaceFollowers);
+        changeHeader(newFaceFollowers);
 
         // Hent følgernes alder og kjønn
         const fbPageFollowers = await getUserDemograph(
@@ -384,7 +384,7 @@
             return accumulator + value;
           }
         document.getElementById("oldInstaFollowers").innerHTML = instaFollowTotal + " nye denne uka";
-        //changeHeader(instaFollowTotal);
+        changeHeader(instaFollowTotal);
 
       // hent instagram innlegg
         const instaProfilePosts = await getMyInstagramAccMediaStats(
@@ -399,8 +399,6 @@
           fbPageAccesstoken
         );
         printData("MyFacebookPosts", fbPagePosts.data);
-
-        changeHeader(newFaceFollowers + instaFollowTotal);
     };
 
     const loginFailFunc = async (responseItem) => {};
