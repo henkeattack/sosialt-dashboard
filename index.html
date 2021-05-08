@@ -124,14 +124,12 @@
                 <span>Rekkevidde</span>
                 <span><img src="images/icon-instagram.svg" alt=""></span>
                 </div>
-                <div class="main-card-bottom" id="main-card-bottom">
+                <div class="main-card-bottom" id="changeColor">
                   <span id="instaPageViews"></span>
-                  <div id="changeColor">
                   <span><img id="myImg2" alt=""> <span id="instaPageReachWeek"></span></span>
                   </div>
                 </div>
               </div>
-            </div>
           </div>
         </main>
     </div>
@@ -213,13 +211,13 @@
         console.log("My info: " + fbInfo.name);
 
         // Sammenligningsdata - litt annerledes for følgere
-        //const styleHeader = document.getElementById("colorChange");
+        const styleHeader = document.getElementById("colorChange");
         function changeHeader(newNumber) {
-          if (Number(newNumber) > 0 ) {
-            document.getElementById("colorChange").style.color = "hsl(163, 72%, 41%)";
+          if (newNumber > 0 ) {
+            styleHeader.style.color = "hsl(163, 72%, 41%)";
             //document.getElementById("myImg").src = "images/icon-up.svg";
           } else {
-            document.getElementById("colorChange").style.color = "hsl(228, 34%, 66%)";
+            styleHeader.style.color = "hsl(228, 34%, 66%)";
           }
         }
 
@@ -271,7 +269,7 @@
         const weeklyFBPageViews = fbPageInsights.data[0].values[0].value;
         // Funksjon for prosentendring
         function getPercentageChange(oldNumber, newNumber){
-          var decreaseValue = oldNumber - newNumber;
+          let decreaseValue = oldNumber - newNumber;
             return parseInt(Math.abs(decreaseValue / oldNumber) * 100);
         }
         document.getElementById("pageStatsWeek").innerHTML = getPercentageChange(facePageViews, weeklyFBPageViews) + "%";
