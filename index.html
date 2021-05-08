@@ -220,7 +220,6 @@
             styleHeader.style.color = "hsl(228, 34%, 66%)";
           }
         }
-        changeHeader(newFaceFollowers + instaFollowTotal);
 
         // Bytt farge og ikon på forrige ukes sammenligningsdata
         const styleCard = document.getElementById("changeColor");
@@ -400,6 +399,8 @@
           fbPageAccesstoken
         );
         printData("MyFacebookPosts", fbPagePosts.data);
+
+        changeHeader(newFaceFollowers + instaFollowTotal);
     };
 
     const loginFailFunc = async (responseItem) => {};
