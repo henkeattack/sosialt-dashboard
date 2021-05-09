@@ -83,8 +83,8 @@
                 </div>
                 <div class="main-card-bottom">
                   <span id="pageStats"></span>
-                  <div id="changeColor">
-                  <span><img id="myImg3" alt=""></span> <span id="pageStatsWeek"></span></div>
+                  <span id="changeColor">
+                  <span><img id="myImg3" alt=""></span> <span id="pageStatsWeek"></span></span>
               </div>
             </div>
           </div>
@@ -224,7 +224,7 @@
         }
 
         // Bytt farge og ikon på forrige ukes sammenligningsdata
-        const styleCard = document.getElementById("changeColor");
+        const styleCard = document.getElementsByClassName("main-card-bottom");
         function changeColor(oldNumber, newNumber) {
           if (oldNumber > newNumber) {
             styleCard.style.color = "hsl(356, 69%, 56%)";
