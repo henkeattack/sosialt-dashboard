@@ -383,11 +383,16 @@
           function sum(accumulator, value) {
             return accumulator + value;
           }
-        document.getElementById("oldInstaFollowers").innerHTML = instaFollowTotal + " nye denne uka";
+        // Prøve if statement for riktig språk?
+        if (instaFollowTotal === 1) {
+          document.getElementById("oldInstaFollowers").innerHTML = instaFollowTotal + " ny denne uka";
+        } else {
+          document.getElementById("oldInstaFollowers").innerHTML = instaFollowTotal + " nye denne uka";
+        }
         let instaColor = document.getElementById("instaColor");
         if (instaFollowTotal > 0) {
             instaColor.style.color = "hsl(163, 72%, 41%)";
-            //document.getElementById("myImg").src = "images/icon-up.svg";
+            document.getElementById("myImg").src = "images/icon-up.svg";
           } else {
             instaColor.style.color = "hsl(228, 34%, 66%)";
           } 
