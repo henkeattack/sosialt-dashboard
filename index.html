@@ -97,8 +97,8 @@
                 </div>
                 <div class="main-card-bottom" id="main-card-bottom">
                   <span id="pageLikes"></span>
-                  <span id="changeColor">
-                  <span><img id="myImg4" alt=""></span> 
+                  <span class="changeColor">
+                  <span><img id="myImg3" alt=""></span> 
                   <span id="weeklyPageLikes"></span></span>
               </div>
             </div>
@@ -111,8 +111,8 @@
                 <span><img src="images/icon-instagram.svg" alt=""></span>
                 </div>
                 <div class="main-card-bottom" id="changeColor">
-                  <span id="instaPageReach"></span>
-                  <span><img id="myImg5" alt=""> 
+                  <span class="instaPageReach"></span>
+                  <span><img id="myImg3" alt=""> 
                   <span id="instaPageViewsWeek"></span></span>
                 </div>
             </div>
@@ -125,8 +125,8 @@
                 <span><img src="images/icon-instagram.svg" alt=""></span>
                 </div>
                 <div class="main-card-bottom" id="changeColor">
-                  <span id="instaPageViews"></span>
-                  <span><img id="myImg6" alt=""> <span id="instaPageReachWeek"></span></span>
+                  <span class="instaPageViews"></span>
+                  <span><img id="myImg3" alt=""> <span id="instaPageReachWeek"></span></span>
                   </div>
                 </div>
               </div>
@@ -222,7 +222,7 @@
         }
 
         // Bytt farge og ikon på forrige ukes sammenligningsdata
-        const styleCard = document.getElementsByClassName("main-card-bottom");
+        const styleCard = document.getElementsByClassName("changeColor");
         function changeColor(oldNumber, newNumber) {
           if (Number(oldNumber) > Number(newNumber)) {
             styleCard.style.color = "hsl(356, 69%, 56%)";
