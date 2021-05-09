@@ -83,7 +83,8 @@
                 </div>
                 <div class="main-card-bottom" id="changeColor">
                   <span id="pageStats"></span>
-                  <span><img id="myImg3" alt=""></span> <span id="pageStatsWeek"></span>
+                  <span><img id="myImg3" alt=""></span> 
+                  <span id="pageStatsWeek"></span>
               </div>
             </div>
           </div>
@@ -96,7 +97,7 @@
                 </div>
                 <div class="main-card-bottom" id="changeColor">
                   <span id="pageLikes"></span>
-                  <span><img id="myImg3" alt=""></span> 
+                  <span><img id="myImg4" alt=""></span> 
                   <span id="weeklyPageLikes"></span>
               </div>
             </div>
@@ -110,7 +111,7 @@
                 </div>
                 <div class="main-card-bottom" id="changeColor">
                   <span id="instaPageReach"></span>
-                  <span><img id="myImg3" alt=""></span> 
+                  <span><img id="myImg5" alt=""></span> 
                   <span id="instaPageViewsWeek"></span>
                 </div>
             </div>
@@ -124,7 +125,7 @@
                 </div>
                 <div class="main-card-bottom" id="changeColor">
                   <span id="instaPageViews"></span>
-                  <span><img id="myImg3" alt=""></span> 
+                  <span><img id="myImg6" alt=""></span> 
                   <span id="instaPageReachWeek"></span>
                   </div>
                 </div>
@@ -299,8 +300,19 @@
         const weeklyfbLikes = fbPageInsights.data[2].values[0].value;
         document.getElementById("weeklyPageLikes").innerHTML = getPercentageChange(fbPageLikes, weeklyfbLikes) + "%";
         console.log(prosentMinus(fbPageLikes, weeklyfbLikes
-        )); 
-        changeColor(weeklyfbLikes, fbPageLikes);
+        ));
+        // Bytt farge og ikon på forrige ukes sammenligningsdata
+        let styleCard2 = document.getElementById("changeColor2");
+        let img4 = document.getElementById("myImg4");
+          if (weeklyfbLikes > fbPageLikes) {
+            styleCard2.style.color = "hsl(356, 69%, 56%)";
+            img4.src = "images/icon-down.svg";
+          } else if (oldNumber == newNumber) {
+            styleCard2.style.color = "hsl(228, 34%, 66%)";
+          } else {
+            styleCard2.style.color = "hsl(163, 72%, 41%)";
+            img4.src = "images/icon-up.svg";
+          }; 
 
         // nye følgere - endring
         const newFaceFollowers = fbPageInsights.data[4].values[6].value;
@@ -353,8 +365,18 @@
         getPercentageChange(instaPageViews, weeklyInstaViews) + "%";
         console.log(prosentMinus(instaPageViews, weeklyInstaViews
         ));
-        changeColor(weeklyInstaViews, instaPageViews);
-        
+        // Bytt farge og ikon på forrige ukes sammenligningsdata
+        let styleCard3 = document.getElementById("changeColor3");
+        let img5 = document.getElementById("myImg5");
+          if (weeklyInstaViews > instaPageViews) {
+            styleCard2.style.color = "hsl(356, 69%, 56%)";
+            img4.src = "images/icon-down.svg";
+          } else if (oldNumber == newNumber) {
+            styleCard2.style.color = "hsl(228, 34%, 66%)";
+          } else {
+            styleCard2.style.color = "hsl(163, 72%, 41%)";
+            img4.src = "images/icon-up.svg";
+          }; 
 
         const instaPageReach = instaProfileInsight.data[1].values[6].value;
         document.getElementById("instaPageReach").innerHTML = instaPageReach;
@@ -362,7 +384,18 @@
         document.getElementById("instaPageReachWeek").innerHTML = getPercentageChange(instaPageReach, instaWeekReach) + "%";
         console.log(prosentMinus(instaPageReach, instaWeekReach
         ));
-        changeColor(instaWeekReach, instaPageReach);
+        // Bytt farge og ikon på forrige ukes sammenligningsdata
+        let styleCard4 = document.getElementById("changeColor4");
+        let img6 = document.getElementById("myImg6");
+          if (instaWeekReach > instaPageReach) {
+            styleCard2.style.color = "hsl(356, 69%, 56%)";
+            img4.src = "images/icon-down.svg";
+          } else if (oldNumber == newNumber) {
+            styleCard2.style.color = "hsl(228, 34%, 66%)";
+          } else {
+            styleCard2.style.color = "hsl(163, 72%, 41%)";
+            img4.src = "images/icon-up.svg";
+          }; 
 
         // hent Likes
         const instaMediaLikes = await getMyInstaLikes(
