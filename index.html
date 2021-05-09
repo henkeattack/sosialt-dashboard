@@ -60,7 +60,7 @@
             <div class="header-card-2" id="instaFollowers"></div>
             <div class="header-card-3">Følgere</div>
             <div class="header-card-4" id="instaColor">
-              <span id="myImg"></span>
+              <span id="myImg2"></span>
               <span id=oldInstaFollowers> </span>
             </div>
           </div>
@@ -84,7 +84,7 @@
                 <div class="main-card-bottom" id="main-card-bottom">
                   <span id="pageStats"></span>
                   <span id="changeColor">
-                  <span><img id="myImg2" alt=""></span> <span id="pageStatsWeek"></span></span>
+                  <span><img id="myImg3" alt=""></span> <span id="pageStatsWeek"></span></span>
               </div>
             </div>
           </div>
@@ -98,7 +98,7 @@
                 <div class="main-card-bottom" id="main-card-bottom">
                   <span id="pageLikes"></span>
                   <span id="changeColor">
-                  <span><img id="myImg2" alt=""></span> 
+                  <span><img id="myImg4" alt=""></span> 
                   <span id="weeklyPageLikes"></span></span>
               </div>
             </div>
@@ -112,7 +112,7 @@
                 </div>
                 <div class="main-card-bottom" id="changeColor">
                   <span id="instaPageReach"></span>
-                  <span><img id="myImg2" alt=""> 
+                  <span><img id="myImg5" alt=""> 
                   <span id="instaPageViewsWeek"></span></span>
                 </div>
             </div>
@@ -126,7 +126,7 @@
                 </div>
                 <div class="main-card-bottom" id="changeColor">
                   <span id="instaPageViews"></span>
-                  <span><img id="myImg2" alt=""> <span id="instaPageReachWeek"></span></span>
+                  <span><img id="myImg6" alt=""> <span id="instaPageReachWeek"></span></span>
                   </div>
                 </div>
               </div>
@@ -222,16 +222,16 @@
         }
 
         // Bytt farge og ikon på forrige ukes sammenligningsdata
-        const styleCard = document.getElementById("changeColor");
+        const styleCard = document.getElementsByClassName("main-card-bottom");
         function changeColor(oldNumber, newNumber) {
           if (Number(oldNumber) > Number(newNumber)) {
             styleCard.style.color = "hsl(356, 69%, 56%)";
-            document.getElementById("myImg2").src = "images/icon-down.svg";
+            document.getElementById("myImg3").src = "images/icon-down.svg";
           } else if (Number(oldNumber) == Number(newNumber)) {
             styleCard.style.color = "hsl(228, 34%, 66%)";
           } else {
             styleCard.style.color = "hsl(163, 72%, 41%)";
-            document.getElementById("myImg2").src = "images/icon-up.svg";
+            document.getElementById("myImg3").src = "images/icon-up.svg";
           };
         }
 
@@ -287,6 +287,15 @@
         }
         console.log(prosentMinus(facePageViews, weeklyFBPageViews));
 
+        // funksjon for riktig språk 
+        function returnLanguage (number) {
+          if (number === 1) {
+            document.getElementById("newFaceFollowers").innerHTML = number + " ny denne uka";
+          } else {
+            document.getElementById("newFaceFollowers").innerHTML = number + " nye denne uka";
+          }
+        }
+
         // Prosentendring siste uka
         const weeklyfbLikes = fbPageInsights.data[2].values[0].value;
         document.getElementById("weeklyPageLikes").innerHTML = getPercentageChange(fbPageLikes, weeklyfbLikes) + "%";
@@ -296,7 +305,7 @@
 
         // nye følgere - endring
         const newFaceFollowers = fbPageInsights.data[4].values[6].value;
-        document.getElementById("newFaceFollowers").innerHTML = newFaceFollowers + " nye denne uka";
+        returnLanguage(newFaceFollowers);
         changeHeader(newFaceFollowers);
 
         // Hent følgernes alder og kjønn
@@ -389,10 +398,10 @@
         } else {
           document.getElementById("oldInstaFollowers").innerHTML = instaFollowTotal + " nye denne uka";
         }
-        let instaColor = document.getElementById("instaColor");
+        
         if (instaFollowTotal > 0) {
-            instaColor.style.color = "hsl(163, 72%, 41%)";
-            document.getElementById("myImg").src = "images/icon-up.svg";
+          document.getElementById("instaColor").style.color = "hsl(163, 72%, 41%)";
+            document.getElementById("myImg2").src = "images/icon-up.svg";
           } else {
             instaColor.style.color = "hsl(228, 34%, 66%)";
           } 
