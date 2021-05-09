@@ -95,7 +95,7 @@
                 <span>Likes</span>
                 <span><img src="images/icon-facebook.svg" alt=""></span>
                 </div>
-                <div class="main-card-bottom" id="changeColor">
+                <div class="main-card-bottom" id="changeColor2">
                   <span id="pageLikes"></span>
                   <span><img id="myImg4" alt=""></span> 
                   <span id="weeklyPageLikes"></span>
@@ -109,7 +109,7 @@
                 <span>Profilvisninger</span>
                 <span><img src="images/icon-instagram.svg" alt=""></span>
                 </div>
-                <div class="main-card-bottom" id="changeColor">
+                <div class="main-card-bottom" id="changeColor3">
                   <span id="instaPageReach"></span>
                   <span><img id="myImg5" alt=""></span> 
                   <span id="instaPageViewsWeek"></span>
@@ -123,7 +123,7 @@
                 <span>Rekkevidde</span>
                 <span><img src="images/icon-instagram.svg" alt=""></span>
                 </div>
-                <div class="main-card-bottom" id="changeColor">
+                <div class="main-card-bottom" id="changeColor4">
                   <span id="instaPageViews"></span>
                   <span><img id="myImg6" alt=""></span> 
                   <span id="instaPageReachWeek"></span>
@@ -307,7 +307,7 @@
           if (weeklyfbLikes > fbPageLikes) {
             styleCard2.style.color = "hsl(356, 69%, 56%)";
             img4.src = "images/icon-down.svg";
-          } else if (oldNumber == newNumber) {
+          } else if (weeklyfbLikes == fbPageLikes) {
             styleCard2.style.color = "hsl(228, 34%, 66%)";
           } else {
             styleCard2.style.color = "hsl(163, 72%, 41%)";
@@ -371,7 +371,7 @@
           if (weeklyInstaViews > instaPageViews) {
             styleCard3.style.color = "hsl(356, 69%, 56%)";
             img5.src = "images/icon-down.svg";
-          } else if (oldNumber == newNumber) {
+          } else if (weeklyInstaViews == instaPageViews) {
             styleCard3.style.color = "hsl(228, 34%, 66%)";
           } else {
             styleCard3.style.color = "hsl(163, 72%, 41%)";
@@ -390,7 +390,7 @@
           if (instaWeekReach > instaPageReach) {
             styleCard4.style.color = "hsl(356, 69%, 56%)";
             img6.src = "images/icon-down.svg";
-          } else if (oldNumber == newNumber) {
+          } else if (instaWeekReach == instaPageReach) {
             styleCard4.style.color = "hsl(228, 34%, 66%)";
           } else {
             styleCard4.style.color = "hsl(163, 72%, 41%)";
