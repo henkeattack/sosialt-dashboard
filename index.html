@@ -83,8 +83,8 @@
                 </div>
                 <div class="main-card-bottom">
                   <span id="pageStats"></span>
-                  <span class="changeColor">
-                  <span><img id="myImg3" alt=""></span> <span id="pageStatsWeek"></span></span>
+                  <div id="changeColor">
+                  <span><img id="myImg3" alt=""></span> <span id="pageStatsWeek"></span></div>
               </div>
             </div>
           </div>
@@ -97,7 +97,7 @@
                 </div>
                 <div class="main-card-bottom">
                   <span id="pageLikes"></span>
-                  <span class="changeColor">
+                  <span id="changeColor">
                   <span><img id="myImg3" alt=""></span> 
                   <span id="weeklyPageLikes"></span></span>
               </div>
@@ -112,7 +112,7 @@
                 </div>
                 <div class="main-card-bottom">
                   <span class="instaPageReach"></span>
-                  <span class="changeColor">
+                  <span id="changeColor">
                   <span><img id="myImg3" alt=""> 
                   <span id="instaPageViewsWeek"></span></span></span>
                 </div>
@@ -127,7 +127,7 @@
                 </div>
                 <div class="main-card-bottom">
                   <span class="instaPageViews"></span>
-                  <span class="changeColor">
+                  <span id="changeColor">
                   <span><img id="myImg3" alt=""> <span id="instaPageReachWeek"></span></span></span>
                   </div>
                 </div>
@@ -226,10 +226,10 @@
         // Bytt farge og ikon på forrige ukes sammenligningsdata
         const styleCard = document.getElementsByClassName("changeColor");
         function changeColor(oldNumber, newNumber) {
-          if (Number(oldNumber) > Number(newNumber)) {
+          if (oldNumber > newNumber) {
             styleCard.style.color = "hsl(356, 69%, 56%)";
             document.getElementById("myImg3").src = "images/icon-down.svg";
-          } else if (Number(oldNumber) == Number(newNumber)) {
+          } else if (oldNumber == newNumber) {
             styleCard.style.color = "hsl(228, 34%, 66%)";
           } else {
             styleCard.style.color = "hsl(163, 72%, 41%)";
