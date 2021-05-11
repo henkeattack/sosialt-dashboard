@@ -125,8 +125,10 @@
                 </div>
             </div>
           </div>
+        </div>
         
-        <div class="row">
+        <div class="row main-row-margin">
+ 
           <div class="col-md-3">
             <div class="main-card">
               <div class="main-card-top">
@@ -178,7 +180,6 @@
             </div>
           </div>  
         </div>
-      </div>
       </main>
     </div>
   </div>
@@ -419,7 +420,7 @@
           fbPageAccesstoken
         );
         printData("pageDemograph", fbPageFollowers.data);
-        document.getElementById("demograph").innerHTML = "demoInfo: " + fbPageFollowers.data.values;
+        document.getElementById("demograph").innerHTML = "demoInfo: " + fbPageFollowers.data.values[0];
         console.log("demoInfo: " + fbPageFollowers.data[0].values.value); 
 
 
