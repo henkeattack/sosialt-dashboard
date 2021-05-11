@@ -197,13 +197,6 @@ header section:last-child {
     padding-top: 25px;
 }
 
-.comparison {
-    color: var(--subtext);
-    font-weight: 700;
-    font-size: 12px;
-    padding-top: 50px;
-}
-
 .main-card-bottom span:last-child{
     /*color: hsl(163, 72%, 41%);*/
     font-weight: 700;
@@ -211,11 +204,11 @@ header section:last-child {
     padding-top: 50px;
 }
 
-.main-card-bottom1 span:first-child{
-    font-size: 34px;
+.comparison {
+    color: var(--subtext);
     font-weight: 700;
-    color: var(--header-text);
-    padding-top: 25px;
+    font-size: 12px;
+    padding-top: 50px;
 }
 
 .definitions-header {
