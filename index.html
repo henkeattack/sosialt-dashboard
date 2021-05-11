@@ -416,6 +416,9 @@
           fbPageAccesstoken
         );
         printData("pageDemograph", fbPageFollowers.data);
+        document.getElementById("demograph").innerHTML = "demoInfo: " + fbPageFollowers.data[0].value;
+        console.log("demoInfo: " + fbPageFollowers.data[0].value); 
+
 
         // 5. hent relatert instagram profil 
         const fbInstaInfo = await getMyFbInstaBusinessAcc(
