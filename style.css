@@ -180,7 +180,7 @@ header section:last-child {
     margin-bottom: 25px;
 }
 
-.main-card-top, .main-card-bottom, .main-card-bottom1 {
+.main-card-top, .main-card-bottom, .comparison {
     display: flex;
     justify-content: space-between;
 }
@@ -216,13 +216,6 @@ header section:last-child {
     font-weight: 700;
     color: var(--header-text);
     padding-top: 25px;
-}
-
-.main-card-bottom1 span:last-child{
-    font-size: 12px;
-    font-weight: 700;
-    color: hsl(356, 69%, 56%);
-    padding-top: 50px;
 }
 
 .definitions-header {
