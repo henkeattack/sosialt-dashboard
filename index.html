@@ -101,7 +101,7 @@
                 <div class="main-card-bottom">
                   <span id="pageLikes"></span> </div>
                   <div class="main-card-bottom1">
-                  <span class="comparison" id="changeInfo2"></span>                  
+                  <span class="comparison" id="changeInfo"></span>                  
                   <span id="changeColor2">
                   <span><img id="myImg4" alt=""></span> 
                   <span id="weeklyPageLikes"></span></span>
@@ -248,7 +248,8 @@
         }
 
         // Legger inn beskrivelse av målte periode
-        document.getElementById("changeInfo").innerHTML = "Endring siste 7 dager:";
+        const changeInfo = document.getElementById("changeInfo");
+        changeInfo.innerHTML = "Endring siste 7 dager:";
         document.getElementById("changeInfo2").innerHTML = "Endring siste 7 dager:";
         document.getElementById("changeInfo3").innerHTML = "Endring siste 7 dager:";
         document.getElementById("changeInfo4").innerHTML = "Endring siste 7 dager:";
