@@ -101,7 +101,7 @@
                 <div class="main-card-bottom">
                   <span id="pageLikes"></span> </div>
                   <div class="main-card-bottom1">
-                  <span class="comparison" id="changeInfo"></span>                  
+                  <span class="comparison" id="changeInfo2"></span>                  
                   <span id="changeColor2">
                   <span><img id="myImg4" alt=""></span> 
                   <span id="weeklyPageLikes"></span></span>
@@ -150,8 +150,10 @@
 <h3 class="">Step 1: Hent data</h3>
     <pre class="odd" id="PageInfo"></pre>
     <pre class="even" id="instaPage"></pre>
-    <pre class="odd" id="instaPageReachWeek"></pre>
-
+    <pre class="odd" id="pageEngagement"></pre>
+    <pre class="odd" id="weeklyPageEngagement"></pre>
+    <pre class="odd" id="fbReach"></pre>
+    <pre class="odd" id="weeklyFbReach"></pre>
     
 <h3 class="">Step 2: Hent Facebook konto</h3>
 <pre class="even" id="MyFacebookAccount"></pre>
@@ -248,8 +250,8 @@
         }
 
         // Legger inn beskrivelse av målte periode
-        const changeInfo = document.getElementById("changeInfo").innerHTML = "Endring siste 7 dager:";
-        //document.getElementById("changeInfo2").innerHTML = "Endring siste 7 dager:";
+        document.getElementById("changeInfo").innerHTML = "Endring siste 7 dager:";
+        document.getElementById("changeInfo2").innerHTML = "Endring siste 7 dager:";
         document.getElementById("changeInfo3").innerHTML = "Endring siste 7 dager:";
         document.getElementById("changeInfo4").innerHTML = "Endring siste 7 dager:";
 
@@ -281,11 +283,11 @@
         );
         printData("MyFacebookPageInsights", fbPageInsights.data);
 
-        // Returner innsiktsdata
+        // Returner innsiktsdata om sidevisninger
         const facePageViews = fbPageInsights.data[0].values[6].value;
         document.getElementById("pageStats").innerHTML = facePageViews;
-
         const weeklyFBPageViews = fbPageInsights.data[0].values[0].value;
+
         // Funksjon for prosentendring
         function getPercentageChange(newNumber, oldNumber){
           let difference = newNumber - oldNumber;
@@ -293,11 +295,6 @@
         }
         document.getElementById("pageStatsWeek").innerHTML = getPercentageChange(facePageViews, weeklyFBPageViews) + "%";
         changeColor(weeklyFBPageViews, facePageViews);
-        
-
-        const fbPageLikes = fbPageInsights.data[2].values[6].value;
-        document.getElementById("pageLikes").innerHTML = fbPageLikes;
-        
 
         // Test av prosentendring
         function prosentMinus(newNumber, oldNumber){
@@ -315,11 +312,14 @@
           }
         }
 
-        // Prosentendring siste uka
+        // Hente data om likes
+        const fbPageLikes = fbPageInsights.data[2].values[6].value;
+        document.getElementById("pageLikes").innerHTML = fbPageLikes;
         const weeklyfbLikes = fbPageInsights.data[2].values[0].value;
         document.getElementById("weeklyPageLikes").innerHTML = getPercentageChange(fbPageLikes, weeklyfbLikes) + "%";
         console.log(prosentMinus(fbPageLikes, weeklyfbLikes
         ));
+
         // Bytt farge og ikon på forrige ukes sammenligningsdata
         let styleCard2 = document.getElementById("changeColor2");
         let img4 = document.getElementById("myImg4");
@@ -331,7 +331,21 @@
           } else {
             styleCard2.style.color = "hsl(163, 72%, 41%)";
             img4.src = "images/icon-up.svg";
-          }; 
+          };
+        
+        // hent engasjement-data
+        const fbEngagement = fbPageInsights.data[1].values[6].value;
+        document.getElementById("pageEngagement").innerHTML = fbEngagement;
+        const weeklyFbEngagement = fbPageInsights.data[1].values[0].value;
+        document.getElementById("weeklyPageEngagement").innerHTML = weeklyFbEngagement;
+        console.log(prosentMinus(fbEngagement, weeklyFbEngagement));
+
+        // hent fb rekkevidde data
+        const fbReach = fbPageInsights.data[3].values[6].value;
+        document.getElementById("fbReach").innerHTML = fbReach;
+        const weeklyFbReach = fbPageInsights.data[3].values[0].value;
+        document.getElementById("weeklyFbReach").innerHTML = weeklyFbReach;
+        console.log(prosentMinus(fbReach, weeklyFbReach)); 
 
         // nye følgere - endring
         const newFaceFollowers = fbPageInsights.data[4].values[6].value;
