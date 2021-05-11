@@ -208,7 +208,7 @@ header section:last-child {
     color: var(--subtext);
     font-weight: 700;
     font-size: 12px;
-    padding-top: 50px;
+    padding-top: 10px;
 }
 
 .definitions-header {
