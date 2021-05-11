@@ -139,9 +139,43 @@
                   <span id="changeColor4">
                   <span><img id="myImg6" alt=""></span>
                   <span id="instaPageReachWeek"></span></span>
-                  </div>
+                </div>
             </div>
           </div>
+
+          <div class="col-md-3">
+            <div class="main-card">
+              <div class="main-card-top">
+                <span>Engasjement</span>
+                <span><img src="images/icon-facebook.svg" alt=""></span>
+                </div>
+                <div class="main-card-bottom">
+                  <span id="pageEngagement"></span> </div>
+                  <div class="main-card-bottom1">
+                  <span class="comparison" id="changeInfo5"></span>                  
+                  <span id="changeColor5">
+                  <span><img id="myImg7" alt=""></span> 
+                  <span id="weeklyPageEngagement"></span></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="main-card">
+              <div class="main-card-top">
+                <span>Rekkevidde</span>
+                <span><img src="images/icon-facebook.svg" alt=""></span>
+                </div>
+                <div class="main-card-bottom">
+                  <span id="fbReach"></span> </div>
+                  <div class="main-card-bottom1">
+                  <span class="comparison" id="changeInfo6"></span>                  
+                  <span id="changeColor6">
+                  <span><img id="myImg8" alt=""></span> 
+                  <span id="weeklyFbReach"></span></span>
+              </div>
+            </div>
+          </div>  
         </div>
       </main>
     </div>
@@ -150,10 +184,6 @@
 <h3 class="">Step 1: Hent data</h3>
     <pre class="odd" id="PageInfo"></pre>
     <pre class="even" id="instaPage"></pre>
-    <pre class="odd" id="pageEngagement"></pre>
-    <pre class="odd" id="weeklyPageEngagement"></pre>
-    <pre class="odd" id="fbReach"></pre>
-    <pre class="odd" id="weeklyFbReach"></pre>
     
 <h3 class="">Step 2: Hent Facebook konto</h3>
 <pre class="even" id="MyFacebookAccount"></pre>
@@ -254,6 +284,8 @@
         document.getElementById("changeInfo2").innerHTML = "Endring siste 7 dager:";
         document.getElementById("changeInfo3").innerHTML = "Endring siste 7 dager:";
         document.getElementById("changeInfo4").innerHTML = "Endring siste 7 dager:";
+        document.getElementById("changeInfo5").innerHTML = "Endring siste 7 dager:";
+        document.getElementById("changeInfo6").innerHTML = "Endring siste 7 dager:";
 
 
         // 3. hent relaterte kontoer til FB profil
@@ -337,15 +369,41 @@
         const fbEngagement = fbPageInsights.data[1].values[6].value;
         document.getElementById("pageEngagement").innerHTML = fbEngagement;
         const weeklyFbEngagement = fbPageInsights.data[1].values[0].value;
-        document.getElementById("weeklyPageEngagement").innerHTML = weeklyFbEngagement;
+        document.getElementById("weeklyPageEngagement").innerHTML = getPercentageChange(fbEngagement, weeklyFbEngagement) + "%";
         console.log(prosentMinus(fbEngagement, weeklyFbEngagement));
+
+        // Bytt farge og ikon på forrige ukes sammenligningsdata
+        let styleCard5 = document.getElementById("changeColor5");
+        let img7 = document.getElementById("myImg7");
+          if (weeklyFbEngagement > fbEngagement) {
+            styleCard5.style.color = "hsl(356, 69%, 56%)";
+            img7.src = "images/icon-down.svg";
+          } else if (weeklyFbEngagement == fbEngagement) {
+            styleCard5.style.color = "hsl(228, 34%, 66%)";
+          } else {
+            styleCard5.style.color = "hsl(163, 72%, 41%)";
+            img7.src = "images/icon-up.svg";
+          };
 
         // hent fb rekkevidde data
         const fbReach = fbPageInsights.data[3].values[6].value;
         document.getElementById("fbReach").innerHTML = fbReach;
         const weeklyFbReach = fbPageInsights.data[3].values[0].value;
-        document.getElementById("weeklyFbReach").innerHTML = weeklyFbReach;
+        document.getElementById("weeklyFbReach").innerHTML = getPercentageChange(fbReach, weeklyFbReach) + "%";
         console.log(prosentMinus(fbReach, weeklyFbReach)); 
+
+        // Bytt farge og ikon på forrige ukes sammenligningsdata
+        let styleCard6 = document.getElementById("changeColor6");
+        let img8 = document.getElementById("myImg8");
+          if (weeklyFbReach > fbReach) {
+            styleCard6.style.color = "hsl(356, 69%, 56%)";
+            img8.src = "images/icon-down.svg";
+          } else if (weeklyFbReach == fbReach) {
+            styleCard6.style.color = "hsl(228, 34%, 66%)";
+          } else {
+            styleCard6.style.color = "hsl(163, 72%, 41%)";
+            img8.src = "images/icon-up.svg";
+          };
 
         // nye følgere - endring
         const newFaceFollowers = fbPageInsights.data[4].values[6].value;
