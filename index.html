@@ -125,6 +125,9 @@
                 </div>
             </div>
           </div>
+        </div>
+        
+        <div class="row">
 
           <div class="col-md-3">
             <div class="main-card">
@@ -418,7 +421,7 @@
         );
         printData("pageDemograph", fbPageFollowers.data);
         document.getElementById("demograph").innerHTML = "demoInfo: " + fbPageFollowers.data.values[0].value;
-        console.log("demoInfo: " + fbPageFollowers.data.values[0].value); 
+        console.log("demoInfo: " + fbPageFollowers.data[0].values.value); 
 
 
         // 5. hent relatert instagram profil 
