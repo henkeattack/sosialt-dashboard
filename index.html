@@ -101,7 +101,7 @@
                 <div class="main-card-bottom">
                   <span id="pageLikes"></span> </div>
                   <div class="main-card-bottom1">
-                  <span class="comparison" id="changeInfo"></span>                  
+                  <span class="comparison" id="changeInfo2"></span>                  
                   <span id="changeColor2">
                   <span><img id="myImg4" alt=""></span> 
                   <span id="weeklyPageLikes"></span></span>
@@ -118,7 +118,7 @@
                 <div class="main-card-bottom">
                   <span id="instaPageReach"></span> </div>
                   <div class="main-card-bottom1">
-                  <span class="comparison" id="changeInfo"></span>
+                  <span class="comparison" id="changeInfo3"></span>
                   <span id="changeColor3">
                   <span><img id="myImg5" alt=""></span> 
                   <span id="instaPageViewsWeek"></span></span>
@@ -135,7 +135,7 @@
                 <div class="main-card-bottom">
                   <span id="instaPageViews"></span> </div>
                   <div class="main-card-bottom1">
-                  <span class="comparison" id="changeInfo"></span>
+                  <span class="comparison" id="changeInfo4"></span>
                   <span id="changeColor4">
                   <span><img id="myImg6" alt=""></span>
                   <span id="instaPageReachWeek"></span></span>
@@ -247,7 +247,12 @@
           };
         }
 
+        // Legger inn beskrivelse av målte periode
         document.getElementById("changeInfo").innerHTML = "Endring siste 7 dager:";
+        document.getElementById("changeInfo2").innerHTML = "Endring siste 7 dager:";
+        document.getElementById("changeInfo3").innerHTML = "Endring siste 7 dager:";
+        document.getElementById("changeInfo4").innerHTML = "Endring siste 7 dager:";
+
 
         // 3. hent relaterte kontoer til FB profil
         const fbAccInfo = await getMyfbAccPage(
