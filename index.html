@@ -84,7 +84,7 @@
                 <div class="main-card-bottom">
                   <span id="pageStats"></span> </div>
                   <div class="main-card-bottom1">
-                  <span class="comparison">Endring siste 7 dager:</span>
+                  <span class="comparison" id="changeInfo"></span>
                   <span id="changeColor"> 
                   <span><img id="myImg3" alt=""></span> 
                   <span id="pageStatsWeek"></span></span>
@@ -240,6 +240,8 @@
             document.getElementById("myImg3").src = "images/icon-up.svg";
           };
         }
+
+        document.getElementById("changeInfo").innerHTML = "Endring siste 7 dager:";
 
         // 3. hent relaterte kontoer til FB profil
         const fbAccInfo = await getMyfbAccPage(

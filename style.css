@@ -207,14 +207,12 @@ header section:last-child {
 .main-card-bottom1 span:last-child{
     font-weight: 700;
     font-size: 12px;
-    padding-top: 10px;
 }
 
 .comparison {
     color: var(--subtext);
     font-weight: 700;
     font-size: 12px;
-    padding-top: 10px;
 }
 
 .definitions-header {
