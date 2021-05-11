@@ -277,7 +277,7 @@
             return parseInt(Math.abs(difference / oldNumber) * 100);
         }
         document.getElementById("pageStatsWeek").innerHTML = getPercentageChange(facePageViews, weeklyFBPageViews) + "%";
-        changeColor(facePageViews, weeklyFBPageViews);
+        changeColor(weeklyFBPageViews, facePageViews);
         
 
         const fbPageLikes = fbPageInsights.data[2].values[6].value;
