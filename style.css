@@ -180,7 +180,7 @@ header section:last-child {
     margin-bottom: 25px;
 }
 
-.main-card-top, .main-card-bottom, .comparison {
+.main-card-top, .main-card-bottom, .main-card-bottom1, .comparison {
     display: flex;
     justify-content: space-between;
 }
@@ -202,6 +202,12 @@ header section:last-child {
     font-weight: 700;
     font-size: 12px;
     padding-top: 50px;
+}
+
+.main-card-bottom1 span:last-child{
+    font-weight: 700;
+    font-size: 12px;
+    padding-top: 10px;
 }
 
 .comparison {
@@ -237,9 +243,3 @@ header section:last-child {
     margin-top: 20px;
     margin-left: 10px;
 }
-
-/* Farge på data */
-/*.colorChange {
-    font-size: 12px;
-    font-weight: 700;
-} */
