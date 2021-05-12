@@ -257,8 +257,9 @@
         // Returnerer FB side-info
         const facebookAccName = fbAccInfo.data[0].name;
         const faceAccFollowers = fbAccInfo.data[0].engagement.count;
-        // Denne FUNKER!!!
-        document.getElementById("PageInfo").innerHTML = "Your page info: " + facebookAccName;
+        
+        // Test av Page Data
+        console.log("Your page info: " + facebookAccName);
         document.getElementById("followers").innerHTML = faceAccFollowers;
 
         // Kode for gjenbruk
@@ -371,7 +372,7 @@
         // returner instagram data
         const instaPageName = instaProfileInfo.name;
         const instaFollowersCount = instaProfileInfo.followers_count;
-        document.getElementById("instaPage").innerHTML = "Your Instagram Page Name: " + instaPageName;
+        console.log("Your Instagram Page Name: " + instaPageName);
         document.getElementById("instaFollowers").innerHTML = instaFollowersCount;
 
         // Legg sammen antall følgere i sosiale medier
