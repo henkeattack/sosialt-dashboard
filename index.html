@@ -186,7 +186,6 @@
   </div>
 
 <script type="module">
-  
     // implementerer data fra js ----->
     import {
       initializeFlow,
@@ -195,15 +194,10 @@
       getMyfbAccInfo,
       getMyfbAccPage,
       getMyfbPageInsights,
-      getUserDemograph,
       getMyFbInstaBusinessAcc,
       getMyInstagramAccInfo,
-      getMyInstaLikes,
       getMyInstagramAccInsight,
-      getMyInstagramAccMediaStats,
-      getLifetimeInfo,
-      getInstaFollowers,
-      getMyfbPagePosts
+      getInstaFollowers
     } from "./js/script.js";
 
     const appId = "4223696350981884";
@@ -219,10 +213,8 @@
           responseItem.userIdInfo,
           responseItem.accessTokenInfo
         );
-        printData("MyFacebookAccount", fbInfo);
         // Returner velkomsthilsen
         document.getElementById("status").innerHTML = "Suksessfull login. Velkommen til siden, " + fbInfo.name;
-        console.log("My info: " + fbInfo.name);
 
         // Sammenligningsdata - litt annerledes for følgere
         const styleHeader = document.getElementById("colorChange");
@@ -257,16 +249,11 @@
         document.getElementById("changeInfo5").innerHTML = "Endring siste 7 dager:";
         document.getElementById("changeInfo6").innerHTML = "Endring siste 7 dager:";
 
-
         // 3. hent relaterte kontoer til FB profil
         const fbAccInfo = await getMyfbAccPage(
           responseItem.userIdInfo,
           responseItem.accessTokenInfo
         );
-        printData("MyFacebookAccountInfo", fbAccInfo.data);
-        console.log("Henter data: " + fbAccInfo.data[0].name);
-        console.log("Antall Følgere: " + fbAccInfo.data[0].followers_count);
-        
         // Returnerer FB side-info
         const facebookAccName = fbAccInfo.data[0].name;
         const faceAccFollowers = fbAccInfo.data[0].engagement.count;
@@ -298,13 +285,6 @@
         document.getElementById("pageStatsWeek").innerHTML = getPercentageChange(facePageViews, weeklyFBPageViews) + "%";
         changeColor(weeklyFBPageViews, facePageViews);
 
-        // Test av prosentendring
-        function prosentMinus(newNumber, oldNumber){
-          var decreaseValue = newNumber - oldNumber;
-            return parseInt((decreaseValue / oldNumber) * 100);
-        }
-        console.log(prosentMinus(facePageViews, weeklyFBPageViews));
-
         // funksjon for riktig språk 
         function returnLanguage (number) {
           if (number === 1) {
@@ -319,8 +299,6 @@
         document.getElementById("pageLikes").innerHTML = fbPageLikes;
         const weeklyfbLikes = fbPageInsights.data[2].values[0].value;
         document.getElementById("weeklyPageLikes").innerHTML = getPercentageChange(fbPageLikes, weeklyfbLikes) + "%";
-        console.log(prosentMinus(fbPageLikes, weeklyfbLikes
-        ));
 
         // Bytt farge og ikon på forrige ukes sammenligningsdata
         let styleCard2 = document.getElementById("changeColor2");
@@ -333,14 +311,13 @@
           } else {
             styleCard2.style.color = "hsl(163, 72%, 41%)";
             img4.src = "images/icon-up.svg";
-          };
+          }
         
         // hent engasjement-data
         const fbEngagement = fbPageInsights.data[1].values[6].value;
         document.getElementById("pageEngagement").innerHTML = fbEngagement;
         const weeklyFbEngagement = fbPageInsights.data[1].values[0].value;
         document.getElementById("weeklyPageEngagement").innerHTML = getPercentageChange(fbEngagement, weeklyFbEngagement) + "%";
-        console.log(prosentMinus(fbEngagement, weeklyFbEngagement));
 
         // Bytt farge og ikon på forrige ukes sammenligningsdata
         let styleCard5 = document.getElementById("changeColor5");
@@ -353,14 +330,13 @@
           } else {
             styleCard5.style.color = "hsl(163, 72%, 41%)";
             img7.src = "images/icon-up.svg";
-          };
+          }
 
         // hent fb rekkevidde data
         const fbReach = fbPageInsights.data[3].values[6].value;
         document.getElementById("fbReach").innerHTML = fbReach;
         const weeklyFbReach = fbPageInsights.data[3].values[0].value;
         document.getElementById("weeklyFbReach").innerHTML = getPercentageChange(fbReach, weeklyFbReach) + "%";
-        console.log(prosentMinus(fbReach, weeklyFbReach)); 
 
         // Bytt farge og ikon på forrige ukes sammenligningsdata
         let styleCard6 = document.getElementById("changeColor6");
@@ -373,36 +349,24 @@
           } else {
             styleCard6.style.color = "hsl(163, 72%, 41%)";
             img8.src = "images/icon-up.svg";
-          };
+          }
 
         // nye følgere - endring
         const newFaceFollowers = fbPageInsights.data[4].values[6].value;
         returnLanguage(newFaceFollowers);
         changeHeader(newFaceFollowers);
 
-        // Hent følgernes alder og kjønn
-        const fbPageFollowers = await getUserDemograph(
-          fbPageAccId,
-          fbPageAccesstoken
-        );
-        printData("pageDemograph", fbPageFollowers.data);
-        document.getElementById("demograph").innerHTML = "demoInfo: " + fbPageFollowers.data.values[0];
-        console.log("demoInfo: " + fbPageFollowers.data[0].values.value); 
-
-
         // 5. hent relatert instagram profil 
         const fbInstaInfo = await getMyFbInstaBusinessAcc(
           fbPageAccId,
           fbPageAccesstoken
         );
-        printData("MyInstaBusinessAcc", fbInstaInfo);
 
         // hent instagram info
         const instaProfileInfo = await getMyInstagramAccInfo(
           fbInstaInfo.instagram_business_account.id,
           fbPageAccesstoken
           );
-        printData("MyInstaAccountInfo", instaProfileInfo);
 
         // returner instagram data
         const instaPageName = instaProfileInfo.name;
@@ -419,7 +383,6 @@
           fbInstaInfo.instagram_business_account.id,
           fbPageAccesstoken
         );
-        printData("MyInstaAccountInsight", instaProfileInsight);
         // Returner innsiktsdata
         const instaPageViews = instaProfileInsight.data[0].values[6].value; 
         document.getElementById("instaPageViews").innerHTML = instaPageViews;
@@ -427,8 +390,6 @@
         const weeklyInstaViews = instaProfileInsight.data[0].values[0].value;
         document.getElementById("instaPageViewsWeek").innerHTML = 
         getPercentageChange(instaPageViews, weeklyInstaViews) + "%";
-        console.log(prosentMinus(instaPageViews, weeklyInstaViews
-        ));
         // Bytt farge og ikon på forrige ukes sammenligningsdata
         let styleCard3 = document.getElementById("changeColor3");
         let img5 = document.getElementById("myImg5");
@@ -446,8 +407,7 @@
         document.getElementById("instaPageReach").innerHTML = instaPageReach;
         const instaWeekReach = instaProfileInsight.data[1].values[0].value;
         document.getElementById("instaPageReachWeek").innerHTML = getPercentageChange(instaPageReach, instaWeekReach) + "%";
-        console.log(prosentMinus(instaPageReach, instaWeekReach
-        ));
+
         // Bytt farge og ikon på forrige ukes sammenligningsdata
         let styleCard4 = document.getElementById("changeColor4");
         let img6 = document.getElementById("myImg6");
@@ -459,28 +419,13 @@
           } else {
             styleCard4.style.color = "hsl(163, 72%, 41%)";
             img6.src = "images/icon-up.svg";
-          }; 
-
-        // hent Likes
-        const instaMediaLikes = await getMyInstaLikes(
-          fbInstaInfo.instagram_business_account.id,
-          fbPageAccesstoken
-        );
-        printData("myInstaLikes", instaMediaLikes);
-
-        // hent insta demografisk brukerdata
-        const followerInsight = await getLifetimeInfo(
-          fbInstaInfo.instagram_business_account.id,
-          fbPageAccesstoken
-        );
-        printData("followerInsight", followerInsight);
+          } 
 
         // henter nye insta-følgere
         const newInstaFollowers = await getInstaFollowers(
           fbInstaInfo.instagram_business_account.id,
           fbPageAccesstoken
         );
-        printData("newInstaFollowers", newInstaFollowers);
 
         // sammenlign insta følgere
         const oldInstaFollowers = newInstaFollowers.data[0].values.map(value => value.value);
@@ -501,20 +446,6 @@
           } else {
             instaColor.style.color = "hsl(228, 34%, 66%)";
           } 
-
-      // hent instagram innlegg
-        const instaProfilePosts = await getMyInstagramAccMediaStats(
-          fbInstaInfo.instagram_business_account.id,
-          fbPageAccesstoken
-        );
-        printData("MyInstaAccountPosts", instaProfilePosts);
-
-        // 7. hent FB-sidens innlegg
-        const fbPagePosts = await getMyfbPagePosts(
-          fbPageAccId,
-          fbPageAccesstoken
-        );
-        printData("MyFacebookPosts", fbPagePosts.data);
     };
 
     const loginFailFunc = async (responseItem) => {};
