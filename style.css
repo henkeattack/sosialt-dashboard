@@ -52,6 +52,13 @@ header section:first-child {
     margin-bottom: 40px;
 }
 
+header section:nth-child(n) {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
 .header-headline .header-headline-1{
     font-weight: 700px;
     font-size: 32px;
