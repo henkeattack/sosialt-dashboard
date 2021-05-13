@@ -50,13 +50,13 @@ header section:first-child {
     justify-content: space-between;
     margin-top: 20px;
     margin-bottom: 40px;
-    align-items: center;
 }
 
 .header-headline .header-headline-1{
     font-weight: 700px;
     font-size: 32px;
     color: var(--header-text);
+    text-align: center;
 }
 
 .header-headline .header-headline-2 {
@@ -71,6 +71,7 @@ header section:first-child {
     justify-content: space-between;
     align-items: center;
     color: var(--header-text);
+    float: right;
 }
 
 .toggler {
@@ -250,8 +251,9 @@ ul li {
 }
 
 .login-button {
-    margin-top: 20px;
-    margin-left: 10px;
+    /*margin-top: 20px;
+    margin-left: 10px;*/
+    float: right;
 }
 
 .attribution {
