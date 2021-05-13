@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapsis.com/css2?family=Inter:wght@400;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;400&display=swap');
 
 /* Dark/light Mode Toggle Color Schemes */
 .dark {
@@ -28,7 +28,7 @@
 }
 
 body {
-    font-family: "Inter", sans-serif;
+    font-family: 'Inter', sans-serif;
     background-color: var(--bg) !important;
 }
 
