@@ -8,36 +8,34 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
 </head>
 <body class="dark">
-  <header>
-      <fb:login-button class="login-button" scopes="email,public_profile,pages_show_list, pages_read_engagement,pages_manage_engagement,pages_read_user_content,read_insights,instagram_manage_insights,instagram_basic,ads_read" data-size="large" data-button-type="login_with" data-layout="rounded" onlogin="handlefbLogin();">Logg på med Facebook</fb:login-button>
-  <div class="status" id="status"></div>
-  </header>
 <div class="wrapper">
   <div class="container1">
     <header>
     <section>
-    <!-- Logo YX-->
-    <div class="logo1"><img src="images/yx_logo_1.png" class="img-thumbnail" alt=""/> </div>
-    <!-- Logo 7-eleven -->
-    <div class="logo2"><img src="images/logo_7eleven.png" class="img-thumbnail" alt="" /></div>
+      <!-- Facebook login knapp med velkomsthilsen-->
+      <fb:login-button class="login-button" scopes="email,public_profile,pages_show_list, pages_read_engagement,pages_manage_engagement,pages_read_user_content,read_insights,instagram_manage_insights,instagram_basic,ads_read" data-size="large" data-button-type="login_with" data-layout="rounded" onlogin="handlefbLogin();">Logg på med Facebook</fb:login-button>
+      <div class="status" id="status"></div>
+      <!-- Dark/light mode toggle-->
+     <div class="header-toggler">
+      <div style="font-weight: 700;">Visning</div>
+    <div class="toggler" id="toggler">
+      <div id="toggler-circle" class="toggler-circle"></div>
+      </div>
+    </div>
+    
   </section>
   </header>
     <header>
       <section>
-        
+        <!-- Logo YX-->
+        <div class="logo1"><img src="images/yx_logo_1.png" class="img-thumbnail" alt=""/> </div>
         <!-- Header tittel-->
         <div class="header-headline">
           <div class="header-headline-1">Sosiale Medier Dashboard</div>
           <div class="header-headline-2" id="totalFollowers"></div>
         </div>
-         
-        <!-- Dark/light mode toggle-->
-        <div class="header-toggler">
-          <div style="font-weight: 700;">Visning</div>
-        <div class="toggler" id="toggler">
-          <div id="toggler-circle" class="toggler-circle"></div>
-          </div>
-        </div>
+        <!-- Logo 7-eleven -->
+        <div class="logo2"><img src="images/logo_7eleven.png" class="img-thumbnail" alt="" /></div> 
       </section>
         <!-- Sosiale Medier Cards Section -->
       <section>
