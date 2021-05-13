@@ -258,8 +258,16 @@ ul li {
     color: hsl(228, 34%, 66%);
 }
 
-.logo {
+.logo1 {
     width: 100px; 
     height: 100px;
     padding: 10px;
+    float: left;
+}
+
+.logo1 {
+    width: 100px; 
+    height: 100px;
+    padding: 10px;
+    float: right;
 }
