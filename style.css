@@ -258,9 +258,8 @@ ul li {
 }
 
 .login-button {
-    /*margin-top: 20px;
-    margin-left: 10px;*/
-    float: left;
+    margin-top: 20px;
+    margin-left: 10px;
 }
 
 .attribution {
@@ -271,15 +270,15 @@ ul li {
 }
 
 .logo1 {
-    width: 100px; 
-    height: 100px;
+    width: 80px; 
+    height: 80px;
     padding: 10px;
     float: left;
 }
 
 .logo2 {
-    width: 100px; 
-    height: 100px;
+    width: 80px; 
+    height: 80px;
     padding: 10px;
     float: right;
 }
