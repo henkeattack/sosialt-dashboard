@@ -232,9 +232,12 @@ header section:last-child {
 
 ul.liste {
     list-style-type: none;
-    /*margin: 0;
-    padding: 0;*/
+    padding-bottom: 10px;
 } 
+
+ul li {
+    padding: 10px;
+}
 
 .status {
     font-size: 14px;
