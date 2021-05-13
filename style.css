@@ -78,7 +78,7 @@ header section:nth-child(n) {
     justify-content: space-between;
     align-items: center;
     color: var(--header-text);
-    float: right;
+    /*float: right;*/
 }
 
 .toggler {
@@ -258,8 +258,7 @@ ul li {
 }
 
 .login-button {
-    margin-top: 20px;
-    margin-left: 10px;
+    float: left;
 }
 
 .attribution {
