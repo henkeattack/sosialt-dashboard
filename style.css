@@ -247,3 +247,9 @@ header section:last-child {
     margin-top: 12px;
     color: hsl(228, 34%, 66%);
 }
+
+.logo {
+    width: 200px; 
+    height: 200px;
+    padding: 20px;
+}
