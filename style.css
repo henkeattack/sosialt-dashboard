@@ -219,16 +219,14 @@ header section:last-child {
 .definitions-header {
     font-weight: 700;
     font-size: 16px;
-    text-align: center;
     margin-top: 40px;
-    color: hsl(228, 34%, 66%);
+    color: var(--header-text);
 }
 
 .definitions {
     font-size: 14px;
-    text-align: center;
     margin-top: 7px;
-    color: hsl(228, 34%, 66%);
+    color: var(--header-text);
 }
 
 .status {
@@ -241,4 +239,11 @@ header section:last-child {
 .login-button {
     margin-top: 20px;
     margin-left: 10px;
+}
+
+.attribution {
+    font-size: 14px;
+    text-align: center;
+    margin-top: 12px;
+    color: hsl(228, 34%, 66%);
 }

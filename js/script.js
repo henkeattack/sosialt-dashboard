@@ -31,21 +31,21 @@ window.flowFacebookData = {
     return await res.json();
   }
   
-  // getAppToken
+  // hent AppToken
   export async function getAppToken() {
     const url = `https://graph.facebook.com/oauth/access_token?client_id=${window.flowFacebookData.appId}&client_secret=${window.flowFacebookData.clientToken}&grant_type=client_credentials`;
     let headers = new Headers();
     headers.append("Accept", "application/json");
     return performGetOperation(url, headers);
   } 
-  // getMyfbAcc
+  // hent Facebook-konto
   export async function getMyfbAccInfo(instaUserId, accessToken) {
   const url = `https://graph.facebook.com/v8.0/me?fields=id,name,email&access_token=${accessToken}`;
   let headers = new Headers();
   headers.append("Accept", "application/json");
   return performGetOperation(url, headers);
   }
-  // getMyfbAccPage
+  // Hent side tilknyttet Facebook-kontoen
   export async function getMyfbAccPage(instaUserId, accessToken) {
   const url = `https://graph.facebook.com/v8.0/me/accounts?fields=name,id,access_token,engagement,fan_count,instagram_business_account,followers_count{id}&access_token=${accessToken}`;
   let headers = new Headers();
@@ -53,7 +53,7 @@ window.flowFacebookData = {
   return performGetOperation(url, headers);
   }
   
-  // getMyInsight
+  // Hent min totale innsikt
   export async function getMyInsight(instaUserId, accessToken) {
   const url = `https://graph.facebook.com/v8.0/${instaUserId}?fields=business_discovery.username(bluebottle){followers_count,media_count}&access_token=${accessToken}`;
   let headers = new Headers();
@@ -61,7 +61,7 @@ window.flowFacebookData = {
   return performGetOperation(url, headers);
   }
   
-  // getMyfbPageInsights
+  // Hent innsikt fra Facebook-siden
   export async function getMyfbPageInsights(instaUserId, accessToken) {
     const url = `https://graph.facebook.com/v8.0/${instaUserId}/insights?metric=page_views_total,page_engaged_users,page_actions_post_reactions_like_total,page_impressions,page_fan_adds_unique&period=week&date_preset=last_7d&access_token=${accessToken}`;
     let headers = new Headers();
@@ -77,15 +77,7 @@ window.flowFacebookData = {
     return performGetOperation(url, headers);
   }
   
-  // getMyfbPagePosts
-  export async function getMyfbPagePosts(instaUserId, accessToken) {
-    const url = `https://graph.facebook.com/v8.0/${instaUserId}/posts?fields=id,attachments{description,media,media_type},likes{total_count},comments{total_count},reactions{total_count},sharedposts,full_picture&limit=5&access_token=${accessToken}`;
-    let headers = new Headers();
-    headers.append("Accept", "application/json");
-    return performGetOperation(url, headers);
-  }
-  
-  // getInstgramProfile
+  // hent Instagram Profil
   export async function getInstgramProfile(instagramProfileId) {
   FB.api(`${instagramProfileId}`, function (responseData) {
     if (responseData && !responseData.error) {
@@ -94,7 +86,7 @@ window.flowFacebookData = {
   });
   }
   
-  // getMyFbInstaBusinessAcc
+  // hent Instagram business konto fra Facebook-siden
   export async function getMyFbInstaBusinessAcc(instaUserId, accessToken) {
   const url = `https://graph.facebook.com/v8.0/${instaUserId}?fields=instagram_business_account&access_token=${accessToken}`;
   let headers = new Headers();
@@ -102,23 +94,15 @@ window.flowFacebookData = {
   return performGetOperation(url, headers);
   }
   
-  // getMyInstagramAccInfo
+  // hent Instagram konto info
   export async function getMyInstagramAccInfo(instaUserId, accessToken) {
   const url = `https://graph.facebook.com/v8.0/${instaUserId}?fields=biography,followers_count,media_count{like_count},follows_count,ig_id,name,profile_picture_url&access_token=${accessToken}`;
   let headers = new Headers();
   headers.append("Accept", "application/json");
   return performGetOperation(url, headers);
   }
-
-  // getMyInstagramAccMediaStats
-export async function getMyInstagramAccMediaStats(instaUserId, accessToken) {
-  const url = `https://graph.facebook.com/v8.0/${instaUserId}/media?fields=engagement,shortcode,caption,comments_count,thumbnail_url,username,media_type,media_url,like_count,comments,is_comment_enabled&limit=5&access_token=${accessToken}`;
-  let headers = new Headers();
-  headers.append("Accept", "application/json");
-  return performGetOperation(url, headers);
-}
   
-  // getMyInstagramAccInsight
+  // hent min Instagram-innsikt 
   export async function getMyInstagramAccInsight(instaUserId, accessToken) {
   const url = `https://graph.facebook.com/v8.0/${instaUserId}/insights?metric=impressions,reach&period=week&follower_count&period=day&since=1619099778&until=1619704578&access_token=${accessToken}`;
   let headers = new Headers();
@@ -126,15 +110,7 @@ export async function getMyInstagramAccMediaStats(instaUserId, accessToken) {
   return performGetOperation(url, headers);
   }
 
-  // hent likes
-export async function getMyInstaLikes(instaUserId, accessToken) {
-  const url = `https://graph.facebook.com/v8.0/${instaUserId}/media?fields=engagement,like_count,caption&access_token=${accessToken}`;
-  let headers = new Headers();
-  headers.append("Accept", "application/json");
-  return performGetOperation(url, headers);
-}
-
-  // henter instagram lifetime info
+  // henter instagram demograph
   export async function getLifetimeInfo(instaUserId, accessToken) {
     const url = `https://graph.facebook.com/v8.0/${instaUserId}/insights?metric=audience_gender_age&period=lifetime&access_token=${accessToken}`;
     let headers = new Headers();
@@ -150,7 +126,7 @@ export async function getMyInstaLikes(instaUserId, accessToken) {
     return performGetOperation(url, headers);
   }
   
-  // getMyInfo
+  // hent min info
   export async function getMyInfo(instagramProfileId) {
     FB.api("/me", function (responseData) {
       console.log("getMyInfo", responseData);
@@ -159,13 +135,14 @@ export async function getMyInstaLikes(instaUserId, accessToken) {
     });
   }
   
-  // doLoginSuccessWithCallBack
+  // er login en suksess med callback
   export async function doLoginSuccessWithCallBack(yourCallBackFunc) {
     const instaUserId = responseData.authResponse.userID;
     const accessToken = responseData.authResponse.accessToken;
     return yourCallBackFunc && yourCallBackFunc(instaUserId, accessToken);
   }
   
+  // sjekker login state med response status
   export function checkLoginState(yourCallBackFunc) {
     FB.getLoginStatus(function (response) {
       if (response.status === "connected") {
@@ -174,8 +151,8 @@ export async function getMyInstaLikes(instaUserId, accessToken) {
     });
   }
   
+  // kode hvis login feiler, hvis ikke log inn
   export async function doLoginFail(responseData) {
-    // throw new Error("login failed" + responseData.status);
     return window.flowFacebookData.loginFailFunc(responseData);
   }
   export async function doLoginSuccess(responseData) {
@@ -202,7 +179,7 @@ export async function getMyInstaLikes(instaUserId, accessToken) {
   export function initializeFlow() {
     initializeFbScripts();
   }
-  
+  // kjører Facebook Javascript
   export function initializeFbScripts() {
     // initalize ------------------->
     window.fbAsyncInit = function () {
