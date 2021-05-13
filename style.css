@@ -236,7 +236,7 @@ ul.liste {
 } 
 
 ul li {
-    padding: 10px;
+    padding-bottom: 10px;
 }
 
 .status {
