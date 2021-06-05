@@ -193,6 +193,8 @@
             </div>
           </div>
         </div>
+        Testrun:
+        <div id="getInstaFollowers"></div>
         <div class="definitions-header">Dette ser jeg på her</div>
         <div class="definitions">
           <ul class="liste">
@@ -215,6 +217,14 @@
   </div>
 
   <script type="module">
+    //Print json data i dom 
+  const printData = (domId, dataObject) => {
+        document.getElementById(domId).innerHTML = JSON.stringify(
+          dataObject,
+          null,
+          "\n\t"
+        );
+      };
     // implementerer data fra js ----->
     import {
       initializeFlow,
@@ -455,6 +465,7 @@
         fbInstaInfo.instagram_business_account.id,
         fbPageAccesstoken
       );
+      printData("getInstaFollowers", newInstaFollowers);
 
       // sammenlign insta følgere
       const oldInstaFollowers = newInstaFollowers.data[0].values.map(value => value.value);
